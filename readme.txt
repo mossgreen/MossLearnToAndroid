@@ -1,3 +1,28 @@
+20151125
+
+problems I met today
+
+0. in res/layout, i got an error of :
+	Element type “Button” must be followed by either attribute specifications, “>” or “/>”
+solve it:
+	Project --> Clean... then choose your project
+
+
+
+
+
+
+What i learned today:
+0. getting rid of whitespace within elements
+
+1. if I code like that, it's can be more clear:
+
+	<Button android:id="@+id/btn2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/PNR"/>  <!-- just moved your end tag to this line -->
+
+
 20151121
 
 What's my problem today:

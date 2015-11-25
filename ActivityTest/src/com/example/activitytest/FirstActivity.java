@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import android.view.View.OnClickListener;
 
 public class FirstActivity extends Activity{
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -31,11 +33,20 @@ public class FirstActivity extends Activity{
 //				startActivity(intent);
 //				Intent intent = new Intent("com.example.activitytest.ACTION_START");
 //				intent.addCategory("com.example.activitytest.MY_CATEGORY");
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setData(Uri.parse("http://www.google.com"));
-				startActivity(intent);
-			}
+//				Intent intent = new Intent(Intent.ACTION_VIEW);
+//				intent.setData(Uri.parse("http://www.google.com"));
+//				Intent intent = new Intent(Intent.ACTION_DIAL);
+//				intent.setData(Uri.parse("tel:10086"));
+				
+//				String data = "Hello secondActivity";
+//				Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+//				intent.putExtra("extra_data", data);
+//				startActivity(intent);
+				
+				Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
+				startActivityForResult(intent, 1);			}
 		});		
+		
 		
 	}
 	
@@ -56,13 +67,65 @@ public class FirstActivity extends Activity{
 		return true;	
 		}
 	
-	
-	public class SecondActivity extends Activity{
-		@Override
-		protected void onCreate(Bundle savedInstanceState){
-			super.onCreate(savedInstanceState);
-			requestWindowFeature(Window.FEATURE_NO_TITLE);
-			setContentView(R.layout.second_layout);
+	@Override
+	protected void onActivityResult(int requestCode,int resultCode, Intent data){
+		switch (requestCode) {
+		case 1:
+			if(resultCode == RESULT_OK){
+				String returnedData = data.getStringExtra("data_return");
+				Log.d("FirstActivity", returnedData);
+			}
+			
+			break;
+
+		default:
+			break;
 		}
+	}
+	
+}
+
+ class SecondActivity extends Activity{
+	@Override
+	protected void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.second_layout);
+		
+		Button button2 = (Button)findViewById(R.id.button_2);
+		button2.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.putExtra("data_return", "Hello FirstActivity");
+				setResult(RESULT_OK,intent);
+				finish();
+				
+			}
+		});
+
+//		Intent intent = getIntent();
+//		String data = intent.getStringExtra("extra_data");
+//		Log.d("SecondActivity", data);
+		
+
+	}
+	
+	@Override
+	public void onBackPressed(){
+		Intent intent  = new Intent();
+		intent.putExtra("data_return", "Hello FirstActivity");
+		setResult(RESULT_OK,intent);
+		finish();
+	}
+}
+
+ class ThirdActivity extends Activity{
+	@Override
+	protected void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.third_layout);
 	}
 }
