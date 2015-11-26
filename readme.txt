@@ -1,3 +1,30 @@
+20151126
+
+problems I met
+
+0. Activity cannot be solve as an type
+
+solve it: import android.app.Activity;
+
+1. when set an onclick listener, I got a error message:
+The method setOnClickListener(View.OnClickListener) in the type View is not applicable for the arguments (new 
+	 OnClickListener(){})
+	 
+solve it by: use View.OnClickListener instead of OnClickListener
+
+OR: import android.view.View.OnClickListener;
+
+
+
+What I learned today:
+
+0. CTL+SHIFT+O to fix all imports
+
+
+
+
+
+
 20151125
 
 problems I met today
