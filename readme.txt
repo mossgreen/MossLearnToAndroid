@@ -1,3 +1,35 @@
+20151127
+
+code optimization
+
+0. in FirstActivity class, use code:
+	SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
+	
+	instead of:
+	Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
+	startActivity(intent);		
+1. add a class named activityCollector, which can quite the app without back every activity in the stack :
+	
+	public class ActivityCollector {
+		public static List<Activity> activities = new ArrayList<Activity>();
+		public static void addActivity(Activity activity){
+			activities.add(activity);
+		}
+		public static void removeActivity(Activity activity){
+			activities.remove(activity);
+		}
+		public static void finishAll(){
+			for(Activity activity : activities){
+				if(!activity.isFinishing()){
+					activity.finish();
+				}
+			}
+		}
+	}
+	
+
+
+
 20151126
 
 problems I met

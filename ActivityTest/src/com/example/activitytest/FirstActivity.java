@@ -15,12 +15,13 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 
-public class FirstActivity extends Activity{
+public class FirstActivity extends BaseActivity{
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		Log.d("FirstActivity", this.toString());
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.first_layout);
 		
@@ -43,11 +44,25 @@ public class FirstActivity extends Activity{
 //				intent.putExtra("extra_data", data);
 //				startActivity(intent);
 				
-				Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
-				startActivityForResult(intent, 1);			}
+//				Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
+//				startActivity(intent);		
+				SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
+				}
 		});		
 		
 		
+	}
+	
+	@Override
+	protected void onRestart(){
+		super.onRestart();
+		Log.d("FirstActivity", "onRestart");
+	}
+	
+	@Override
+	protected void onDestroy(){
+		super.onDestroy();
+		Log.d("SecondActivity", "onDestroy");
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu){

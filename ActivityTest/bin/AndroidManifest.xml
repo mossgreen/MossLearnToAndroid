@@ -15,6 +15,7 @@
         
         <activity
         	android:name = ".FirstActivity"
+        	android:launchMode="singleTask"
         	android:label = "This is FirstActivity">
         	<intent-filter>
         		<action android:name = "android.intent.action.MAIN" />
@@ -23,6 +24,7 @@
         </activity>
         
         <activity android:name = ".SecondActivity">
+        			android:launchMode="singleInstance" >
         	<intent-filter>
         		<action android:name = "com.example.activitytest.ACTION_START"/>
         		<category android:name="android.intent.category.DEFAULT"/>
