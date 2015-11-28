@@ -1,3 +1,17 @@
+20151128
+
+problems I met today:
+
+0. Error parsing XML: unbound prefix
+
+	solve it: It's a typo, like "andorid" should be "android". May be I should have a typo list to check every time when I meet a problem.
+
+progress of today
+
+start to learn UI, like dialog, editText.
+
+
+
 20151127
 
 code optimization
