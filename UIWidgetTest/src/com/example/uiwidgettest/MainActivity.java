@@ -2,6 +2,7 @@ package com.example.uiwidgettest;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -48,28 +49,35 @@ public class MainActivity extends Activity {
 //				int progress = progressBar.getProgress();
 //				progress = progress+10;
 //				progressBar.setProgress(progress);
+//				
+//				AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+//				dialog.setTitle("this is Dialog");
+//				dialog.setMessage("something important.");
+//				dialog.setCancelable(false);
+//				dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//					
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						// TODO Auto-generated method stub
+//						
+//					}
+//				});
+//				
+//				dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//					
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						// TODO Auto-generated method stub
+//						
+//					}
+//				});
+//				dialog.show();
 				
-				AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-				dialog.setTitle("this is Dialog");
-				dialog.setMessage("something important.");
-				dialog.setCancelable(false);
-				dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						
-					}
-				});
-				dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						
-					}
-				});
-				dialog.show();
+				ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+				progressDialog.setTitle("This is ProgressDialog");
+				progressDialog.setMessage("Loading...");
+				progressDialog.setCancelable(true);
+				progressDialog.show();
 			}
 		});
 	}

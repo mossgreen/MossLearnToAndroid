@@ -1,3 +1,19 @@
+20151129
+
+problems I met today:
+
+0. typo like: layout_toLeftOf I wrote like layout_toLeft
+	solve it by: check again and again
+
+What I learnt today:
+
+0. four kinds of layout:
+	LinearLayout: harizontal or vertial
+	RelativeLayout: 
+	FrameLayout: elements are to the left-top position, normally used in the "Fragements"
+	TableLayout: elements are in lines and columns, normally used in the login window
+
+
 20151128
 
 problems I met today:
