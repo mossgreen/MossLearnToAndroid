@@ -1,3 +1,36 @@
+
+
+20151201
+
+things I learnt:
+0. customized icon should store in the res/drawable-hdpi 
+
+1.how to new a class TitleLayout extends LinearLayout.
+	add a new class in src/package
+
+
+20151130
+
+problems I met today:
+
+0. my app quit unexpectly. Actually it happened before. I resoved it by recreating the project again. however, I don't know why it happens and how to solve it properly. the error code in logCat is:[MessageQ] ProcessNewMessage: [XTWiFi-PE] unknown deliver target [OS-Agent] 
+
+	Solve it: i deleted the project again. However I have a better solution now.
+				I created a new project. the minimum is level 19 (the same as my android phone) target is 22 and compile with   22. I tested with it and it works.
+				
+Things that I learnt today:
+
+0. how to add title icon to the project
+
+	I drawed some icons and put them into:workspace/UICustomViews/res/drawable-hdpi
+
+1. how to add customized title into main layout?
+	
+	in the activity_main.xml, add: <include layout="@layout/title" />
+
+
+
+
 20151129
 
 problems I met today:
