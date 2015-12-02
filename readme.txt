@@ -1,6 +1,12 @@
 20151202
 
-add an app that uses listview and made some optimization
+things that I learnt today:
+
+0. How to find the "draw9patch.bat" and how to open it?
+	in terminal:$cd android-skds/tools 
+				$ls  # can find it here
+				$open draw9patch
+	Also, there is an oline patcher: http://romannurik.github.io/AndroidAssetStudio/nine-patches.html
 
 20151201
 
