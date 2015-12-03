@@ -2,7 +2,7 @@
 
 problems I met today:
 
-0. I have a ADT, and when I'm run my app in the ADT, I got an error on the interface of ADT, said that "unfortunately, the program has stopped.
+0. I have a AVD, and when I'm run my app in the AVD, I got an error on the interface of AVD, said that "unfortunately, the program has stopped.
 	in the logCat I can see the error message, which shows that: 
 	12-03 21:11:44.652: E/AndroidRuntime(1468): Caused by: java.lang.NoClassDefFoundError: Class not found using the boot class loader; no stack available
 	
@@ -201,7 +201,7 @@ learned about git:
 
 20151120
 
-Today is the first that I learn to Android, before that I already read a book about Android but never write a code.
+Today is the first day that I learn to Android, before that I already read a book about Android but never write a code.
 I will record how I learn it by using git hub.
 It also will help me to use git hub...
 PS, I know how to commit my work to git hub by using command line already :)

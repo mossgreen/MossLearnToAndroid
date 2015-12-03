@@ -2,5 +2,5 @@ com.android.ide.eclipse.adt.fixLegacyEditors=1
 com.android.ide.eclipse.adt.sdk=/Users/gufeifei/Library/Android/sdk
 com.android.ide.eclipse.adt.xmlEditor=true
 design.palette.flyout.width=144
-design.structure.flyout.width=255
+design.structure.flyout.width=254
 eclipse.preferences.version=1
