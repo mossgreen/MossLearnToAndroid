@@ -1,3 +1,24 @@
+20151203
+
+problems I met today:
+
+0. I have a ADT, and when I'm run my app in the ADT, I got an error on the interface of ADT, said that "unfortunately, the program has stopped.
+	in the logCat I can see the error message, which shows that: 
+	12-03 21:11:44.652: E/AndroidRuntime(1468): Caused by: java.lang.NoClassDefFoundError: Class not found using the boot class loader; no stack available
+	
+ according to the stackoverflow, I knew that there could be something wrong with xml file and may be I made some typo on package's name.
+			correct it and run again, problem is not solved.
+			so, I think there might be something wrong with my ADT, so I created a new app that fits my 5.5 inch phone.
+			when the app didn't have fragment, it works fine. However ,when I use fragment in the mainActivity, it cannot open anymore.
+			
+solve it by reCreating a app and install it on my android phone again. then it works well. don't know why, may be some typo.
+		
+		－-> now I'm quite sure that it caused by typo in activity_main.xml!!!	
+			
+			
+
+
+
 20151202
 
 things that I learnt today:
