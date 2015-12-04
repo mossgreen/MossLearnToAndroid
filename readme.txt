@@ -1,3 +1,13 @@
+20151205
+
+problems I met today:
+
+0 I modified  FragmentTest, and add an res/layout-large folder. there comes on error with it in the src/MainActivity.java, saying that "cannot find the 'right-layout'"
+	solved it by changing the name to "right_fragment" as eclipse prompted.
+	
+	another problem comes, I cannot get into the app now. so I have to give up to test with it.
+
+
 20151203
 
 problems I met today:
