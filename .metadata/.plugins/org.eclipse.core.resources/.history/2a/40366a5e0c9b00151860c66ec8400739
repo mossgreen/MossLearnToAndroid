@@ -1,0 +1,26 @@
+package com.example.fragmentbestpractice;
+
+import java.util.List;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Adapter;
+import android.widget.ListView;
+
+public class NewsTitleFragment extends Fragment implements OnItemClickListener {
+	
+	private ListView newsTitleListView;
+	private List<News>newsList;
+	private NewsAdapter fAdapter;
+	private boolean isTwoPane;
+	
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		newsList = getNews();
+		Adapter = new NewsAdapter(activity, R.layout.news_item, newsList);
+	}
+
+}

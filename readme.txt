@@ -1,3 +1,17 @@
+20151206
+
+problems I met today:
+
+0. I coded according to the book, "fragmentbestpractice", when stalled on my phone, it quit immediately.
+
+check: all the xml documents, corrected : a. Listview --> ListView
+then: I can get into this app, however, when I click the title of news, this app quits unexpectedly.
+
+I'll push this with a bug. may be fix it later. I still hold the opinion that there must be some mistake in xml docs.
+
+
+
+
 20151205
 
 problems I met today:
