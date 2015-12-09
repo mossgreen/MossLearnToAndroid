@@ -1,3 +1,130 @@
+
+    
+    <include layout="@layout/layout_colourpanel"
+    	android:id="@+id/layout_colourpanel"
+    	android:layout_gravity="center_vertical"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentleft="true"
+    	android:layout_alignParentTop="true" />
+    	
+    <include layout="@layout/layout_shapespanel"
+    	android:id="@+id/layout_shapspanel"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentleft="true"
+    	android:layout_below="@+id/layout_courpanel" />
+    	
+    <include layout="@layout/layout_controlpanel"
+    	android:id="@+id/layout_controlpanel"
+    	android:layout_gravity="center_vertical"
+    	android:layout_width="wrap_content"
+    	android:layout_height='wrap_content"
+    	android:layout_alignParentBottom="true"
+    	android:layout_alignParentRight="true" />
+
+
+
+20151209
+I created a new project named lab03f
+
+what i learnt today:
+
+0. about TextView
+	0. <TextView
+			android:id="@+id/tvheader"
+			android:layout_width="300dip"
+			android:layout_height="wrap_content"
+			android:background="#EC7703"
+			android:textColor="#000000"
+			android:text="  Edit Items"  
+			android:background="@color/background"  />
+	1. fill_parent has been depreciated since API 8
+1. LinearLayout
+	0. orientation:
+		0.1 android:orientation="vertical"
+			at this time, the height cannot be "match_parent"
+		0.2 android:orientation="horizontal"
+			at this time, the width cannot be "match_parent"
+	1. gravity:
+		1.1 android:gravity-->text
+		1.2 android:layout_gravity--->layout
+			1.2.1 android:layout_gravity="center_vertical" or "top" or"bottom"
+
+	2. *android:layout_weight="1" means to have a proper width?
+2. RelativeLayout
+	0. set android:baselineAligned="false" to improve performance
+
+
+
+
+
+3. GridLayout
+	0.             <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnCount="2"
+                android:rowCount="6" >
+                
+    1. columns and rows start from 0, so column01 and row01, should be the second row, second column
+20151208
+
+I created a new project named Lab2
+
+What i learnt today:
+
+0. when I want to draw on screen,
+	
+	0. I need to have a Canvas: Canvas canvas = new Canvas();
+	1. I need a object to paint: Paint paint = new Paint();
+	2. I can set the style of the pen, to fill the shape or just draw the frame
+		2.1 paint.setStyle(Paint.Style.FILL)
+		2.2 paint.setStyle(Paint.Style.STROKE)
+		2.3 paint.setStrokewidth(3);
+	3. drawdrawText by: canvas.drawText("welcome to Mobile Programming", 5, 10, paint);
+	4. draw rectangle
+		4.1 make a rectangle: RectF rectF = new RectF(widthOffset, heightOffset, widthOffset+40, heightOffset+40); 
+		4.2 draw it by canvas.drawRect(rectF, paint);
+		
+1. what is a bitMap and how to use it?
+	0. bitmap is like a image?
+	1. first i have to put a image in my res/drawable folder,
+	2. I get out this image by:	
+		Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);  
+	3. then, canvas.drawBitmap(bmp,x,y,null);
+	4. I still don't know the difference between the code up, and this one--> canvas.drawBitmap(bmp, x, y, paint);  
+
+
+2. I want to use onTouchListener
+	0. have a class named ViewBlat.class, to implement this interface
+	1. have a global parameter x,y as coordinate, also have a paint and canvas
+	2. in the constructor, 		setOnTouchListener(this);
+	3. in the onDraw method, get your bitmap and use canvas.drawBitmap() method to draw
+	4. override the onTouch method, analyse the event. in my project, I can get the x,y coordinate from the event
+		and draw something on the canvas.
+
+
+20151206
+
+problems I met today:
+
+0. error message like:[2015-12-06 18:28:55 - Circle Animation] Circle Animation does not specify a android.test.InstrumentationTestRunner instrumentation or does not declare uses-library android.test.runner in its AndroidManifest.xml
+	solved it by: go to 'run as--run config --unit test, delete test instance'
+	
+	according to stackoverflow:
+		In the Run Configuration you may have Android JUnit Test, if there are any new launch configuration entries inside this, you delete it and then run your application it will run.
+		NOTE - This is likely to be the solution if you tried to run the test case before adding the correct lines to the manifest as described in the answer from Josef. If you have done this, delete the configuration (which will be complaining that no instrumentation test runner has been specified in its header) and then run it as an Android Junit Test again and it will create a valid configuration picking up the correct stuff that you have added to the manifest (see Josef's answer for this).
+
+	and, there is also another mistake can cause this error:
+	
+		You're probably missing the following in your AndroidManifest.xml:
+		<instrumentation android:name="android.test.InstrumentationTestRunner"
+			android:targetPackage="your.package"
+			android:label="your tests label" />
+		and
+		<uses-library android:name="android.test.runner" />
+
+
 20151206
 
 problems I met today:

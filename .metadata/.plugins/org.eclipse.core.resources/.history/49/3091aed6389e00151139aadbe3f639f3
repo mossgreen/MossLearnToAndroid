@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Layout Test!</string>
+    <string name="app_name">Layout Test</string>
+    <string name="btnApplicationDetails">Add ...</string>
+    <string name="btn1">Button 1</string>
+    <string name="btn2">Button 2</string>
+    <string name="btnBlack">b1</string>
+
+</resources>

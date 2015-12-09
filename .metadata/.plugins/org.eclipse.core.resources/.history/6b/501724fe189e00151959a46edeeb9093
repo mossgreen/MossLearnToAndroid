@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000" >
+
+    <TextView
+    	android:id="@+id/txtResult"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#ffffff"
+        android:textColor="#ff0000"
+        android:text="what's going on here..." />
+        
+     <Button
+     	android:id="@+id/btnC"
+     	android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+     	android:layout_alignParentRight="true"
+     	android:layout_below="@id/txtResult"
+     	android:text="C" />
+     	
+     	
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     	android:layout_width="wrap_content"
+     	android:layout_height="wrap_content" 
+     	android:layout_alignParentLeft="true"
+     	android:layout_alignParentBottom="true"
+     	>
+     	
+     	<TableRow>
+     		  <Button
+     			android:id="@+id/btn_7"
+     			android:layout_width="wrap_content"
+     			android:layout_height="wrap_content"
+     			android:text="7" />
+     			
+     		  <Button
+     			android:id="@+id/btn_8"
+     			android:layout_width="wrap_content"
+     			android:layout_height="wrap_content"
+     			android:text="8" />     			
+     		
+      		  <Button
+     			android:id="@+id/btn_9"
+     			android:layout_width="wrap_content"
+     			android:layout_height="wrap_content"
+     			android:text="9" />    	
+     	
+     	</TableRow>
+     	
+     	<TableRow>
+     	     <Button
+     			android:id="@+id/btn_4"
+     			android:layout_width="wrap_content"
+     			android:layout_height="wrap_content"
+     			android:text="4" /> 
+     			
+     			
+     		<Button
+     			android:id="@+id/btn_5"
+     			android:layout_width="wrap_content"
+     			android:layout_height="wrap_content"
+     			android:text="5" /> 
+     	
+     	
+     	</TableRow>
+     	
+     	
+    </TableLayout>
+  
+
+
+</RelativeLayout>

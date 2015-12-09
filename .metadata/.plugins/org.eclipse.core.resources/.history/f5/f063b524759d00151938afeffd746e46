@@ -1,0 +1,12 @@
+package com.example.lab2;
+
+import android.content.Context;
+
+public class DrawView {
+	
+	public DrawView(Context context)
+	{
+		super(context);
+	}
+
+}

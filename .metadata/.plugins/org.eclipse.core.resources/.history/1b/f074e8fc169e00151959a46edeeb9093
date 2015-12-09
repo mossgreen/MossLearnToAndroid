@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000 >
+
+    <TextView
+    	android:id="@+id/txtResult"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#ffffff"
+        android:textColor="#ff0000"
+        android:text="what's the hall is going on here..." />
+     <Button
+     	android:id="@+id/btnC"
+     	android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+     	android:layout_alignParentRight="true"
+     	android:layout_alignParentTop="true"
+     	android:text="C" />
+     	
+      <Button
+     	android:id="@+id/btnC"
+     	android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+     	android:layout_below="@id/btnC"
+     	android:layout_alignParentRight="true"
+     	android:text="C1" />
+
+
+</RelativeLayout>

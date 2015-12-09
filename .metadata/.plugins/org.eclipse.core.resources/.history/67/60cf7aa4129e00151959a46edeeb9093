@@ -1,0 +1,51 @@
+package com.example.lab03f;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+	
+	// Buttons of the calculator
+    private Button mZeroButton;
+    private Button mOneButton;
+    private Button mTwoButton;
+    private Button mThreeButton;
+    private Button mFourButton;
+    private Button mFiveButton;
+    private Button mSixButton;
+    private Button mSevenButton;
+    private Button mEightButton;
+    private Button mNineButton;
+    private Button mResultButton;
+    private Button mPlusButton;
+    private Button mClearButton;
+
+    // TextView to show the result of the calculation
+    private TextView mResultTextView;
+
+    // result string that is always set to the TextView
+    private String mResultText = "0";
+
+    // two strings to store the values of the numbers that should be added
+    private String mFirstNum = "0";
+    private String mSecondNum = "0";
+
+    // boolean to check if a number has already be entered
+    private boolean mNumberEntered = false;
+
+    // boolean to check if a result is shown at the display
+    private boolean mShowResult = false;
+    
+    
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
+
+}

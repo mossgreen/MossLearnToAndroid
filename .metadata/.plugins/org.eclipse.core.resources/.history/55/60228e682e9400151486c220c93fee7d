@@ -1,5 +1,0 @@
-package com.example.activitylifecycletest;
-import android.app.Activity;
-public class DialogActivity extends Activity{
-	
-}

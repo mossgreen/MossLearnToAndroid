@@ -1,0 +1,20 @@
+package com.example.assginment01;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+
+public class Paintview extends View {
+
+	public Paintview(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Paintview(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+	}
+	
+
+}

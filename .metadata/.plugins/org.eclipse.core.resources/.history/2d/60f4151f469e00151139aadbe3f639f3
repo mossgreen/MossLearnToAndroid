@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000" >
+    
+    <include layout="@layout/layout_colourpanel"
+    	android:id="@+id/layout_colourpanel"
+    	android:layout_gravity="center_vertical"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentleft="true"
+    	android:layout_alignParentTop="true" />
+    	
+    <include layout="@layout/layout_shapespanel"
+    	android:id="@+id/layout_shapspanel"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentleft="true"
+    	android:layout_below="@+id/layout_courpanel" />
+    	
+    <include layout="@layout/layout_controlpanel"
+    	android:id="@+id/layout_controlpanel"
+    	android:layout_gravity="center_vertical"
+    	android:layout_width="wrap_content"
+    	android:layout_height='wrap_content"
+    	android:layout_alignParentBottom="true"
+    	android:layout_alignParentRight="true" />
+    	
+    <com.example.assignment01.Paintview
+    	android:id="@=id/paint_view"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentTop="ture"
+    	android:layout_alignParentRight="true"
+    	android:layout_above="@id/layout_controlpanel"
+    	android:layout_toRightOf="@id/layout_colourpanel" />
+    	
+    
+    
+    
+    
+</RelativeLayout>

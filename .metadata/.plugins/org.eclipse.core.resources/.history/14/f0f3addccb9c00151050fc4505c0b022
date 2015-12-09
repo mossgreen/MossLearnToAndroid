@@ -1,0 +1,98 @@
+package com.jcasey;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.view.View;
+
+public class DrawView extends View
+{
+	public static final int RADIUS = 30;
+	public static final int DELTA = 4; // TODO change code below to use this constant
+
+	public ArrayList<BBall> arrayList = new ArrayList<BBall>();
+	
+	
+
+	BBall bball01 = new BBall(50f,50f,50);
+	BBall bball02= new BBall(400f,400f,130);
+	BBall bball03= new BBall(500f,100f,130);
+	BBall bball04= new BBall(100f,0f,130);
+	
+	
+	float deltax = 100;
+	float deltay = 100;
+	
+	int width;
+	int height;
+
+	public DrawView(Context context)
+	{
+		super(context);
+		arrayList.add(bball01);
+		arrayList.add(bball02);
+		arrayList.add(bball03);
+		arrayList.add(bball04);
+
+
+	}
+	
+	@Override
+	protected void onDraw(Canvas canvas)
+	{
+		// TODO alter code so that we have multiple bouncing circles
+		
+		Paint paint = new Paint();
+		paint.setColor(Color.RED);
+		
+		
+		for(int i=0; i<arrayList.size(); i++){
+			
+			canvas.drawCircle(arrayList.get(i).getX(), arrayList.get(i).getX(), arrayList.get(i).getRadius(), paint);
+			
+			arrayList.get(i).setX(arrayList.get(i).getX()+deltax);
+			arrayList.get(i).setY(arrayList.get(i).getX()+deltax);
+			
+		}
+		
+		
+		for(int j = 0; j<arrayList.size();j++){
+			if(arrayList.get(j).getX()+RADIUS >width){
+				deltax = -20;
+			}
+			
+			if(arrayList.get(j).getY()+RADIUS >height){
+				deltax = -30;
+			}
+			
+			if(arrayList.get(j).getX()-RADIUS < 0)
+			{
+				deltax = 100; // change increment value so that ball bounce off right wall
+			}
+			
+			if(arrayList.get(j).getY()-RADIUS < 0)
+			{
+				deltay = 140; // change increment value so that ball bounces off bottom wall
+			}
+			
+			
+			
+			
+		}
+		
+		
+		// force the screen to be redrawn
+		invalidate();
+	}
+	
+	// use the onSizeChanged method to keep track of the width and height of the screen
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		width = w;
+		height = h;
+		super.onSizeChanged(w, h, oldw, oldh);
+	}
+}
