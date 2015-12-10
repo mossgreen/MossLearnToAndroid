@@ -5,7 +5,7 @@
     android:background="#ff0000" >
 
     	
-    <com.example.assignment01.PaintView
+    <com.example.painter.PaintView
     	android:id="@+id/paint_view"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"

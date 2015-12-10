@@ -61,8 +61,8 @@ public class PaintView extends View implements OnTouchListener{
 
 		paint.setAntiAlias(true);  // make the line itself more smooth
 		paint.setDither(true);  
-		paint.setColor(Color.RED);
-		paint.setColor(0xFF000000);  // used for eraser
+		paint.setColor(Color.GREEN);
+//		paint.setColor(0xFF000000);  // used for eraser
 		paint.setStrokeWidth(2);  
 		paint.setStyle(Paint.Style.STROKE);  
 		//paint.setStyle(Paint.Style.FILL);   //Dot not use it, will generate shadow effect
