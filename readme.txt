@@ -47,7 +47,7 @@ what i learnt today:
 		0.2 android:orientation="horizontal"
 			at this time, the width cannot be "match_parent"
 	1. gravity:
-		1.1 android:gravity-->text
+		1.1 android:gopenravity-->text
 		1.2 android:layout_gravity--->layout
 			1.2.1 android:layout_gravity="center_vertical" or "top" or"bottom"
 
