@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="dynamicPanel" key="selection"/>
+		<item value="Paint" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="dynamicPanel"/>
-			<item value="add"/>
-			<item value="toast"/>
-			<item value="button1"/>
-			<item value="txtResult"/>
-			<item value="Button"/>
-			<item value="button"/>
-			<item value="animateView"/>
+			<item value="paint"/>
+			<item value="mPath"/>
+			<item value="clear"/>
+			<item value="flag_up"/>
+			<item value="bmpPaint"/>
+			<item value="bmPaint"/>
+			<item value="path"/>
+			<item value="cacheBitmap"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -24,7 +24,7 @@
 		<item value="265" key="DIALOG_WIDTH"/>
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="1053" key="DIALOG_X_ORIGIN"/>
+		<item value="1408" key="DIALOG_X_ORIGIN"/>
 		<item value="143" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -1,28 +1,15 @@
+20151211
 
-    
-    <include layout="@layout/layout_colourpanel"
-    	android:id="@+id/layout_colourpanel"
-    	android:layout_gravity="center_vertical"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_alignParentleft="true"
-    	android:layout_alignParentTop="true" />
-    	
-    <include layout="@layout/layout_shapespanel"
-    	android:id="@+id/layout_shapspanel"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_alignParentleft="true"
-    	android:layout_below="@+id/layout_courpanel" />
-    	
-    <include layout="@layout/layout_controlpanel"
-    	android:id="@+id/layout_controlpanel"
-    	android:layout_gravity="center_vertical"
-    	android:layout_width="wrap_content"
-    	android:layout_height='wrap_content"
-    	android:layout_alignParentBottom="true"
-    	android:layout_alignParentRight="true" />
+problems I met today:
 
+0. while I was running the "DrawingFun project" i got an error message
+	"An internal error occurred during: "Launching New_configuration". Path for project must have only one segment."
+	
+	solved it by:
+		1. Project -> Properties -> Run/Debug Settings:
+		2. select "Launching New_configuration"
+		3. Delete
+		4. OK
 
 
 20151209
