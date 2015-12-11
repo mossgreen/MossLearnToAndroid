@@ -9,6 +9,9 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.util.TypedValue;
 
 public class DrawingView extends View{
 	//drawing path
@@ -21,6 +24,12 @@ public class DrawingView extends View{
 	private Canvas drawCanvas;
 	//canvas bitmap
 	private Bitmap canvasBitmap;
+	//variables for the brush sizes
+	//and for keeping track of the last brush size used when the user switches to the eraser
+	//so that we can revert back to the correct size when users decide to switch back to drawing
+	private float brushSize, lastBrushSize;
+	//this variable act as a flag for whether the user is currently erasing or not
+	private boolean erase=false;
 	
 	
 	public DrawingView(Context context, AttributeSet attrs){
@@ -30,17 +39,21 @@ public class DrawingView extends View{
 	
 	//get drawing area setup for interaction  
 	private void setupDrawing(){
-		//First, instantiate the drawing Path and Paint objects:
+		//We use the dimension value for the medium sized brush to begin with
+		brushSize = getResources().getInteger(R.integer.medium_size);
+		lastBrushSize = brushSize;
+		
+		//Second, instantiate the drawing Path and Paint objects:
 		drawPath = new Path();
 		drawPaint = new Paint();
 		
-		//Second, set the initial color:
+		//Third, set the initial color:
 		drawPaint.setColor(paintColor);
 		
-		//Third, set the initial path properties
+		//Next, set the initial path properties
 		//Setting the anti-alias, stroke join and cap styles will make the user's drawings appear smoother.
 		drawPaint.setAntiAlias(true);
-		drawPaint.setStrokeWidth(20);
+		drawPaint.setStrokeWidth(brushSize);
 		drawPaint.setStyle(Paint.Style.STROKE);
 		drawPaint.setStrokeJoin(Paint.Join.ROUND);
 		drawPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -100,6 +113,7 @@ public class DrawingView extends View{
 	    return true;
 	}
 	
+	//set color
 	public void setColor(String newColor){
 		//to set color, start by invalidating the View
 		invalidate();
@@ -108,10 +122,47 @@ public class DrawingView extends View{
 		paintColor = Color.parseColor(newColor);
 		drawPaint.setColor(paintColor);
 
-
-		
-		
-	
 	}
-
+	
+	//set brush size
+	public void setBrushSize(float newSize){
+		
+		//passing the value from the dimensions file
+		//update the brush size with the passed value
+		//update the Paint object to use the new size
+		float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
+			    newSize, getResources().getDisplayMetrics());
+			brushSize=pixelAmount;
+			drawPaint.setStrokeWidth(brushSize);
+		}
+	
+	//to set the LastBrushSiz 
+	public void setLastBrushSize(float lastSize){
+	    lastBrushSize=lastSize;
+	}
+	
+	//to get the LastBrushSiz 
+	public float getLastBrushSize(){
+	    return lastBrushSize;
+	}
+	
+	//Initially we will assume that the user is drawing, not erasing
+	public void setErase(boolean isErase){
+		//set erase true or false  
+		//first update the flag variable
+		erase=isErase;
+		
+		//then, alter the Paint object to erase or switch back to drawing
+		if(erase){ 
+			drawPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+		}else{ 
+			drawPaint.setXfermode(null);
+		}
+	}
+	
+	//to start a new drawing, simply clears the canvas and updates the display
+	public void startNew(){
+	    drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+	    invalidate();
+	}
 }
