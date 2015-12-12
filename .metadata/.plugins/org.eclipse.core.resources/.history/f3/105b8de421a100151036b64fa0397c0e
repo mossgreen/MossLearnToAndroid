@@ -77,7 +77,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		largeBrush = getResources().getInteger(R.integer.large_size);
 		
 		//set the initial brush size
-		drawView.setBrushSize(smallBrush);
+		drawView.setBrushSize(mediumBrush);
 
 	}
 	
@@ -123,8 +123,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			
 		}else if(view.getId()==R.id.circle){
 		    //while eraser button is clicked, switch to erase - choose size
-	        drawView.setBrushSize(smallBrush);
-	        drawView.setLastBrushSize(smallBrush);
 			drawView.setPaint(false);
 	        drawView.setErase(false);
 	        drawView.setRect(false);
@@ -134,8 +132,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			
 		}else if(view.getId()==R.id.triangle){
 		    //while eraser button is clicked, switch to erase - choose size
-	        drawView.setBrushSize(smallBrush);
-	        drawView.setLastBrushSize(smallBrush);
 			drawView.setPaint(false);
 	        drawView.setErase(false);
 	        drawView.setCir(false);
@@ -146,8 +142,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			
 		}else if(view.getId()==R.id.rectangle){
 		    //while eraser button is clicked, switch to erase - choose size
-	        drawView.setBrushSize(smallBrush);
-	        drawView.setLastBrushSize(smallBrush);
 			drawView.setPaint(false);
 	        drawView.setErase(false);
 	        drawView.setCir(false);
@@ -156,49 +150,9 @@ public class MainActivity extends Activity implements OnClickListener{
 
 			
 		}else if(view.getId()==R.id.erase_btn){
-//while eraser button is clicked, switch to erase - choose size
-			
-			//When the user clicks the button, it will display a dialog presenting them with the three button sizes
-			final Dialog brushDialog = new Dialog(this);
-			brushDialog.setTitle("Eraser size:");
-			
-			//set layout
-			brushDialog.setContentView(R.layout.brush_chooser);
-			
-			//listen for clicks on the three size buttons, this is the small one:
-			ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
-			smallBtn.setOnClickListener(new OnClickListener(){
-			    @Override
-			    public void onClick(View v) {
-			        drawView.setErase(true);
-			        drawView.setBrushSize(smallBrush);
-			        brushDialog.dismiss();
-			    }
-			});
-			
-			//listen for clicks on the three size buttons, this is the medium one:
-			ImageButton mediumBtn = (ImageButton)brushDialog.findViewById(R.id.medium_brush);
-			mediumBtn.setOnClickListener(new OnClickListener(){
-			    @Override
-			    public void onClick(View v) {
-			        drawView.setErase(true);
-			        drawView.setBrushSize(mediumBrush);
-			        brushDialog.dismiss();
-			    }
-			});
-			
-			//listen for clicks on the three size buttons, this is the large one:
-			ImageButton largeBtn = (ImageButton)brushDialog.findViewById(R.id.large_brush);
-			largeBtn.setOnClickListener(new OnClickListener(){
-			    @Override
-			    public void onClick(View v) {
-			        drawView.setErase(true);
-			        drawView.setBrushSize(largeBrush);
-			        brushDialog.dismiss();
-			    }
-			});
-			
-			brushDialog.show(); //Finally, display the Dialog
+		    //while eraser button is clicked, switch to erase - choose size
+	        drawView.setErase(true);
+	        drawView.setBrushSize(mediumBrush);
 			
 		}else if(view.getId()==R.id.new_btn){
 		    //while new button is clicked
