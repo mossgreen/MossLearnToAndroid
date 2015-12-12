@@ -7,10 +7,10 @@
     <!-- Brush sizes -->
     <!--The values for dimension and integer at each size are the same, 
     so that the UI indicates the brush size as it will function when the user draws with it. -->
-	<dimen name="small_brush">10dp</dimen>
-	<integer name="small_size">10</integer>
-	<dimen name="medium_brush">20dp</dimen>
-	<integer name="medium_size">20</integer>
+	<dimen name="small_brush">4dp</dimen>
+	<integer name="small_size">4</integer>
+	<dimen name="medium_brush">16dp</dimen>
+	<integer name="medium_size">16</integer>
 	<dimen name="large_brush">30dp</dimen>
 	<integer name="large_size">30</integer>
     

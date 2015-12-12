@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Paint" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="paint"/>
-			<item value="mPath"/>
-			<item value="clear"/>
-			<item value="flag_up"/>
-			<item value="bmpPaint"/>
-			<item value="bmPaint"/>
-			<item value="path"/>
-			<item value="cacheBitmap"/>
+			<item value="pres"/>
+			<item value="pressed"/>
+			<item value="color"/>
+			<item value="drawing"/>
+			<item value="paintClicked"/>
+			<item value="setBrushSize"/>
+			<item value="drawView"/>
+			<item value="brushDialog"/>
 		</list>
 		<list key="replacehistory">
 		</list>

@@ -1,9 +1,0 @@
-package com.example.drawingfun;
-
-import android.view.View;
-import android.content.Context;
-import android.util.AttributeSet;
-
-public class DrawingView extends View{
-
-}

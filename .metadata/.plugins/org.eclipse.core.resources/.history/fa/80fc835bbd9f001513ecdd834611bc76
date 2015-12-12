@@ -1,0 +1,92 @@
+package com.example.assignment01;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+
+public class PaintView extends View implements OnTouchListener, OnClickListener
+{
+	// PaintView class developed by John Casey 06/03/2014 
+	
+	final Paint paint = new Paint();
+	
+	Bitmap offScreenBitmap;
+	Canvas offScreenCanvas;
+
+	// define additional constructors so that PaintView will work with out layout file
+	
+	public PaintView(Context context) {
+		super(context);
+		
+		setup();
+	}
+
+	public PaintView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		
+		setup();
+	}
+
+	public PaintView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		
+		setup();
+	}
+
+	public void setup()
+	{
+		setOnTouchListener(this); // define event listener and start intercepting events 
+	}
+	
+	@Override
+	protected void onDraw(Canvas canvas)
+	{
+		// draw the off screen bitmap
+		canvas.drawBitmap(offScreenBitmap, 0, 0, paint);
+	}
+	
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		
+		float x = v.getX();
+		float y = v.getY();
+		
+		paint.setColor(Color.RED);
+		offScreenCanvas.drawCircle(x, y, 20, paint); // draw a red circle at the x,y coordinates specified by the user
+		
+		
+		if(v.getId() == R.id.button1){
+			
+			paint.setColor(Color.GREEN);
+			offScreenCanvas.drawCircle(x, y, 20, paint); // draw a red circle at the x,y coordinates specified by the user
+			
+		}
+
+		
+
+	
+	
+		invalidate(); // force a screen re-draw
+		
+		return true; // actually consume the event
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
+		
+		// create / re-create the off screen bitmap to capture the state of our drawing
+		// this operation will reset the user's drawing
+		
+		offScreenBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+		offScreenCanvas = new Canvas(offScreenBitmap);
+	}	
+}

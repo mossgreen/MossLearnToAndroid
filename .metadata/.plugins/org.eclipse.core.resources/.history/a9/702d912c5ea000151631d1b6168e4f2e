@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!-- We need to define the size for each as both a dimension and an integer value so that we can use these measurements in both the XML layout and drawable resources and the Java code >
+
+</resources>

@@ -1,7 +1,0 @@
-package com.example.drawingfun;
-
-import android.view.View;
-
-public class DrawingView extends View{
-
-}

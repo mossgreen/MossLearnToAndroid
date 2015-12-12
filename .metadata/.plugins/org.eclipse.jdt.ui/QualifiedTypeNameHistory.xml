@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.example.fragmentbestpractice.R.id"/>
-<fullyQualifiedTypeName name="com.example.fragmentbestpractice.NewsContentActivity"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="com.example.fragmentbestpractice.NewsTitleFragment"/>
-<fullyQualifiedTypeName name="com.example.fragmentbestpractice.News"/>
-<fullyQualifiedTypeName name="android.view.Window"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="com.jcasey.BBall"/>
 <fullyQualifiedTypeName name="android.webkit.WebView.HitTestResult"/>
 <fullyQualifiedTypeName name="com.example.lab2.MainActivity.DrawView"/>
 <fullyQualifiedTypeName name="android.graphics.drawable.Icon.OnDrawableLoadedListener"/>
@@ -15,7 +7,6 @@
 <fullyQualifiedTypeName name="android.content.res.Resources.Theme"/>
 <fullyQualifiedTypeName name="java.lang.Float"/>
 <fullyQualifiedTypeName name="com.example.lab2.R"/>
-<fullyQualifiedTypeName name="android.R.color"/>
 <fullyQualifiedTypeName name="android.R.xml"/>
 <fullyQualifiedTypeName name="android.content.res.Resources"/>
 <fullyQualifiedTypeName name="com.example.lab2.R.color"/>
@@ -25,14 +16,9 @@
 <fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="com.example.lab2.DrawView"/>
 <fullyQualifiedTypeName name="com.example.lab3.R.layout"/>
-<fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
 <fullyQualifiedTypeName name="com.example.lab3.R.id"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
-<fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="com.example.assginment01.Paintview"/>
-<fullyQualifiedTypeName name="android.view.View.OnTouchListener"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="android.graphics.PathDashPathEffect.Style"/>
 <fullyQualifiedTypeName name="android.view.MotionEvent"/>
@@ -51,7 +37,6 @@
 <fullyQualifiedTypeName name="android.graphics.PorterDuffXfermode"/>
 <fullyQualifiedTypeName name="android.graphics.PorterDuff"/>
 <fullyQualifiedTypeName name="android.graphics.PorterDuff.Mode"/>
-<fullyQualifiedTypeName name="com.example.assignment01.PaintView"/>
 <fullyQualifiedTypeName name="android.graphics.Paint.Style"/>
 <fullyQualifiedTypeName name="android.graphics.Paint.Cap"/>
 <fullyQualifiedTypeName name="android.graphics.Paint.Join"/>
@@ -60,4 +45,19 @@
 <fullyQualifiedTypeName name="android.graphics.Path"/>
 <fullyQualifiedTypeName name="android.graphics.Paint"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="com.example.painter.PaintView"/>
+<fullyQualifiedTypeName name="com.example.painter.R.id"/>
+<fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="android.view.View.OnTouchListener"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.view.Window"/>
+<fullyQualifiedTypeName name="com.example.assignment01.PaintView"/>
+<fullyQualifiedTypeName name="android.widget.GridLayout"/>
+<fullyQualifiedTypeName name="com.example.assignment01.R.id"/>
+<fullyQualifiedTypeName name="android.R.color"/>
+<fullyQualifiedTypeName name="android.view.View"/>
+<fullyQualifiedTypeName name="android.widget.ImageButton"/>
+<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
+<fullyQualifiedTypeName name="com.example.drawingfun.R.id"/>
 </qualifiedTypeNameHistroy>

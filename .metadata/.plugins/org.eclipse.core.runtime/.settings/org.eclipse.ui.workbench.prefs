@@ -6,3 +6,4 @@ ENABLED_DECORATORS=org.eclipse.m2e.core.mavenVersionDecorator\:false,com.android
 PLUGINS_NOT_ACTIVATED_ON_STARTUP=org.eclipse.m2e.discovery;
 eclipse.preferences.version=1
 org.eclipse.jface.textfont=1|Monaco|14.0|0|COCOA|1|Monaco;
+org.eclipse.ui.commands=<?xml version\="1.0" encoding\="UTF-8"?>\n<org.eclipse.ui.commands>\n<keyBinding contextId\="org.eclipse.ui.contexts.window" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="ALT+SHIFT+A R"/>\n</org.eclipse.ui.commands>
