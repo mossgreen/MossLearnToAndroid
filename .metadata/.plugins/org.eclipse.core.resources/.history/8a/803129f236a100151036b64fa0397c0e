@@ -251,7 +251,8 @@
                 android:contentDescription="@string/start_new"
                 android:src="@drawable/rectangle" />
 
-                </LinearLayout>
+            </linearLayout>
+                
         </LinearLayout>
 
 </LinearLayout>
