@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="50" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="30.9"/>
+			<item value="Brush"/>
+			<item value="currS"/>
+			<item value="currrS"/>
+			<item value="HX7011"/>
 			<item value="pres"/>
 			<item value="pressed"/>
 			<item value="color"/>
-			<item value="drawing"/>
-			<item value="paintClicked"/>
-			<item value="setBrushSize"/>
-			<item value="drawView"/>
-			<item value="brushDialog"/>
 		</list>
 		<list key="replacehistory">
+			<item value="50"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
