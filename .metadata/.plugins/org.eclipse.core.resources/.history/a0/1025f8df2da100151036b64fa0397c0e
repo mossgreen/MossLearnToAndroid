@@ -123,8 +123,8 @@ public class DrawingView extends View{
 				
 				Path triPath = new Path();
 				triPath.moveTo(touchX,touchY-50f);
-				triPath.lineTo(touchX+50f, touchY+25f);
-				triPath.lineTo(touchX-50f,touchY+25f);
+				triPath.lineTo(touchX+43.3f, touchY+25f);
+				triPath.lineTo(touchX-43.3f,touchY+25f);
 				triPath.lineTo(touchX, touchY-50f);
 				drawCanvas.drawPath(triPath, drawPaint);
 				
@@ -133,11 +133,11 @@ public class DrawingView extends View{
 				
 			}else if(isRect) {
 				Path rectPath = new Path();
-				rectPath.moveTo(touchX-50f,touchY-50f);
-				rectPath.lineTo(touchX+50f, touchY-50f);
-				rectPath.lineTo(touchX+50f, touchY+50f);
-				rectPath.lineTo(touchX-50f,touchY+50f);
-				rectPath.lineTo(touchX-50f, touchY-50f);
+				rectPath.moveTo(touchX,touchY);
+				rectPath.lineTo(touchX+60f, touchY);
+				rectPath.lineTo(touchX+60f, touchY-60f);
+				rectPath.lineTo(touchX,touchY-60f);
+				rectPath.lineTo(touchX, touchY);
 				drawCanvas.drawPath(rectPath, drawPaint);
 
 				

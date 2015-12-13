@@ -158,8 +158,6 @@ public class MainActivity extends Activity implements OnClickListener{
 		}else if(view.getId()==R.id.erase_btn){
 //while eraser button is clicked, switch to erase - choose size
 			
-	        drawView.setPaint(true);
-
 			//When the user clicks the button, it will display a dialog presenting them with the three button sizes
 			final Dialog brushDialog = new Dialog(this);
 			brushDialog.setTitle("Eraser size:");
