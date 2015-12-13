@@ -57,15 +57,6 @@ public class MainActivity extends Activity implements OnClickListener{
 		saveBtn = (ImageButton)findViewById(R.id.save_btn);
 		saveBtn.setOnClickListener(this);
 		
-		saveBtn = (ImageButton)findViewById(R.id.exit_btn);
-		saveBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-		
 //		currShape
 		
 		

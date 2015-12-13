@@ -41,6 +41,7 @@
             android:contentDescription="@string/start_new"
             android:src="@drawable/new_pic" />
 
+        <!-- this is the eraser button -->
 
         <ImageButton
             android:id="@+id/save_btn"
@@ -48,13 +49,6 @@
             android:layout_height="fill_parent"
             android:contentDescription="@string/save"
             android:src="@drawable/save" />
-        
-                <ImageButton
-            android:id="@+id/exit_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/exit"
-            android:src="@drawable/exit" />
 
         <!-- That's it for the top Linear Layout control buttons. -->
     </LinearLayout>
