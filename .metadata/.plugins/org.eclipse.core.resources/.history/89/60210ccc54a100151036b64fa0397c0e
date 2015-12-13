@@ -47,7 +47,7 @@ public class DrawingView extends View{
 	//get drawing area setup for interaction  
 	private void setupDrawing(){
 		//We use the dimension value for the medium sized brush to begin with
-		brushSize = getResources().getInteger(R.integer.small_size);
+		brushSize = getResources().getInteger(R.integer.medium_size);
 		lastBrushSize = brushSize;
 		
 		//Second, instantiate the drawing Path and Paint objects:
