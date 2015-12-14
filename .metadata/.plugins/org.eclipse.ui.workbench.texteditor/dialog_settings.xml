@@ -2,22 +2,24 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Step" key="selection"/>
+		<item value="smallLine" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="STEP"/>
-			<item value="setp"/>
-			<item value="getNewNumber"/>
-			<item value="mCalcStepsText"/>
-			<item value="getDrawingCache"/>
-			<item value="setcontent"/>
-			<item value="mFirstNum"/>
-			<item value="mCalcSteps"/>
+			<item value="smallBrush"/>
+			<item value="triangle"/>
+			<item value="tri"/>
+			<item value="trii"/>
+			<item value="palette"/>
+			<item value="canvasPaint"/>
+			<item value="canvasBitmap"/>
+			<item value="drawCanvas"/>
 		</list>
 		<list key="replacehistory">
+			<item value="smallLine"/>
+			<item value="offScreenBitmap"/>
 			<item value="50"/>
 		</list>
 	</section>

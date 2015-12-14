@@ -21,13 +21,15 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
 	private ImageButton currColor;
-	private ImageButton currShape;
-	private ImageButton drawBtn;
 	private ImageButton drawShape;
 	private float smallLine;//, mediumBrush, largeBrush;
-	private PaintView paintView;
-
+	private PaintView paintView;//This represents the instance of the custom View that we added to the layout.
 	
+
+	//represents the paint color button in the palette, the drawing button, eraser button, and new_draw button
+	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn;
+	private ImageButton currShape, triBtn, cirBtn, rectBtn;
+	private float smallBrush, mediumBrush, largeBrush; // to store the three dimension values
 	
 
 
