@@ -19,6 +19,7 @@
             android:layout_gravity="center"
             android:orientation="vertical" >
 
+            <!-- Top Row -->
             <!--
                  This row has an ID because we are going to use it in Java,
     			 when the app starts to set the first default color as selected,
@@ -31,7 +32,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
-                <!-- Top Row -->
                 <!-- the following ImageButton elements represents the first six colors -->
 
                 <ImageButton
@@ -96,7 +96,6 @@
             </LinearLayout>
 
             <!-- Bottom Row -->
-            <!-- the following ImageButton elements represents the second six colors -->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -170,47 +169,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:orientation="vertical" >
-            
-              <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+            android:orientation="horizontal" >
+                
+                <ImageButton
+                    android:id="@+id/circle"
+                    android:layout_width="@dimen/large_brush"
+                    android:layout_height="@dimen/large_brush"
+                    android:layout_margin="2dp"
+                    android:contentDescription="@string/start_new"
+                    android:src="@drawable/circle" />
 
-            <ImageButton
-                android:id="@+id/circle"
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
-                android:layout_margin="2dp"
-                android:contentDescription="@string/start_new"
-                android:onClick="shapeClicked"
-                android:tag="Circle"
-                android:src="@drawable/circle" />
-            </LinearLayout>
-              <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                <ImageButton
+                    android:id="@+id/triangle"
+                    android:layout_width="@dimen/large_brush"
+                    android:layout_height="@dimen/large_brush"
+                    android:layout_margin="2dp"
+                    android:contentDescription="@string/start_new"
+                    android:src="@drawable/triangle" />
 
-            <ImageButton
-                android:id="@+id/triangle"
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
-                android:layout_margin="2dp"
-                android:contentDescription="@string/start_new"
-                android:onClick="shapeClicked"
-                android:tag="Triangle" 
-                android:src="@drawable/triangle" />
-
-            <ImageButton
-                android:id="@+id/rectangle"
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
-                android:layout_margin="2dp"
-                android:contentDescription="@string/start_new"
-                android:onClick="shapeClicked"
-                android:tag="Rectangle"
-                android:src="@drawable/rectangle" />
+                <ImageButton
+                    android:id="@+id/rectangle"
+                    android:layout_width="@dimen/large_brush"
+                    android:layout_height="@dimen/large_brush"
+                    android:layout_margin="2dp"
+                    android:contentDescription="@string/start_new"
+                    android:src="@drawable/rectangle" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -232,6 +215,7 @@
         android:layout_gravity="center"
         android:orientation="horizontal" >
 
+        <!-- this is the brush button -->
 
         <ImageButton
             android:id="@+id/erase_btn"

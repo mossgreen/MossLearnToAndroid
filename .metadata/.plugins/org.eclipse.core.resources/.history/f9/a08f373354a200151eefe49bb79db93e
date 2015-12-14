@@ -9,7 +9,6 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewDebug.IntToString;
 
 public class PaintView extends View {
 	
@@ -27,8 +26,6 @@ public class PaintView extends View {
 	//canvas bitmap
 	private Bitmap offScreenBitmap;
 	
-	private boolean isTri = false;
-	
 
 
 	public PaintView(Context context, AttributeSet attrs) {
@@ -42,14 +39,14 @@ public class PaintView extends View {
 		drawPath = new Path();
 		drawPaint = new Paint();
 		
-		// set the initial color:
+		//Next set the initial color:
 		drawPaint.setColor(paintColor);
 		
-		// set the initial path properties:
+		//Now set the initial path properties:
 		//for now we set an arbitrary brush size. Setting the anti-alias, 
 		//stroke join and cap styles will make the user's drawings appear smoother.
 		drawPaint.setAntiAlias(true);
-		drawPaint.setStrokeWidth(5);
+		drawPaint.setStrokeWidth(20);
 		drawPaint.setStyle(Paint.Style.STROKE);
 		drawPaint.setStrokeJoin(Paint.Join.ROUND);
 		drawPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -98,21 +95,9 @@ public class PaintView extends View {
 		//set color     
 		invalidate();
 		
-		//parse and set the color for drawing
 		paintColor = Color.parseColor(newColor);
 		drawPaint.setColor(paintColor);
 		}
-	
-	public void setShape(String shape){
-		invalidate();
-		
-		if(shape == "triangle"){
-			isTri = true;
-		}
-//		else if(){
-//			
-//		}
-	}
 
 
 	@Override
@@ -124,5 +109,7 @@ public class PaintView extends View {
 		
 		offScreenBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
 		offScreenCanvas = new Canvas(offScreenBitmap);
+//		offScreenBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+//		offScreenCanvas = new Canvas(offScreenBitmap);
 	}	
 }

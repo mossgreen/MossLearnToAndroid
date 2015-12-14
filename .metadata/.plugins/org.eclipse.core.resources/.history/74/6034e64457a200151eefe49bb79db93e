@@ -23,7 +23,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private ImageButton currColor;
 	private ImageButton currShape;
 //	private ImageButton drawBtn;
-	private float smallLine;//, mediumBrush, largeBrush;
+	private float smallBrush;//, mediumBrush, largeBrush;
 	private PaintView paintView;
 
 	

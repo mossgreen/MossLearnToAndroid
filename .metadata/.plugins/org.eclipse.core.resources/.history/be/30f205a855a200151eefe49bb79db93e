@@ -23,7 +23,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private ImageButton currColor;
 	private ImageButton currShape;
 //	private ImageButton drawBtn;
-	private float smallLine;//, mediumBrush, largeBrush;
+//	private float smallBrush, mediumBrush, largeBrush;
 	private PaintView paintView;
 
 	
@@ -45,7 +45,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		
 		
-		smallBrush = getResources().getInteger(R.integer.small_size);
+//		smallBrush = getResources().getInteger(R.integer.small_size);
 //		mediumBrush = getResources().getInteger(R.integer.medium_size);
 //		largeBrush = getResources().getInteger(R.integer.large_size);
 //		
@@ -67,7 +67,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		if(view!=currColor){
 			//update color
 			ImageButton imgView = (ImageButton)view;
-			String color = view.getTag().toString();
+			String shape = view.getTag().toString();
 			
 			//after retrieving the color tag, call the new method on the custom drawing View object
 			paintView.setColor(color);
@@ -80,30 +80,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			
 			}
 	}
-	
-	public void shapeClicked(View view){
-	    //use chosen color
-		
-		
-		if(view!=currShape){
-			//update color
-			ImageButton imgView = (ImageButton)view;
-			String shape = view.getTag().toString();
-			
-			//after retrieving the color tag, call the new method on the custom drawing View object
-			paintView.setShape(shape);
-			
-			
-			//update the UI to reflect the new chosen paint and set the previous one back to normal:
-			imgView.setImageDrawable(getResources().getDrawable(R.drawable.pressed));
-			currShape.setImageDrawable(getResources().getDrawable(R.drawable.paint));
-			currShape=(ImageButton)view;
-			
-			}
-	}
-	
-	
-	
+//	
+//	public void shapeClicked(View view){
+//	    //use chosen color
+//	}
+//	
+//	
+//	
 	@Override
 	public void onClick(View v) {
 	}

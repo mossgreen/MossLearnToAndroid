@@ -98,7 +98,6 @@ public class PaintView extends View {
 		//set color     
 		invalidate();
 		
-		//parse and set the color for drawing
 		paintColor = Color.parseColor(newColor);
 		drawPaint.setColor(paintColor);
 		}
@@ -109,9 +108,9 @@ public class PaintView extends View {
 		if(shape == "triangle"){
 			isTri = true;
 		}
-//		else if(){
-//			
-//		}
+		else if(){
+			
+		}
 	}
 
 

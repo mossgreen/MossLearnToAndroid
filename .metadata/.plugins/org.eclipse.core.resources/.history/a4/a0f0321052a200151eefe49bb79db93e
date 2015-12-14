@@ -1,9 +1,3 @@
-<!--  To create a rounded button appearance, we use two layered Shape Drawables, 
-		one a rectangle outline and the other a rounded stroke. 
-		The strokes have a gray color, with transparency in the middle 
-		through which the background color for each button will be seen 
-		(the background color being the color represented by the button). -->
-
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 <item>
     <shape android:shape="rectangle" >

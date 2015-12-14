@@ -23,7 +23,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private ImageButton currColor;
 	private ImageButton currShape;
 //	private ImageButton drawBtn;
-	private float smallLine;//, mediumBrush, largeBrush;
+//	private float smallBrush, mediumBrush, largeBrush;
 	private PaintView paintView;
 
 	
@@ -45,7 +45,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		
 		
-		smallBrush = getResources().getInteger(R.integer.small_size);
+//		smallBrush = getResources().getInteger(R.integer.small_size);
 //		mediumBrush = getResources().getInteger(R.integer.medium_size);
 //		largeBrush = getResources().getInteger(R.integer.large_size);
 //		
@@ -96,8 +96,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			
 			//update the UI to reflect the new chosen paint and set the previous one back to normal:
 			imgView.setImageDrawable(getResources().getDrawable(R.drawable.pressed));
-			currShape.setImageDrawable(getResources().getDrawable(R.drawable.paint));
-			currShape=(ImageButton)view;
+			currColor.setImageDrawable(getResources().getDrawable(R.drawable.paint));
+			currColor=(ImageButton)view;
 			
 			}
 	}

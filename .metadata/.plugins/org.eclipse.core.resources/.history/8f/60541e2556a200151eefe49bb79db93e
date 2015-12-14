@@ -9,7 +9,6 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewDebug.IntToString;
 
 public class PaintView extends View {
 	
@@ -26,8 +25,6 @@ public class PaintView extends View {
 	private Canvas offScreenCanvas;
 	//canvas bitmap
 	private Bitmap offScreenBitmap;
-	
-	private boolean isTri = false;
 	
 
 
@@ -98,7 +95,6 @@ public class PaintView extends View {
 		//set color     
 		invalidate();
 		
-		//parse and set the color for drawing
 		paintColor = Color.parseColor(newColor);
 		drawPaint.setColor(paintColor);
 		}
@@ -106,12 +102,9 @@ public class PaintView extends View {
 	public void setShape(String shape){
 		invalidate();
 		
-		if(shape == "triangle"){
-			isTri = true;
+		if(shape = "triangle"){
+			isTri = ture;
 		}
-//		else if(){
-//			
-//		}
 	}
 
 

@@ -98,7 +98,6 @@ public class PaintView extends View {
 		//set color     
 		invalidate();
 		
-		//parse and set the color for drawing
 		paintColor = Color.parseColor(newColor);
 		drawPaint.setColor(paintColor);
 		}
