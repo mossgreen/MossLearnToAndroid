@@ -1,6 +1,7 @@
 package edu.unitec;
 
 import edu.unitec.calcs.Calculator;
+import android.R.string;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class CalcActivity extends Activity implements OnClickListener
 		setContentView(R.layout.calc);
 
 		// initialise text view
-		mResultTextView = (TextView) findViewById(R.id.resultText);
+		mResultTextView = (TextView) findViewById(R.id.resultText); //resultText is the textview in xml
 		mResultTextView.setText(mResultText);
 
 		// initialise string builder
@@ -197,6 +198,14 @@ public class CalcActivity extends Activity implements OnClickListener
 				 * string builder to it. Set the result to OK and add the
 				 * intent.
 				 */
+				
+				String message = mCalcSteps.toString();
+				Intent intent = new Intent();
+				intent.putExtra("whatisthis", message);
+				setResult(Activity.RESULT_OK,intent);
+				
+				
+			
 
 				// finish activity
 				finish();
@@ -225,6 +234,7 @@ public class CalcActivity extends Activity implements OnClickListener
 			mShowResult = false;
 
 			// TODO STEP 05b: Delete everything in the string builder
+			mCalcSteps.delete(0,mCalcSteps.length());
 			
 			break;
 		}
@@ -289,6 +299,8 @@ public class CalcActivity extends Activity implements OnClickListener
 			 * TODO STEP 04b: Add further numbers to the string builder. The
 			 * text should have a format like this: 5 + 6 = 11 + 3 = 14
 			 */
+			
+			mResultText += mResultText+ "+"+mSecondNum;
 
 			/*
 			 * set result to first number and reset the second number for
@@ -303,6 +315,7 @@ public class CalcActivity extends Activity implements OnClickListener
 			mNumberEntered = true;
 
 			// TODO STEP 04a: Add the first number to the string builder
+			mCalcSteps.append(mFirstNum);
 		}
 
 		// allow to show the result
