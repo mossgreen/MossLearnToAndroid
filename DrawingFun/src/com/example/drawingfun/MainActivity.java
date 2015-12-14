@@ -131,7 +131,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	        drawView.setErase(false);
 			
 		}else if(view.getId()==R.id.circle){
-		    //while eraser button is clicked, switch to erase - choose size
+		    //while circle button is clicked,
 	        drawView.setBrushSize(smallBrush);
 	        drawView.setLastBrushSize(smallBrush);
 			drawView.setPaint(false);
@@ -142,7 +142,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
 			
 		}else if(view.getId()==R.id.triangle){
-		    //while eraser button is clicked, switch to erase - choose size
+		    //while triangle button is clicked, 
 	        drawView.setBrushSize(smallBrush);
 	        drawView.setLastBrushSize(smallBrush);
 			drawView.setPaint(false);
@@ -154,7 +154,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
 			
 		}else if(view.getId()==R.id.rectangle){
-		    //while eraser button is clicked, switch to erase - choose size
+		    //while rect button is clicked,
 	        drawView.setBrushSize(smallBrush);
 	        drawView.setLastBrushSize(smallBrush);
 			drawView.setPaint(false);

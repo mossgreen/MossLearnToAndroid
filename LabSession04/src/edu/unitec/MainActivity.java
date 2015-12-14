@@ -60,10 +60,10 @@ public class MainActivity extends Activity
 			
 			@Override
 			public void onClick(View arg0) {
-				// why I cannot write it this way
-//				Intent intent = new Intent(this,CalcActivity.class);
-				Intent intent = new Intent();
-				intent.setClass(MainActivity.this,  CalcActivity.class);
+//				 why I cannot write it this way
+				Intent intent = new Intent(MainActivity.this,CalcActivity.class);
+//				Intent intent = new Intent();
+//				intent.setClass(MainActivity.this,  CalcActivity.class);
 				startActivityForResult(intent,NEW_CALC);
 				
 
@@ -72,6 +72,7 @@ public class MainActivity extends Activity
 
 		// initialise calculation steps text
 		mCalcStepsText = new TextView(this);
+		mCalcStepsText.setText("test moss");
 
 		// create new text view
 		TextView text = new TextView(this);
@@ -102,7 +103,7 @@ public class MainActivity extends Activity
 		
 		if(resultCode == Activity.RESULT_OK){
 			Bundle bundle = data.getExtras();
-			String text =(String) bundle.get("text");
+			String text =(String) bundle.get("result");
 			mCalcStepsText.setText(text);
 			
 		}
@@ -111,5 +112,9 @@ public class MainActivity extends Activity
 		 * TODO STEP 06b: Set the new text to the calculation steps text view
 		 * and add the text view to the layout
 		 */
+		
+		
+		
+		
 	}
 }

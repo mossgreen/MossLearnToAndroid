@@ -200,8 +200,8 @@ public class CalcActivity extends Activity implements OnClickListener
 				 */
 				
 				String message = mCalcSteps.toString();
-				Intent intent = new Intent();
-				intent.putExtra("whatisthis", message);
+				Intent intent = new Intent(CalcActivity.this, MainActivity.class);
+				intent.putExtra("result", message);
 				setResult(Activity.RESULT_OK,intent);
 				
 				
@@ -234,7 +234,7 @@ public class CalcActivity extends Activity implements OnClickListener
 			mShowResult = false;
 
 			// TODO STEP 05b: Delete everything in the string builder
-			mCalcSteps.delete(0,mCalcSteps.length());
+			mCalcSteps = new StringBuilder();
 			
 			break;
 		}
@@ -300,7 +300,7 @@ public class CalcActivity extends Activity implements OnClickListener
 			 * text should have a format like this: 5 + 6 = 11 + 3 = 14
 			 */
 			
-			mResultText += mResultText+ "+"+mSecondNum;
+			mResultText += Calculator.addNumbers(mResultText, mSecondNum)+"";
 
 			/*
 			 * set result to first number and reset the second number for
