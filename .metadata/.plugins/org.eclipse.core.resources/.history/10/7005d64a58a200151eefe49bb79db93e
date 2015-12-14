@@ -50,11 +50,12 @@ public class MainActivity extends Activity implements OnClickListener {
 //		mediumBrush = getResources().getInteger(R.integer.medium_size);
 //		largeBrush = getResources().getInteger(R.integer.large_size);
 //		
-//		drawBtn = (ImageButton)findViewById(R.id.line);
-//		drawBtn.setOnClickListener(this);
-//		
+		drawBtn = (ImageButton)findViewById(R.id.line);
+		drawBtn.setOnClickListener(this);
 		
-
+		
+		
+//		
 //
 		LinearLayout shapeLayout = (LinearLayout)findViewById(R.id.paint_shapes);
 		currShape = (ImageButton) paletteLayout.getChildAt(0);
