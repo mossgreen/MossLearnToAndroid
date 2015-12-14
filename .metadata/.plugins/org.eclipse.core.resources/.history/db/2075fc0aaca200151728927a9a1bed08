@@ -176,22 +176,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
-                
-                  
-            <ImageButton
-                android:id="@+id/paint"
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
-                android:layout_margin="2dp"
-                android:onClick="shapeClicked"
-                android:tag="line"
-                android:src="@drawable/line" />
 
             <ImageButton
                 android:id="@+id/circle"
                 android:layout_width="@dimen/large_brush"
                 android:layout_height="@dimen/large_brush"
                 android:layout_margin="2dp"
+                android:contentDescription="@string/start_new"
                 android:onClick="shapeClicked"
                 android:tag="Circle"
                 android:src="@drawable/circle" />
@@ -206,6 +197,7 @@
                 android:layout_width="@dimen/large_brush"
                 android:layout_height="@dimen/large_brush"
                 android:layout_margin="2dp"
+                android:contentDescription="@string/start_new"
                 android:onClick="shapeClicked"
                 android:tag="Triangle" 
                 android:src="@drawable/triangle" />
@@ -215,6 +207,7 @@
                 android:layout_width="@dimen/large_brush"
                 android:layout_height="@dimen/large_brush"
                 android:layout_margin="2dp"
+                android:contentDescription="@string/start_new"
                 android:onClick="shapeClicked"
                 android:tag="Rectangle"
                 android:src="@drawable/rectangle" />
@@ -231,7 +224,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="3dp"
         android:layout_weight="1"
-        android:background="#FFffff" />
+        android:background="#FF0000" />
 
     <LinearLayout
         android:layout_width="wrap_content"

@@ -124,7 +124,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		//check for clicks on the  buttons 
 		
 		
-		if(view.getId()==R.id.paint){
+		if(view.getId()==R.id.draw_btn){
 		    //draw button clicked
 	    	//set the size as soon as the user clicks a brush size button, 
 	    	//then immediately dismiss the Dialog

@@ -164,6 +164,13 @@
                     android:tag="#FF000000" />
             </LinearLayout>
         </LinearLayout>
+        
+                <ImageButton
+            android:id="@+id/erase_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="@string/erase"
+            android:src="@drawable/eraser" />
 
         <LinearLayout
             android:id="@+id/paint_shapes"
@@ -240,12 +247,7 @@
         android:orientation="horizontal" >
 
 
-        <ImageButton
-            android:id="@+id/erase_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/erase"
-            android:src="@drawable/eraser" />
+
 
         <ImageButton
             android:id="@+id/new_btn"

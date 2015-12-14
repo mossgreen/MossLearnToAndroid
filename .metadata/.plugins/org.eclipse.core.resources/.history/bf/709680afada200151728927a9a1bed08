@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		
-		paintView = (PaintView)findViewById(R.id.drawing);//retrieving a reference from the layout
+		paintView = (DrawingView)findViewById(R.id.drawing);//retrieving a reference from the layout
 		
 		//we now want to retrieve the first paint color button in the palette area, which is initially going to be selected. 
 		//First retrieve the Linear Layout it is contained within:
@@ -40,20 +40,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		//Get the first button and store it as the instance variable
 		//use a different drawable image on the button to show that it is currently selected:
 		currPaint = (ImageButton)paintLayout.getChildAt(0);
-		currPaint.setImageDrawable(getResources().getDrawable(R.drawable.pressed));
+		currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
 		
-		//retrieve a reference to the draw button from the layout and set up a click listener for four shapes
-		drawBtn = (ImageButton)findViewById(R.id.paint);
+		//retrieve a reference to the draw button from the layout and set up a click listener
+		drawBtn = (ImageButton)findViewById(R.id.draw_btn);
 		drawBtn.setOnClickListener(this);
-		
-		triBtn = (ImageButton)findViewById(R.id.triangle);
-		triBtn.setOnClickListener(this);
-		
-		cirBtn = (ImageButton)findViewById(R.id.circle);
-		cirBtn.setOnClickListener(this);
-		
-		rectBtn = (ImageButton)findViewById(R.id.rectangle);
-		rectBtn.setOnClickListener(this);
 		
 		//retrieve a reference to the eraser button from the layout and set up a click listener
 		eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
@@ -79,7 +70,14 @@ public class MainActivity extends Activity implements OnClickListener {
 //		currShape
 		
 		
-
+		triBtn = (ImageButton)findViewById(R.id.triangle);
+		triBtn.setOnClickListener(this);
+		
+		cirBtn = (ImageButton)findViewById(R.id.circle);
+		cirBtn.setOnClickListener(this);
+		
+		rectBtn = (ImageButton)findViewById(R.id.rectangle);
+		rectBtn.setOnClickListener(this);
 		
 		
 		
@@ -124,7 +122,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		//check for clicks on the  buttons 
 		
 		
-		if(view.getId()==R.id.paint){
+		if(view.getId()==R.id.draw_btn){
 		    //draw button clicked
 	    	//set the size as soon as the user clicks a brush size button, 
 	    	//then immediately dismiss the Dialog
