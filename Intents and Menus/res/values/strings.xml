@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, this is my first activity</string>
+    <string name="simpleActivityHello">Hello World, this is my second activity</string>
+    <string name="app_name">Intents and Menus</string>
+
+</resources>

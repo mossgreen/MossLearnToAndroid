@@ -1,0 +1,6 @@
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mnuOptions" android:title="Options"/>
+    <item android:id="@+id/mnuConnectivity" android:title="Connectivity"/>
+    <item android:id="@+id/mnuBlah" android:title="Blah Blah"/>
+</menu>
