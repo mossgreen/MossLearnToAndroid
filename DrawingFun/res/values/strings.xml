@@ -13,6 +13,14 @@
 	<string name="paint">Paint</string>
 	<string name="exit">Exit</string>
 	
+	<!-- this is in assignment01 -->
+	    <string name="paint">Paint</string>
+    <string name="shape">Shape</string>
+	<string name="erase">Erase</string>    
+    <string name="start_new">New</string>
+	<string name="save">Save</string>
+	<string name="exit">Exit</string>
+	
 	
 	<string name="sml">Small</string>
 	<string name="med">Medium</string>
