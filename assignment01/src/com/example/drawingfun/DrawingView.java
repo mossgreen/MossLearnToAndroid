@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -228,5 +229,8 @@ public class DrawingView extends View {
 		drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
 		invalidate();
 	}
+
+
+
 
 }

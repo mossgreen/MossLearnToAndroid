@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="which" key="selection"/>
+		<item value="paintLayout" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="layout1"/>
+			<item value="paintColor"/>
+			<item value="mFingerPaint"/>
+			<item value="sampleDrawableId"/>
+			<item value="DefaultDrawableId"/>
 			<item value="which"/>
 			<item value="size"/>
 			<item value="b"/>
-			<item value="setcolor"/>
-			<item value="uri"/>
-			<item value="cache"/>
-			<item value="getDrawingCache"/>
-			<item value="sharebtn"/>
 		</list>
 		<list key="replacehistory">
+			<item value="paintLayout"/>
 			<item value="smallLine"/>
 			<item value="offScreenBitmap"/>
 			<item value="50"/>
