@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -18,24 +17,42 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+/**
+ * Main class of the application.
+ * This activity presents a canvas that users can draw on with pen or shapes
+ * like triangle, circle and rectangle.
+ * 
+ * @author Feifei GU <gufeifei@outlook.com>
+ * 
+ * @version 20151216
+ * @since java 1.7
+ */
 public class MainActivity extends Activity {
-	private DrawingView drawView; // This represents the instance of the custom View that we added to the layout.
+	private DrawingView drawView; // This represents the instance of the custom
+									// View that we added to the layout.
 
 	// represents the paint color button in the palette, the drawing button,
 	// eraser button, and new_draw button
 	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, exitBtn, shareBtn;
 	private ImageButton currShape, triBtn, cirBtn, rectBtn;
-	private float smallBrush, mediumBrush, largeBrush; // to store the three dimension values
+	private float smallBrush, mediumBrush, largeBrush; // to store the three
+														// dimension values
 
-	// variable for multiTouch
-	private ScaleGestureDetector mScaleDetector;
+	/**
+	 * Called when the activity is first created.
+	 * retrieving references from xml file to create layout and other
+	 * elements that will be shown on the main interface
+	 * 
+	 * @param Bundle
+	 *            savedInstanceState
+	 */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
-		
+
 		// retrieving a reference from the layout
 		drawView = (DrawingView) findViewById(R.id.drawing);
 
@@ -60,16 +77,18 @@ public class MainActivity extends Activity {
 
 	}
 
-	// to initialize the function buttons, like share,eraser, exit, etc..
+	/**
+	 * to initialize the function buttons, like share,eraser, exit, etc..
+	 */
 	private void initFuncs() {
-		
-		//initialize eraser button
+
+		// initialize eraser button
 		initEraserBtn();
-		
-		//initialize the "new" button
+
+		// initialize the "new" button
 		initNewBtn();
 
-		//initialize the save button
+		// initialize the save button
 		initSaveBtn();
 
 		shareBtn = (ImageButton) findViewById(R.id.mail_btn);
@@ -97,7 +116,7 @@ public class MainActivity extends Activity {
 
 			}
 		});
-		
+
 		// retrieve a reference to the save button from the layout and set up a
 		// click listener
 		exitBtn = (ImageButton) findViewById(R.id.exit_btn);
@@ -110,6 +129,10 @@ public class MainActivity extends Activity {
 		});
 	}
 
+	/**
+	 * to initialize the save button in the bottom of the interface
+	 *
+	 */
 	private void initSaveBtn() {
 		// retrieve a reference to the save button from the layout and set up a
 		// click listener
@@ -174,6 +197,10 @@ public class MainActivity extends Activity {
 		});
 	}
 
+	/**
+	 * to initialize the "new" button in the bottom of the interface
+	 *
+	 */
 	private void initNewBtn() {
 		// retrieve a reference to the new button from the layout and set up a
 		// click listener
@@ -216,8 +243,14 @@ public class MainActivity extends Activity {
 		});
 	}
 
+	/**
+	 * to initialize the eraser button in the bottom of the interface, which
+	 * allows user to choose from three different sizes
+	 *
+	 */
 	private void initEraserBtn() {
-		// retrieve a reference to the eraser button from the layout and set up a click listener
+		// retrieve a reference to the eraser button from the layout and set up
+		// a click listener
 		eraseBtn = (ImageButton) findViewById(R.id.erase_btn);
 		eraseBtn.setOnClickListener(new OnClickListener() {
 
@@ -276,10 +309,17 @@ public class MainActivity extends Activity {
 		});
 	}
 
-	// to initialize the shape buttons
+	/**
+	 * to initialize the shape buttons, including pen, triangle, circle and
+	 * rectangle
+	 * 
+	 * @param   LinearLayout 
+	 * 	the linearlayout that we stored shapes
+	 */
 	private void initShapes(LinearLayout paintLayout) {
 		// Get the first button and store it as the instance variable
-		// use a different drawable image on the button to show that it is currently selected:
+		// use a different drawable image on the button to show that it is
+		// currently selected:
 		currPaint = (ImageButton) paintLayout.getChildAt(0);
 		currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
 
@@ -351,7 +391,11 @@ public class MainActivity extends Activity {
 		});
 	}
 
-	// use chosen color
+	/**
+	 * Handle a click on the colors which registered in the xml file
+	  * @param View
+	 *            the button the clicked, which are imagebuttons
+	 */
 	public void paintClicked(View view) {
 		// first check that the user has clicked a paint color that is not the
 		// currently selected one:
