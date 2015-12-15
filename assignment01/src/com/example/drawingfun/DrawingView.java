@@ -6,11 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Path.Direction;
-import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -19,7 +16,8 @@ import android.view.View;
 public class DrawingView extends View{
 	//drawing path
 	private Path drawPath;
-	//the user paths drawn with drawPaint will be drawn onto the canvas, which is drawn with canvasPaint
+	//the user paths drawn with drawPaint will be drawn onto the canvas, 
+	//which is drawn with canvasPaint
 	private Paint drawPaint, canvasPaint;
 	//initial color
 	private int paintColor = 0xFF660000;
@@ -31,7 +29,8 @@ public class DrawingView extends View{
 	//and for keeping track of the last brush size used when the user switches to the eraser
 	//so that we can revert back to the correct size when users decide to switch back to drawing
 	private float brushSize, lastBrushSize;
-	//this variable act as a flag for whether the user is currently erasing or not
+	// variables act as a flag for whether the user is currently erasing or not, 
+	//and are indicating the shape
 	private boolean erase=false;
 	private boolean isPaint = true;
 	private boolean isTri = false;
