@@ -21,7 +21,8 @@ public class DrawingView extends View {
 	// which is drawn with canvasPaint
 	private Paint drawPaint, canvasPaint;
 	// initial color
-	private int paintColor = 0xFF660000;
+	private int paintColor = getResources().getInteger(R.integer.initcolor);;
+	
 	// canvas
 	private Canvas drawCanvas;
 	// canvas bitmap
@@ -39,6 +40,9 @@ public class DrawingView extends View {
 	private boolean isTri = false;
 	private boolean isRect = false;
 	private boolean isCir = false;
+	
+	private float cirRadius, triHeight, rectLength; // to store the three dimension values
+
 
 	float preX, preY; // prepare for QuadTo method, which will smooth the draw
 
@@ -136,22 +140,28 @@ public class DrawingView extends View {
 		} else if (isTri) {
 
 			Path triPath = new Path();
-			triPath.moveTo(touchX, touchY - 50f);
-			triPath.lineTo(touchX + 50f, touchY + 25f);
-			triPath.lineTo(touchX - 50f, touchY + 25f);
-			triPath.lineTo(touchX, touchY - 50f);
+			
+			triHeight = getResources().getInteger(R.integer.tri_height);
+			triPath.moveTo(touchX, touchY - triHeight);
+			triPath.lineTo(touchX + triHeight, touchY + triHeight/2);
+			triPath.lineTo(touchX - triHeight, touchY + triHeight/2);
+			triPath.lineTo(touchX, touchY - triHeight);
 			drawCanvas.drawPath(triPath, drawPaint);
 
 		} else if (isCir) {
+			
+			cirRadius = getResources().getInteger(R.integer.cir_radius);
 			drawCanvas.drawCircle(touchX, touchY, 50, drawPaint);
 
 		} else if (isRect) {
 			Path rectPath = new Path();
-			rectPath.moveTo(touchX - 50f, touchY - 50f);
-			rectPath.lineTo(touchX + 50f, touchY - 50f);
-			rectPath.lineTo(touchX + 50f, touchY + 50f);
-			rectPath.lineTo(touchX - 50f, touchY + 50f);
-			rectPath.lineTo(touchX - 50f, touchY - 50f);
+			rectLength = getResources().getInteger(R.integer.rect_length);
+			
+			rectPath.moveTo(touchX - rectLength, touchY - rectLength);
+			rectPath.lineTo(touchX + rectLength, touchY - rectLength);
+			rectPath.lineTo(touchX + rectLength, touchY + rectLength);
+			rectPath.lineTo(touchX - rectLength, touchY + rectLength);
+			rectPath.lineTo(touchX - rectLength, touchY - rectLength);
 			drawCanvas.drawPath(rectPath, drawPaint);
 
 		}

@@ -13,6 +13,13 @@
 	<integer name="medium_size">16</integer>
 	<dimen name="large_brush">30dp</dimen>
 	<integer name="large_size">30</integer>
+	
+	<integer name="cir_radius">50</integer>
+	<integer name="tri_height">50</integer>
+	<integer name="rect_length">50</integer>
+	
+		<integer name="initcolor">0xFF660000</integer>
+	
     
 
 </resources>

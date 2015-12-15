@@ -323,7 +323,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// while circle button is clicked,
+				// while circle button is clicked
 				drawView.setBrushSize(smallBrush);
 				drawView.setLastBrushSize(smallBrush);
 				drawView.setPaint(false);
@@ -338,7 +338,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// while rect button is clicked,
+				// while rect button is clicked
 				drawView.setBrushSize(smallBrush);
 				drawView.setLastBrushSize(smallBrush);
 				drawView.setPaint(false);
