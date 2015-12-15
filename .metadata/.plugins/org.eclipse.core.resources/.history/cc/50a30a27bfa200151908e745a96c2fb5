@@ -1,5 +1,6 @@
 package com.example.assignment01;
 
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,14 +15,14 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.widget.Toast;
 
+public class MainActivity extends Activity implements OnClickListener {
+	private PaintView paintView;//This represents the instance of the custom View that we added to the layout.
 
-public class MainActivity extends Activity implements OnClickListener{
-	private PaintView paintView; //This represents the instance of the custom View that we added to the layout.
-	
 	//represents the paint color button in the palette, the drawing button, eraser button, and new_draw button
-	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn,exitBtn;
+	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, exitBtn;
 	private ImageButton currShape, triBtn, cirBtn, rectBtn;
 	private float smallBrush, mediumBrush, largeBrush; // to store the three dimension values
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,19 @@ public class MainActivity extends Activity implements OnClickListener{
 		//use a different drawable image on the button to show that it is currently selected:
 		currPaint = (ImageButton)paintLayout.getChildAt(0);
 		currPaint.setImageDrawable(getResources().getDrawable(R.drawable.pressed));
-
+		
+		//retrieve a reference to the draw button from the layout and set up a click listener for four shapes
+		drawBtn = (ImageButton)findViewById(R.id.paint);
+		drawBtn.setOnClickListener(this);
+		
+		triBtn = (ImageButton)findViewById(R.id.triangle);
+		triBtn.setOnClickListener(this);
+		
+		cirBtn = (ImageButton)findViewById(R.id.circle);
+		cirBtn.setOnClickListener(this);
+		
+		rectBtn = (ImageButton)findViewById(R.id.rectangle);
+		rectBtn.setOnClickListener(this);
 		
 		//retrieve a reference to the eraser button from the layout and set up a click listener
 		eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
@@ -65,18 +78,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 //		currShape
 		
-		//retrieve a reference to the draw button from the layout and set up a click listener
-		drawBtn = (ImageButton)findViewById(R.id.paint);
-		drawBtn.setOnClickListener(this);
 		
-		triBtn = (ImageButton)findViewById(R.id.triangle);
-		triBtn.setOnClickListener(this);
-		
-		cirBtn = (ImageButton)findViewById(R.id.circle);
-		cirBtn.setOnClickListener(this);
-		
-		rectBtn = (ImageButton)findViewById(R.id.rectangle);
-		rectBtn.setOnClickListener(this);
+
 		
 		
 		
@@ -89,7 +92,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		paintView.setBrushSize(smallBrush);
 
 	}
-	
+
     //use chosen color
 	public void paintClicked(View view){
 		//first check that the user has clicked a paint color that is not the currently selected one:
@@ -115,7 +118,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		//set the brush size back to the last one used when drawing rather than erasing
 		paintView.setBrushSize(paintView.getLastBrushSize());
 	}
-	
+
 	@Override
 	public void onClick(View view){
 		//check for clicks on the  buttons 
@@ -168,9 +171,10 @@ public class MainActivity extends Activity implements OnClickListener{
 //while eraser button is clicked, switch to erase - choose size
 			
 	        paintView.setPaint(true);
-
+	        
 	        paintView.setErase(true);
 	        paintView.setBrushSize(mediumBrush);
+	        
 			
 		}else if(view.getId()==R.id.new_btn){
 		    //while new button is clicked
@@ -184,14 +188,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
 			    public void onClick(DialogInterface dialog, int which){
 			        paintView.startNew();
-			        
-			    	//set the size as soon as the user clicks a brush size button, 
-			    	//then immediately dismiss the Dialog
-			        paintView.setBrushSize(smallBrush);
-			        paintView.setLastBrushSize(smallBrush);
-			        paintView.setPaint(true);
-			        paintView.setErase(false);
-			        
 			        dialog.dismiss();
 			    }
 			});

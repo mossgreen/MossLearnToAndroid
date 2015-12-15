@@ -184,14 +184,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
 			    public void onClick(DialogInterface dialog, int which){
 			        paintView.startNew();
-			        
-			    	//set the size as soon as the user clicks a brush size button, 
-			    	//then immediately dismiss the Dialog
-			        paintView.setBrushSize(smallBrush);
-			        paintView.setLastBrushSize(smallBrush);
-			        paintView.setPaint(true);
-			        paintView.setErase(false);
-			        
 			        dialog.dismiss();
 			    }
 			});
