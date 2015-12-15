@@ -164,34 +164,60 @@
                     android:tag="#FF000000" />
             </LinearLayout>
         </LinearLayout>
-        
+
         <LinearLayout
+            android:id="@+id/paint_shapes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-            
-            android:orientation="horizontal" >
+            android:layout_alignParentEnd="true"
+            android:orientation="vertical" >
 
-            <ImageButton
-                android:id="@+id/circle"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:contentDescription="@string/start_new"
-                android:src="@drawable/circle" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
 
-            <ImageButton
-                android:id="@+id/triangle"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:contentDescription="@string/start_new"
-                android:src="@drawable/triangle" />
+                <ImageButton
+                    android:id="@+id/draw_btn"
+                    android:layout_width="@dimen/large_brush"
+                    android:layout_height="@dimen/large_brush"
+                    android:layout_margin="2dp"
+                    android:contentDescription="@string/brush"
+                    android:src="@drawable/brush" />
 
-            <ImageButton
-                android:id="@+id/rectangle"
+                <ImageButton
+                    android:id="@+id/circle"
+                    android:layout_width="@dimen/large_brush"
+                    android:layout_height="@dimen/large_brush"
+                    android:layout_margin="2dp"
+                    android:onClick="shapeClicked"
+                    android:src="@drawable/circle"
+                    android:tag="Circle" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:contentDescription="@string/start_new"
-                android:src="@drawable/rectangle" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/triangle"
+                    android:layout_width="@dimen/large_brush"
+                    android:layout_height="@dimen/large_brush"
+                    android:layout_margin="2dp"
+                    android:onClick="shapeClicked"
+                    android:src="@drawable/triangle"
+                    android:tag="Triangle" />
+
+                <ImageButton
+                    android:id="@+id/rectangle"
+                    android:layout_width="@dimen/large_brush"
+                    android:layout_height="@dimen/large_brush"
+                    android:layout_margin="2dp"
+                    android:onClick="shapeClicked"
+                    android:src="@drawable/rectangle"
+                    android:tag="Rectangle" />
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
@@ -213,14 +239,6 @@
         android:orientation="horizontal" >
 
         <!-- this is the brush button -->
-
-        <ImageButton
-            android:id="@+id/draw_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/brush"
-            android:src="@drawable/brush" />
-        <!-- this is the eraser button -->
 
         <ImageButton
             android:id="@+id/erase_btn"

@@ -178,13 +178,12 @@
                 android:orientation="horizontal" >
 
                 <ImageButton
-                    android:id="@+id/paint"
+                    android:id="@+id/draw_btn"
                     android:layout_width="@dimen/large_brush"
                     android:layout_height="@dimen/large_brush"
                     android:layout_margin="2dp"
-                    android:onClick="shapeClicked"
-                    android:src="@drawable/line"
-                    android:tag="line" />
+                    android:contentDescription="@string/brush"
+                    android:src="@drawable/brush" />
 
                 <ImageButton
                     android:id="@+id/circle"
@@ -222,7 +221,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <com.example.assignment01.PaintView
+    <com.example.drawingfun.DrawingView
         android:id="@+id/drawing"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -231,13 +230,15 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="3dp"
         android:layout_weight="1"
-        android:background="#FFffff" />
+        android:background="#FFFFFFFF" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:orientation="horizontal" >
+
+        <!-- this is the brush button -->
 
         <ImageButton
             android:id="@+id/erase_btn"
@@ -261,18 +262,13 @@
             android:src="@drawable/save" />
 
         <ImageButton
-            android:id="@+id/mail_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/mail"
-            android:src="@drawable/mail" />
-
-        <ImageButton
             android:id="@+id/exit_btn"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:contentDescription="@string/exit"
             android:src="@drawable/exit" />
+
+        <!-- That's it for the top Linear Layout control buttons. -->
     </LinearLayout>
 
 </LinearLayout>

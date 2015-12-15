@@ -4,14 +4,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     
-    <!-- We need to define the size for each as both a dimension and an integer value,
-    	 so that we can use these measurements in both the XML layout and drawable resources and the Java code. -->
-	<!-- Brush sizes -->
-	<dimen name="small_line">4dp</dimen>
+    <!-- Brush sizes -->
+    <!--The values for dimension and integer at each size are the same, 
+    so that the UI indicates the brush size as it will function when the user draws with it. -->
+	<dimen name="small_brush">4dp</dimen>
 	<integer name="small_size">4</integer>
-	<dimen name="medium_line">15dp</dimen>
-	<integer name="medium_size">15</integer>
+	<dimen name="medium_brush">16dp</dimen>
+	<integer name="medium_size">16</integer>
 	<dimen name="large_brush">30dp</dimen>
 	<integer name="large_size">30</integer>
+    
 
 </resources>
