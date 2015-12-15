@@ -167,7 +167,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
 			
 		}else if(view.getId()==R.id.erase_btn){
-				//while eraser button is clicked, switch to erase - choose size
+//while eraser button is clicked, switch to erase - choose size
 			
 	        drawView.setPaint(true);
 

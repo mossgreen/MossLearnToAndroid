@@ -38,7 +38,7 @@ public class DrawingView extends View{
 	private boolean isRect = false;
 	private boolean isCir = false;
 	
-	float preX, preY; //prepare for QuadTo method, which will smooth the draw
+	float preX, preY; //set variable to make the draw more smooth
 	
 	
 	public DrawingView(Context context, AttributeSet attrs){
@@ -52,14 +52,14 @@ public class DrawingView extends View{
 		brushSize = getResources().getInteger(R.integer.small_size);
 		lastBrushSize = brushSize;
 		
-		//instantiate the drawing Path and Paint objects:
+		//Second, instantiate the drawing Path and Paint objects:
 		drawPath = new Path();
 		drawPaint = new Paint();
 		
-		//set the initial color:
+		//Third, set the initial color:
 		drawPaint.setColor(paintColor);
 		
-		// set the initial path properties
+		//Next, set the initial path properties
 		//Setting the anti-alias, stroke join and cap styles will make the user's drawings appear smoother.
 		drawPaint.setAntiAlias(true);
 		drawPaint.setStrokeWidth(brushSize);

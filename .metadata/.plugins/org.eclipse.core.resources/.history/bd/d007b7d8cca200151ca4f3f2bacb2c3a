@@ -38,7 +38,7 @@ public class DrawingView extends View{
 	private boolean isRect = false;
 	private boolean isCir = false;
 	
-	float preX, preY; //prepare for QuadTo method, which will smooth the draw
+	float preX, preY; //set variable to make the draw more smooth
 	
 	
 	public DrawingView(Context context, AttributeSet attrs){
@@ -52,14 +52,14 @@ public class DrawingView extends View{
 		brushSize = getResources().getInteger(R.integer.small_size);
 		lastBrushSize = brushSize;
 		
-		//instantiate the drawing Path and Paint objects:
+		//Second, instantiate the drawing Path and Paint objects:
 		drawPath = new Path();
 		drawPaint = new Paint();
 		
-		//set the initial color:
+		//Third, set the initial color:
 		drawPaint.setColor(paintColor);
 		
-		// set the initial path properties
+		//Next, set the initial path properties
 		//Setting the anti-alias, stroke join and cap styles will make the user's drawings appear smoother.
 		drawPaint.setAntiAlias(true);
 		drawPaint.setStrokeWidth(brushSize);
@@ -105,21 +105,12 @@ public class DrawingView extends View{
 			switch (event.getAction()) {
 			//When the user touches the View, we move to that position to start drawing
 			case MotionEvent.ACTION_DOWN:
-				
 			    drawPath.moveTo(touchX, touchY);
-				preX = touchX;
-				preY = touchY;
-
 			    break;
 			    
 			//When they move their finger on the View, we draw the path along with their touch   
 			case MotionEvent.ACTION_MOVE:
-				
-				//QUad to curves using a quadratic line (basically an ellipse of some sort).
-				//QuadTo will smooth out jaggedies where they turn.
-				drawPath.quadTo(preX, preY, (touchX + preX) / 2, (touchY + preY) / 2);
-				preX = touchX;
-				preY = touchY;
+			    drawPath.lineTo(touchX, touchY);
 			    break;
 			    
 			//When they lift their finger up off the View, we draw the Path and reset it for the next drawing operation
