@@ -1,17 +1,20 @@
 package com.example.drawingfun;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import java.util.UUID;
-import android.provider.MediaStore;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -19,7 +22,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private DrawingView drawView; //This represents the instance of the custom View that we added to the layout.
 	
 	//represents the paint color button in the palette, the drawing button, eraser button, and new_draw button
-	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, exitBtn;
+	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, exitBtn,shareBtn;
 	private ImageButton currShape, triBtn, cirBtn, rectBtn;
 	private float smallBrush, mediumBrush, largeBrush; // to store the three dimension values
 
@@ -65,6 +68,31 @@ public class MainActivity extends Activity implements OnClickListener{
 			}
 		});
 		
+		shareBtn = (ImageButton)findViewById(R.id.mail_btn);
+		shareBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+		        //start by enabling the drawing cache
+		    	drawView.setDrawingCacheEnabled(true);
+				
+		    	//find the url
+		    	String path = MediaStore.Images.Media.insertImage(getContentResolver(), drawView.getDrawingCache(), "Image Description", null);
+		    	Uri uri = Uri.parse(path);
+
+		    	Intent intent = new Intent(Intent.ACTION_SEND);
+		    	intent.setType("image/*");
+		    	intent.putExtra(Intent.EXTRA_STREAM, uri);
+		    	startActivity(Intent.createChooser(intent, "Share Image"));
+		    	
+		    	
+		    	//Destroy the drawing cache so that any future drawings saved won't use the existing cache
+		    	drawView.destroyDrawingCache();
+				
+			}
+		});
+		
 
 		
 		//retrieve a reference to the draw button from the layout and set up a click listener
@@ -105,7 +133,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			//update color
 			drawView.setColor(color);
 			
-			//update the UI to reflect the new chosen paint and set the previous one back to normal:
+			//update the UI to reflect the new chosen paint and set the previous one back to normal
 			imgView.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
 			currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint));
 			currPaint = (ImageButton)view;
