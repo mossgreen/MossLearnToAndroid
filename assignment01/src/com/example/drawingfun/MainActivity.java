@@ -55,6 +55,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		saveBtn = (ImageButton)findViewById(R.id.save_btn);
 		saveBtn.setOnClickListener(this);
 		
+		//retrieve a reference to the save button from the layout and set up a click listener
 		exitBtn = (ImageButton)findViewById(R.id.exit_btn);
 		exitBtn.setOnClickListener(new OnClickListener() {
 			
@@ -139,7 +140,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			drawView.setPaint(false);
 	        drawView.setErase(false);
 	        drawView.setRect(false);
-
 	        drawView.setCir(true);
 
 			
