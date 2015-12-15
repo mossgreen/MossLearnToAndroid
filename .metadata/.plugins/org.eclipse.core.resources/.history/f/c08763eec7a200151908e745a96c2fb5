@@ -11,7 +11,7 @@
         android:orientation="horizontal"
         android:paddingLeft="5dp"
         android:paddingRight="5dp" >
-
+        
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -164,36 +164,7 @@
                     android:tag="#FF000000" />
             </LinearLayout>
         </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-            
-            android:orientation="horizontal" >
-
-            <ImageButton
-                android:id="@+id/circle"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:contentDescription="@string/start_new"
-                android:src="@drawable/circle" />
-
-            <ImageButton
-                android:id="@+id/triangle"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:contentDescription="@string/start_new"
-                android:src="@drawable/triangle" />
-
-            <ImageButton
-                android:id="@+id/rectangle"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:contentDescription="@string/start_new"
-                android:src="@drawable/rectangle" />
-        </LinearLayout>
-    </RelativeLayout>
+        </RelativeLayout>
 
     <com.example.drawingfun.DrawingView
         android:id="@+id/drawing"
@@ -206,7 +177,52 @@
         android:layout_weight="1"
         android:background="#FFFFFFFF" />
 
-    <LinearLayout
+
+
+
+
+
+
+
+<!--  23452435kj;432kl5j;43k2j5;2l43kj5;2l43kj5;2l43k5 -->
+
+
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFCCCCCC"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <!--
+         Inside this layout we will add the buttons for starting a new drawing, 
+    	selecting a brush, selecting an eraser, and saving a drawing.
+    -->
+
+  
+
+    <!-- Second, we add an instance of the custom view class we created -->
+    <!--
+             By retrieving a reference to this instance of the custom View class, 
+    		our Activity will be able to access the methods we define in the View class declaration we created.
+    -->
+
+    <com.example.drawingfun.DrawingView
+        android:id="@+id/drawing"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_weight="1"
+        android:background="#FFFFFFFF" />
+    
+      <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -236,14 +252,15 @@
             android:contentDescription="@string/start_new"
             android:src="@drawable/new_pic" />
 
+
         <ImageButton
             android:id="@+id/save_btn"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:contentDescription="@string/save"
             android:src="@drawable/save" />
-
-        <ImageButton
+        
+                <ImageButton
             android:id="@+id/exit_btn"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"

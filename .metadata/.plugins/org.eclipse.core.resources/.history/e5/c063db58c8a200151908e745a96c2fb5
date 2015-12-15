@@ -165,34 +165,7 @@
             </LinearLayout>
         </LinearLayout>
         
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-            
-            android:orientation="horizontal" >
-
-            <ImageButton
-                android:id="@+id/circle"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:contentDescription="@string/start_new"
-                android:src="@drawable/circle" />
-
-            <ImageButton
-                android:id="@+id/triangle"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:contentDescription="@string/start_new"
-                android:src="@drawable/triangle" />
-
-            <ImageButton
-                android:id="@+id/rectangle"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:contentDescription="@string/start_new"
-                android:src="@drawable/rectangle" />
-        </LinearLayout>
+        
     </RelativeLayout>
 
     <com.example.drawingfun.DrawingView
@@ -205,52 +178,51 @@
         android:layout_marginTop="3dp"
         android:layout_weight="1"
         android:background="#FFFFFFFF" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal" >
-
-        <!-- this is the brush button -->
-
-        <ImageButton
-            android:id="@+id/draw_btn"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/brush"
-            android:src="@drawable/brush" />
-        <!-- this is the eraser button -->
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
 
-        <ImageButton
-            android:id="@+id/erase_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/erase"
-            android:src="@drawable/eraser" />
+            <!-- this is the brush button -->
 
-        <ImageButton
-            android:id="@+id/new_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/start_new"
-            android:src="@drawable/new_pic" />
+            <ImageButton
+                android:id="@+id/draw_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/brush"
+                android:src="@drawable/brush" />
+            <!-- this is the eraser button -->
 
-        <ImageButton
-            android:id="@+id/save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/save"
-            android:src="@drawable/save" />
+            <ImageButton
+                android:id="@+id/erase_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/erase"
+                android:src="@drawable/eraser" />
 
-        <ImageButton
-            android:id="@+id/exit_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/exit"
-            android:src="@drawable/exit" />
+            <ImageButton
+                android:id="@+id/new_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/start_new"
+                android:src="@drawable/new_pic" />
 
-        <!-- That's it for the top Linear Layout control buttons. -->
+            <ImageButton
+                android:id="@+id/save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/save"
+                android:src="@drawable/save" />
+
+            <ImageButton
+                android:id="@+id/exit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/exit"
+                android:src="@drawable/exit" />
+
+            <!-- That's it for the top Linear Layout control buttons. -->
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
