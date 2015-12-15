@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_bgcolor"
+    android:background="#FFCCCCCC"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -230,7 +230,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="3dp"
         android:layout_weight="1"
-        android:background="@color/white" />
+        android:background="#FFFFFFFF" />
 
 <include 
     	android:id="@+id/func_btns"
