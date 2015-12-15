@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+<com.wglxy.example.pinchzoompan.LargeGridView
+    android:id="@+id/zoomview"
+    android:layout_width="@dimen/large_grid_view_size"
+    android:layout_height="@dimen/large_grid_view_size"
+    android:background="@color/background_grid"
+    />
+
+<TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fixed_point_zoom" />
+
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="image_view_size">560dp</dimen>
+    <dimen name="large_grid_view_size">600dp</dimen>
+    <dimen name="large_grid_size">1800dp</dimen>
+
+</resources>

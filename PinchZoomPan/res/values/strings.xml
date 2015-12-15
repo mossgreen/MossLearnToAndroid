@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Touch the image above. Try pinch zoom and dragging.</string>
+    <string name="main_title">Pan-Zoom Examples</string>
+    <string name="app_name">Pan-Zoom Examples</string>
+    <string name="title1">1. Basic Multitouch</string>
+    <string name="title_r">2. Canvas.../Rectangles</string>
+    <string name="title_c1">2. Canvas.../Circle</string>
+    <string name="title_isq">4. Image Squares</string>
+    <string name="title_fpz">5. Fixed Point Zoom</string>
+    <string name="title_pzl">3. Pan Zoom Listener </string>
+    <string name="fixed_point_zoom">This example zooms in and out around the center dot.</string>
+    
+</resources>

@@ -9985,3 +9985,13 @@ org.eclipse.core.internal.resources.ResourceException: A resource already exists
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
 !SUBENTRY 1 org.eclipse.core.resources 4 272 2015-12-15 16:56:34.568
 !MESSAGE A resource already exists on disk '/Users/gufeifei/Documents/workspace/Drawables and HTML/.settings'.
+!SESSION 2015-12-15 23:05:02.485 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/gufeifei/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/gufeifei/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2015-12-15 23:05:07.439
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

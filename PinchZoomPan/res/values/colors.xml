@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<color name="background">#000001</color>
+<color name="background_side1">#222222</color>
+<color name="background_side">#191050</color>
+<color name="background_side_blue">#191055</color>
+<color name="blue_background">#191055</color>
+<color name="debug_background">#aa0022</color>
+<color name="debug_background2">#aa8822</color>
+<color name="debug_background3">#118844</color>
+
+<color name="background_grid">#222222</color>
+
+</resources>
