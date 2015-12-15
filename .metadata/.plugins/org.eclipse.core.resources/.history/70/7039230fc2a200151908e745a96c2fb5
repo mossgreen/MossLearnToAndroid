@@ -223,19 +223,13 @@ public class MainActivity extends Activity implements OnClickListener{
 			newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
 			    public void onClick(DialogInterface dialog, int which){
 			        drawView.startNew();
-			        drawView.setBrushSize(smallBrush);
-			        drawView.setLastBrushSize(smallBrush);
-			        drawView.setPaint(true);
 			        drawView.setErase(false);
 			        dialog.dismiss();
 			    }
 			});
 			newDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
 			    public void onClick(DialogInterface dialog, int which){
-			    	drawView.setBrushSize(smallBrush);
-			        drawView.setLastBrushSize(smallBrush);
-			        drawView.setPaint(true);
-			        drawView.setErase(false);
+			    	drawView.setErase(false);
 			        dialog.cancel();
 			    }
 			});
