@@ -19,7 +19,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private DrawingView drawView; //This represents the instance of the custom View that we added to the layout.
 	
 	//represents the paint color button in the palette, the drawing button, eraser button, and new_draw button
-	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, exitBtn;
+	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn;
 	private ImageButton currShape, triBtn, cirBtn, rectBtn;
 	private float smallBrush, mediumBrush, largeBrush; // to store the three dimension values
 
@@ -57,8 +57,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		saveBtn = (ImageButton)findViewById(R.id.save_btn);
 		saveBtn.setOnClickListener(this);
 		
-		exitBtn = (ImageButton)findViewById(R.id.exit_btn);
-		exitBtn.setOnClickListener(new OnClickListener() {
+		saveBtn = (ImageButton)findViewById(R.id.exit_btn);
+		saveBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
