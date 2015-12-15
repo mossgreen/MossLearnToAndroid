@@ -278,8 +278,10 @@ public class MainActivity extends Activity {
 
 	// to initialize the shape buttons
 	private void initShapes(LinearLayout paintLayout) {
+		// currShape
 		// Get the first button and store it as the instance variable
-		// use a different drawable image on the button to show that it is currently selected:
+		// use a different drawable image on the button to show that it is
+		// currently selected:
 		currPaint = (ImageButton) paintLayout.getChildAt(0);
 		currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
 

@@ -19,13 +19,15 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	private DrawingView drawView; // This represents the instance of the custom View that we added to the layout.
+	private DrawingView drawView; // This represents the instance of the custom
+									// View that we added to the layout.
 
 	// represents the paint color button in the palette, the drawing button,
 	// eraser button, and new_draw button
 	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, exitBtn, shareBtn;
 	private ImageButton currShape, triBtn, cirBtn, rectBtn;
-	private float smallBrush, mediumBrush, largeBrush; // to store the three dimension values
+	private float smallBrush, mediumBrush, largeBrush; // to store the three
+														// dimension values
 
 	// variable for multiTouch
 	private ScaleGestureDetector mScaleDetector;
@@ -62,55 +64,105 @@ public class MainActivity extends Activity {
 
 	// to initialize the function buttons, like share,eraser, exit, etc..
 	private void initFuncs() {
-		
-		//initialize eraser button
-		initEraserBtn();
-		
-		//initialize the "new" button
-		initNewBtn();
-
-		//initialize the save button
-		initSaveBtn();
-
-		shareBtn = (ImageButton) findViewById(R.id.mail_btn);
-		shareBtn.setOnClickListener(new OnClickListener() {
+		// retrieve a reference to the eraser button from the layout and set up
+		// a click listener
+		eraseBtn = (ImageButton) findViewById(R.id.erase_btn);
+		eraseBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				// while eraser button is clicked, switch to erase - choose size
 
-				// start by enabling the drawing cache
-				drawView.setDrawingCacheEnabled(true);
+				drawView.setPaint(true);
 
-				// find the url
-				String path = MediaStore.Images.Media.insertImage(getContentResolver(), drawView.getDrawingCache(),
-						"Image Description", null);
-				Uri uri = Uri.parse(path);
+				// When the user clicks the button, it will display a dialog
+				// presenting them with the three button sizes
+				final Dialog brushDialog = new Dialog(v.getContext());
+				brushDialog.setTitle("Eraser size:");
 
-				Intent intent = new Intent(Intent.ACTION_SEND);
-				intent.setType("image/*");
-				intent.putExtra(Intent.EXTRA_STREAM, uri);
-				startActivity(Intent.createChooser(intent, "Share Image"));
+				// set layout
+				brushDialog.setContentView(R.layout.brush_chooser);
 
-				// Destroy the drawing cache so that any future drawings saved
-				// won't use the existing cache
-				drawView.destroyDrawingCache();
+				// listen for clicks on the three size buttons, this is the
+				// small one:
+				ImageButton smallBtn = (ImageButton) brushDialog.findViewById(R.id.small_brush);
+				smallBtn.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						drawView.setErase(true);
+						drawView.setBrushSize(smallBrush);
+						brushDialog.dismiss();
+					}
+				});
 
+				// listen for clicks on the three size buttons, this is the
+				// medium one:
+				ImageButton mediumBtn = (ImageButton) brushDialog.findViewById(R.id.medium_brush);
+				mediumBtn.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						drawView.setErase(true);
+						drawView.setBrushSize(mediumBrush);
+						brushDialog.dismiss();
+					}
+				});
+
+				// listen for clicks on the three size buttons, this is the
+				// large one:
+				ImageButton largeBtn = (ImageButton) brushDialog.findViewById(R.id.large_brush);
+				largeBtn.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						drawView.setErase(true);
+						drawView.setBrushSize(largeBrush);
+						brushDialog.dismiss();
+					}
+				});
+
+				brushDialog.show(); // Finally, display the Dialog
 			}
 		});
-		
-		// retrieve a reference to the save button from the layout and set up a
+
+		// retrieve a reference to the new button from the layout and set up a
 		// click listener
-		exitBtn = (ImageButton) findViewById(R.id.exit_btn);
-		exitBtn.setOnClickListener(new OnClickListener() {
+		newBtn = (ImageButton) findViewById(R.id.new_btn);
+		newBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				finish();
+				// while new button is clicked
+
+				// to verify that the user definitely wants to start a new
+				// drawing
+				// this alert dialog lets user change their mind,
+				// calling a new method if they decide to go ahead and start a
+				// new drawing, in which case the current drawing is cleared
+				AlertDialog.Builder newDialog = new AlertDialog.Builder(v.getContext());
+				newDialog.setTitle("New drawing");
+				newDialog.setMessage("Start new drawing (you will lose the current drawing)?");
+				newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						drawView.startNew();
+						drawView.setBrushSize(smallBrush);
+						drawView.setLastBrushSize(smallBrush);
+						drawView.setPaint(true);
+						drawView.setErase(false);
+						dialog.dismiss();
+					}
+				});
+				newDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						drawView.setBrushSize(smallBrush);
+						drawView.setLastBrushSize(smallBrush);
+						drawView.setPaint(true);
+						drawView.setErase(false);
+						dialog.cancel();
+					}
+				});
+				newDialog.show(); // Finally, display the Dialog
 			}
 		});
-	}
 
-	private void initSaveBtn() {
 		// retrieve a reference to the save button from the layout and set up a
 		// click listener
 		saveBtn = (ImageButton) findViewById(R.id.save_btn);
@@ -172,114 +224,51 @@ public class MainActivity extends Activity {
 				saveDialog.show();
 			}
 		});
-	}
 
-	private void initNewBtn() {
-		// retrieve a reference to the new button from the layout and set up a
+		// retrieve a reference to the save button from the layout and set up a
 		// click listener
-		newBtn = (ImageButton) findViewById(R.id.new_btn);
-		newBtn.setOnClickListener(new OnClickListener() {
+		exitBtn = (ImageButton) findViewById(R.id.exit_btn);
+		exitBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// while new button is clicked
-
-				// to verify that the user definitely wants to start a new
-				// drawing
-				// this alert dialog lets user change their mind,
-				// calling a new method if they decide to go ahead and start a
-				// new drawing, in which case the current drawing is cleared
-				AlertDialog.Builder newDialog = new AlertDialog.Builder(v.getContext());
-				newDialog.setTitle("New drawing");
-				newDialog.setMessage("Start new drawing (you will lose the current drawing)?");
-				newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						drawView.startNew();
-						drawView.setBrushSize(smallBrush);
-						drawView.setLastBrushSize(smallBrush);
-						drawView.setPaint(true);
-						drawView.setErase(false);
-						dialog.dismiss();
-					}
-				});
-				newDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						drawView.setBrushSize(smallBrush);
-						drawView.setLastBrushSize(smallBrush);
-						drawView.setPaint(true);
-						drawView.setErase(false);
-						dialog.cancel();
-					}
-				});
-				newDialog.show(); // Finally, display the Dialog
+				finish();
 			}
 		});
-	}
 
-	private void initEraserBtn() {
-		// retrieve a reference to the eraser button from the layout and set up a click listener
-		eraseBtn = (ImageButton) findViewById(R.id.erase_btn);
-		eraseBtn.setOnClickListener(new OnClickListener() {
+		shareBtn = (ImageButton) findViewById(R.id.mail_btn);
+		shareBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// while eraser button is clicked, switch to erase - choose size
 
-				drawView.setPaint(true);
+				// start by enabling the drawing cache
+				drawView.setDrawingCacheEnabled(true);
 
-				// When the user clicks the button, it will display a dialog
-				// presenting them with the three button sizes
-				final Dialog brushDialog = new Dialog(v.getContext());
-				brushDialog.setTitle("Eraser size:");
+				// find the url
+				String path = MediaStore.Images.Media.insertImage(getContentResolver(), drawView.getDrawingCache(),
+						"Image Description", null);
+				Uri uri = Uri.parse(path);
 
-				// set layout
-				brushDialog.setContentView(R.layout.brush_chooser);
+				Intent intent = new Intent(Intent.ACTION_SEND);
+				intent.setType("image/*");
+				intent.putExtra(Intent.EXTRA_STREAM, uri);
+				startActivity(Intent.createChooser(intent, "Share Image"));
 
-				// listen for clicks on the three size buttons, this is the
-				// small one:
-				ImageButton smallBtn = (ImageButton) brushDialog.findViewById(R.id.small_brush);
-				smallBtn.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						drawView.setErase(true);
-						drawView.setBrushSize(smallBrush);
-						brushDialog.dismiss();
-					}
-				});
+				// Destroy the drawing cache so that any future drawings saved
+				// won't use the existing cache
+				drawView.destroyDrawingCache();
 
-				// listen for clicks on the three size buttons, this is the
-				// medium one:
-				ImageButton mediumBtn = (ImageButton) brushDialog.findViewById(R.id.medium_brush);
-				mediumBtn.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						drawView.setErase(true);
-						drawView.setBrushSize(mediumBrush);
-						brushDialog.dismiss();
-					}
-				});
-
-				// listen for clicks on the three size buttons, this is the
-				// large one:
-				ImageButton largeBtn = (ImageButton) brushDialog.findViewById(R.id.large_brush);
-				largeBtn.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						drawView.setErase(true);
-						drawView.setBrushSize(largeBrush);
-						brushDialog.dismiss();
-					}
-				});
-
-				brushDialog.show(); // Finally, display the Dialog
 			}
 		});
 	}
 
 	// to initialize the shape buttons
 	private void initShapes(LinearLayout paintLayout) {
+		// currShape
 		// Get the first button and store it as the instance variable
-		// use a different drawable image on the button to show that it is currently selected:
+		// use a different drawable image on the button to show that it is
+		// currently selected:
 		currPaint = (ImageButton) paintLayout.getChildAt(0);
 		currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
 

@@ -100,37 +100,8 @@ public class DrawingView extends View {
 		float touchY = event.getY();
 
 		if (isPaint) {
-
-			switch (event.getAction()) {
-			// When the user touches the View, we move to that position to start
-			// drawing
-			case MotionEvent.ACTION_DOWN:
-
-				drawPath.moveTo(touchX, touchY);
-				preX = touchX;
-				preY = touchY;
-
-				break;
-
-			// When they move their finger on the View, we draw the path along
-			// with their touch
-			case MotionEvent.ACTION_MOVE:
-
-				// QUad to curves using a quadratic line (basically an ellipse
-				// of some sort).
-				// QuadTo will smooth out jaggedies where they turn.
-				drawPath.quadTo(preX, preY, (touchX + preX) / 2, (touchY + preY) / 2);
-				preX = touchX;
-				preY = touchY;
-				break;
-
-			// When they lift their finger up off the View, we draw the Path and
-			// reset it for the next drawing operation
-			case MotionEvent.ACTION_UP:
-				drawCanvas.drawPath(drawPath, drawPaint);
-				drawPath.reset();
-				break;
-			}
+			//paint with lines, not other shapes like triangle or rectangle
+			paintWithLine(event, touchX, touchY);
 
 		} else if (isTri) {
 
@@ -154,43 +125,77 @@ public class DrawingView extends View {
 			drawCanvas.drawPath(rectPath, drawPaint);
 
 		}
+	}
 
-		// Calling invalidate will cause the onDraw method to execute
-		invalidate();
-		return true;
+	private void paintWithLine(MotionEvent event, float touchX, float touchY) {
+		switch (event.getAction()) {
+		// When the user touches the View, we move to that position to start
+		// drawing
+		case MotionEvent.ACTION_DOWN:
+
+			drawPath.moveTo(touchX, touchY);
+			preX = touchX;
+			preY = touchY;
+
+			break;
+
+		// When they move their finger on the View, we draw the path along
+		// with their touch
+		case MotionEvent.ACTION_MOVE:
+
+			// QUad to curves using a quadratic line (basically an ellipse
+			// of some sort).
+			// QuadTo will smooth out jaggedies where they turn.
+			drawPath.quadTo(preX, preY, (touchX + preX) / 2, (touchY + preY) / 2);
+			preX = touchX;
+			preY = touchY;
+			break;
+
+		// When they lift their finger up off the View, we draw the Path and
+		// reset it for the next drawing operation
+		case MotionEvent.ACTION_UP:
+			drawCanvas.drawPath(drawPath, drawPaint);
+			drawPath.reset();
+			break;
+		}
+	}
+
+	// Calling invalidate will cause the onDraw method to execute
+	invalidate();return true;
+
 	}
 
 	// set color
-	public void setColor(String newColor) {
-		// to set color, start by invalidating the View
+	public void setColor(String newColor){
+		//to set color, start by invalidating the View
 		invalidate();
-
-		// next, parse and set the color for drawing
+		
+		//next, parse and set the color for drawing
 		paintColor = Color.parseColor(newColor);
 		drawPaint.setColor(paintColor);
 
 	}
 
 	// set brush size
-	public void setBrushSize(float newSize) {
-
-		// passing the value from the dimensions file
-		// update the brush size with the passed value
-		// update the Paint object to use the new size
-		float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize,
-				getResources().getDisplayMetrics());
-		brushSize = pixelAmount;
-		drawPaint.setStrokeWidth(brushSize);
-	}
+	public void setBrushSize(float newSize){
+		
+		//passing the value from the dimensions file
+		//update the brush size with the passed value
+		//update the Paint object to use the new size
+		float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
+			    newSize, getResources().getDisplayMetrics());
+			brushSize=pixelAmount;
+			drawPaint.setStrokeWidth(brushSize);
+		}
 
 	// to set the LastBrushSiz
-	public void setLastBrushSize(float lastSize) {
-		lastBrushSize = lastSize;
+	public void setLastBrushSize(float lastSize){
+	    lastBrushSize=lastSize;
 	}
 
 	// to get the LastBrushSiz
-	public float getLastBrushSize() {
-		return lastBrushSize;
+	public float getLastBrushSize(){
+	    return lastBrushSize;
 	}
 
 	// Initially we will assume that the user is drawing, not erasing
