@@ -17,7 +17,7 @@ import android.view.View;
  * Main class of the application. This view presents a canvas that users can
  * draw on with pen or shapes
  * 
- * @author Feifei GU <gufeifei@outlook.com>
+ * @author Feifei GU <gufeifei@outlook.com> studentID:1452941
  * 
  * @version 20151216
  * @since java 1.7
@@ -56,7 +56,8 @@ public class DrawingView extends View {
 	float preX, preY; // prepare for QuadTo method, which will smooth the draw
 
 	/**
-	 *  constructor of this class, which holds two params
+	 * constructor of this class, which holds two params
+	 * 
 	 * @param context
 	 * @param attrs
 	 */
@@ -169,8 +170,8 @@ public class DrawingView extends View {
 		} else if (isTri) {
 
 			Path triPath = new Path();
-			
-			//to get the height of the triangle
+
+			// to get the height of the triangle
 			triHeight = getResources().getInteger(R.integer.tri_height);
 			triPath.moveTo(touchX, touchY - triHeight);
 			triPath.lineTo(touchX + triHeight, touchY + triHeight / 2);
@@ -180,14 +181,14 @@ public class DrawingView extends View {
 
 		} else if (isCir) {
 
-			//to get the radius of the circle
+			// to get the radius of the circle
 			cirRadius = getResources().getInteger(R.integer.cir_radius);
 			drawCanvas.drawCircle(touchX, touchY, cirRadius, drawPaint);
 
 		} else if (isRect) {
 			Path rectPath = new Path();
-			
-			//to get the length of the rectangle
+
+			// to get the length of the rectangle
 			rectLength = getResources().getInteger(R.integer.rect_length);
 
 			rectPath.moveTo(touchX - rectLength, touchY - rectLength);
@@ -222,8 +223,9 @@ public class DrawingView extends View {
 
 	/**
 	 * method to set brush size
+	 * 
 	 * @param newSize
-	 * newSize is the size that will set to the brush
+	 *            newSize is the size that will set to the brush
 	 */
 	public void setBrushSize(float newSize) {
 
@@ -237,7 +239,8 @@ public class DrawingView extends View {
 	}
 
 	/**
-	 *  method to set the lastBrushSize
+	 * method to set the lastBrushSize
+	 * 
 	 * @param lastSize
 	 */
 	public void setLastBrushSize(float lastSize) {
@@ -246,6 +249,7 @@ public class DrawingView extends View {
 
 	/**
 	 * method to to get the LastBrushSiz
+	 * 
 	 * @return
 	 */
 	public float getLastBrushSize() {
@@ -253,8 +257,9 @@ public class DrawingView extends View {
 	}
 
 	/**
-	 * make sure whether user is choosing eraser
-	 *  Initially we will assume that the user is drawing, not erasing
+	 * make sure whether user is choosing eraser Initially we will assume that
+	 * the user is drawing, not erasing
+	 * 
 	 * @param isErase
 	 */
 	public void setErase(boolean isErase) {
@@ -270,18 +275,38 @@ public class DrawingView extends View {
 		}
 	}
 
+	/**
+	 * to set whether is using the paint function
+	 * 
+	 * @param isPaint
+	 */
 	public void setPaint(boolean isPaint) {
 		this.isPaint = isPaint;
 	}
 
+	/**
+	 * to set whether is using the triangle shape
+	 * 
+	 * @param isTri
+	 */
 	public void setTri(boolean isTri) {
 		this.isTri = isTri;
 	}
 
+	/**
+	 * to set whether is using the rectangle shape
+	 * 
+	 * @param isRect
+	 */
 	public void setRect(boolean isRect) {
 		this.isRect = isRect;
 	}
 
+	/**
+	 * to set the variable of isCir
+	 * 
+	 * @param isCir
+	 */
 	public void setCir(boolean isCir) {
 		this.isCir = isCir;
 	}

@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
 	// represents the paint color button in the palette, the drawing button,
 	// eraser button, and new_draw button
 	private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, exitBtn, shareBtn;
-	private ImageButton currShape, triBtn, cirBtn, rectBtn;
+	private ImageButton  triBtn, cirBtn, rectBtn;
 	private float smallBrush, mediumBrush, largeBrush; // to store the three
 														// dimension values
 
@@ -394,7 +394,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Handle a click on the colors which registered in the xml file
 	  * @param View
-	 *            the button the clicked, which are imagebuttons
+	 *            view is the button that clicked, which is a imagebutton
 	 */
 	public void paintClicked(View view) {
 		// first check that the user has clicked a paint color that is not the

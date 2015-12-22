@@ -1,7 +1,0 @@
-1450176293645	Delete element
-1450176970814	Extract method 'initShapes'
-1450177112322	Extract method 'initFuncs'
-1450178001105	Extract method 'initEraserBtn'
-1450178060662	Extract method 'initNewBtn'
-1450178124434	Extract method 'initSaveBtn'
-1450178424612	Extract method 'paintWithLine'
