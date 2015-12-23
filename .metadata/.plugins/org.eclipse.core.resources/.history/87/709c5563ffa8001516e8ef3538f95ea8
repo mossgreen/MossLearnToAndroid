@@ -1,0 +1,39 @@
+package com.example.marslander;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class MarsLanderActivity extends Activity {
+	
+	private static final String APP_TAG = "MARS_LANDER";
+	private static final int MENU_START = 0;
+	private MarslanderView _view;
+	private ImageButton _bmMainflame, _btnLeftThruster, _btnRightThruster;
+	
+	@Override
+	public boolean onCreateOptionMenu(Menu menu){
+		super.onCreateOptionsMenu(menu);
+		menu.add(0,MENU_START, 0, R.string.menu_start);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+		case MENU_START:
+			_view.getScence().doStart();
+			return true;
+			
+		}
+	}
+	
+
+	@Override
+	protected void onCreate() {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_mars_lander);
+	}
+
+}
