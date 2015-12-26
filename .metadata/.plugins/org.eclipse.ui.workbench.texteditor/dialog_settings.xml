@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="_remainingSlopeWidth" key="selection"/>
+		<item value="_cCraft" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="_cCraft"/>
 			<item value="__remainingSlopeWidth"/>
 			<item value="remainingSlopeWidth"/>
 			<item value="nextboolean"/>
@@ -15,9 +16,9 @@
 			<item value="_remianingSlopeWidth"/>
 			<item value="_fuelRemianing"/>
 			<item value="_fuleRemaining"/>
-			<item value="_fuleRemianing"/>
 		</list>
 		<list key="replacehistory">
+			<item value="_craft"/>
 			<item value="_remainingSlopeWidth"/>
 			<item value="nextBoolean"/>
 			<item value="_rdm"/>
@@ -25,7 +26,6 @@
 			<item value=" "/>
 			<item value="_fuelRemaining"/>
 			<item value=""/>
-			<item value="_offsetY"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

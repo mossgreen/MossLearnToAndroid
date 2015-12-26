@@ -266,7 +266,7 @@ public class Craft {
 		_craftModel.turnRight();
 	}
 	
-	public void trunLeft(){
+	public void turnLeft(){
 		_craftModel.turnLeft();
 	}
 	
