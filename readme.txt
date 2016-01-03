@@ -15,7 +15,6 @@ then:
 gufeifei$ git config user.email
 gufeifei@outlook.com
 
-—
 
 
 
