@@ -1,3 +1,24 @@
+
+
+20160103
+
+Q?
+- “GitHub commits aren't recorded in the 'Your Contributions` calendar”
+
+A!
+
+git config --global user.email
+—> it was shown that I used a wrong email
+
+corrected it by : $ git config --global user.email gufeifei@outlook.com
+then:
+gufeifei$ git config user.email
+gufeifei@outlook.com
+
+—
+
+
+
 20151212
 
 -	what is this...
