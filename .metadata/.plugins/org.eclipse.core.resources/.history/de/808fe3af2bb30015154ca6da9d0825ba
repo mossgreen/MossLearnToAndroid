@@ -1,0 +1,5 @@
+package com.feifeigu.craftlanding.interfaces;
+
+public interface Sprite {
+
+}

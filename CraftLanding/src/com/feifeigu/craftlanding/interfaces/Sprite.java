@@ -1,0 +1,38 @@
+package com.feifeigu.craftlanding.interfaces;
+
+import android.graphics.Canvas;
+import android.graphics.Point;
+
+public interface Sprite
+{
+	/**
+	 * Method to load content of the object (sound, graphics, etc.)
+	 */
+	public void load();
+
+	/**
+	 * Method to move the game object (best place for AI implementation)
+	 */
+	public void move();
+
+	/**
+	 * Method to update the sprite sheet
+	 */
+	public void update();
+
+	/**
+	 * Method to draw the object to the canvas
+	 * 
+	 * @param canvas
+	 *            Canvas to draw objects
+	 */
+	public void draw(Canvas canvas);
+
+	/**
+	 * Method to set the position to move
+	 * 
+	 * @param pos
+	 *            New position of the object
+	 */
+	public void setPos(Point pos);
+}
