@@ -2,7 +2,6 @@ package com.jcasey;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -32,7 +31,7 @@ public class GameLoop extends SurfaceView implements Runnable,
 	
 	Paint paint = new Paint();
 	
-	private Bitmap rocket;
+	Bitmap background;
 	
 	int xcor[] = { 0, 0, 200, 190, 218, 260, 275, 298, 309, 327, 336, 368, 382,
 			448, 462, 476, 498, 527, 600, 600, 0, 0 };
@@ -76,9 +75,6 @@ public class GameLoop extends SurfaceView implements Runnable,
 
 	public void init()
 	{
-		
-		rocket = BitmapFactory.decodeResource(getResources(),
-				R.drawable.craftmain);
 		path = new Path();
 
 		for (int i = 0; i < xcor.length; i++) {
@@ -129,7 +125,6 @@ public class GameLoop extends SurfaceView implements Runnable,
 					{
 						paint.setColor(Color.GREEN);
 						canvas.drawRect(x-25, y-25, x+25, y+25, paint);
-						canvas.drawBitmap(rocket,x, y,paint);
 						
 						t = INITIAL_TIME; // reset the time variable
 						
@@ -137,7 +132,7 @@ public class GameLoop extends SurfaceView implements Runnable,
 					}
 					else
 					{
-						canvas.drawBitmap(rocket,x-5, y-5,  paint);
+						canvas.drawRect(x-5, y-5, x+5, y+5, paint);
 					}
 				}
 	

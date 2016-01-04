@@ -129,7 +129,6 @@ public class GameLoop extends SurfaceView implements Runnable,
 					{
 						paint.setColor(Color.GREEN);
 						canvas.drawRect(x-25, y-25, x+25, y+25, paint);
-						canvas.drawBitmap(rocket,x, y,paint);
 						
 						t = INITIAL_TIME; // reset the time variable
 						
@@ -137,7 +136,7 @@ public class GameLoop extends SurfaceView implements Runnable,
 					}
 					else
 					{
-						canvas.drawBitmap(rocket,x-5, y-5,  paint);
+						canvas.drawRect(x-5, y-5, x+5, y+5, paint);
 					}
 				}
 	

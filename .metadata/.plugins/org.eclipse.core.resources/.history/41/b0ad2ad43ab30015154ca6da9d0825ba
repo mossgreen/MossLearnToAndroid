@@ -6,11 +6,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 public class SimpleGravity extends Activity {
     private GameLoop gameLoop;
-    private ImageButton  btnUpflame, btnLeftThyruster, btnRightThruster;
 
 	/**
 	 * @author John Casey 11/04/2014
@@ -38,19 +36,6 @@ public class SimpleGravity extends Activity {
 				gameLoop.reset();
 				gameLoop.invalidate();
 			}
-		});  
-        
-        btnUpflame = (ImageButton)findViewById(R.id.btnLeftThruster);
-        btnLeftThyruster = (ImageButton)findViewById(R.id.btnLeftThruster);
-        btnRightThruster = (ImageButton)findViewById(R.id.btnRightThruster);
-        
-        btnUpflame.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				gameLoop.setUpStatus();
-				
-			}
-		});
+		});        
     }
 }

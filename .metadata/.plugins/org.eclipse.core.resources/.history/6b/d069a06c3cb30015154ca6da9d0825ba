@@ -137,7 +137,7 @@ public class GameLoop extends SurfaceView implements Runnable,
 					}
 					else
 					{
-						canvas.drawBitmap(rocket,x-5, y-5,  paint);
+						canvas.drawBitmap(rocket-5, y-5, x+5, y+5, paint);
 					}
 				}
 	
