@@ -23,34 +23,34 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:text="@string/restart" />
-        
+
     </RelativeLayout>
     
-    <ImageButton
-        android:id="@+id/btnLeftThruster"
-        android:layout_width="30dip"
-        android:layout_height="30dip"
-        android:background="#00000000"
-        android:src="@drawable/arrow_left" 
-        android:layout_marginBottom="3dip"
-        android:layout_gravity="bottom"/>
-    
-    <ImageButton
-        android:id="@+id/btnThruster"
-        android:layout_width="30dip"
-        android:layout_height="30dip"
-        android:background="#00000000"
-        android:src="@drawable/button" 
-        android:layout_marginBottom="3dip"
-        android:layout_gravity="bottom|center_horizontal"/>
-    
-    <ImageButton
-        android:id="@+id/btnRightThruster"
-        android:layout_width="30dip"
-        android:layout_height="30dip"
-        android:background="#00000000"
-        android:src="@drawable/arrow_right" 
-        android:layout_marginBottom="3dip"
-        android:layout_gravity="bottom|end"/>
+    <selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" >
+		<shape xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:shape="oval">
+		    <solid android:color="#EFCC3300"/>
+			<stroke android:width="5dp" android:color="#ffffffff"/>    
+		
+		</shape>
+    </item>
+
+    <item android:state_focused="true" >
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+	    	<solid android:color="#ff0000ff"/>
+			<stroke android:width="5dp" android:color="#ffffffff"/>
+		</shape>
+    </item>
+
+    <item>        
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+	    	<solid android:color="#99CC3300"/>
+			<stroke android:width="5dp" android:color="#ffffffff"/>
+		</shape>
+    </item>
+</selector>
 
 </FrameLayout>
