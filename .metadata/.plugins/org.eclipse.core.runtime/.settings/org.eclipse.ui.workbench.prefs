@@ -4,6 +4,6 @@ ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.ui.workbenchMisc\tT
 ColorsAndFontsPreferencePage.selectedElement=Forg.eclipse.jface.textfont
 PLUGINS_NOT_ACTIVATED_ON_STARTUP=org.eclipse.m2e.discovery;
 eclipse.preferences.version=1
-org.eclipse.jface.textfont=1|Source Code Pro|18.0|0|COCOA|1|SourceCodePro-Regular;
+org.eclipse.jface.textfont=1|Source Code Pro|24.0|0|COCOA|1|SourceCodePro-Regular;
 org.eclipse.ui.commands=<?xml version\="1.0" encoding\="UTF-8"?>\n<org.eclipse.ui.commands/>
 overridepresentation=true

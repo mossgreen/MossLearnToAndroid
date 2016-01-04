@@ -1,0 +1,307 @@
+package nz.ac.unitec.model;
+
+import nz.ac.unitec.R;
+import nz.ac.unitec.interfaces.Sprite;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Point;
+import android.graphics.Rect;
+
+public class Hero implements Sprite
+{
+	private final static int STAND = 0;
+	private final static int WALK = 1;
+
+	private final static int UP = 0;
+	private final static int RIGHT = 1;
+	private final static int DOWN = 2;
+	private final static int LEFT = 3;
+
+	private final static int SPEED = 10;
+
+	private Resources mResources;
+
+	private int mCurrentFrame = 0;
+	private int mNumOfFrames;
+
+	private Rect mSourceRect;
+	private int mSpriteWidth;
+	private int mSpriteHeight;
+	private int mState;
+
+	private Point mCurPos;
+	private Point mGoalPos;
+	private int mDirection;
+	private boolean mKeepDir;
+
+	private Bitmap mTexture;
+
+	private Bitmap mWalkDown;
+	private Bitmap mWalkUp;
+	private Bitmap mWalkLeft;
+	private Bitmap mWalkRight;
+
+	private Bitmap mStandDown;
+	private Bitmap mStandUp;
+	private Bitmap mStandLeft;
+	private Bitmap mStandRight;
+
+	/**
+	 * Constructor
+	 * 
+	 * @param resources
+	 *            Resource to load content from files
+	 */
+	public Hero(Resources resources)
+	{
+		// set properties of sprite sheet
+		mSourceRect = new Rect();
+		mSpriteWidth = 40;
+		mSpriteHeight = 60;
+
+		// set properties of source rectangle
+		mSourceRect.top = 0;
+		mSourceRect.bottom = mSpriteHeight;
+
+		mCurPos = new Point(100, 100);
+
+		mResources = resources;
+
+		// set moving properties
+		mState = STAND;
+		mDirection = DOWN;
+		mKeepDir = false;
+
+		load();
+	}
+
+	@Override
+	public void load()
+	{
+		// load walk images
+		mWalkDown = BitmapFactory.decodeResource(mResources,
+				R.drawable.hero_walk_down);
+		mWalkUp = BitmapFactory.decodeResource(mResources,
+				R.drawable.hero_walk_up);
+		mWalkLeft = BitmapFactory.decodeResource(mResources,
+				R.drawable.hero_walk_left);
+		mWalkRight = BitmapFactory.decodeResource(mResources,
+				R.drawable.hero_walk_right);
+
+		// load stand images
+		mStandDown = BitmapFactory.decodeResource(mResources,
+				R.drawable.hero_down);
+		mStandUp = BitmapFactory.decodeResource(mResources, R.drawable.hero_up);
+		mStandLeft = BitmapFactory.decodeResource(mResources,
+				R.drawable.hero_left);
+		mStandRight = BitmapFactory.decodeResource(mResources,
+				R.drawable.hero_right);
+
+		// set main image
+		mTexture = mStandDown;
+	}
+
+	@Override
+	public void move()
+	{
+		// check the direction of the object and set right image
+		switch (mDirection)
+		{
+		case UP:
+
+			if (mState == STAND)
+				mTexture = mStandUp;
+			else
+			{
+				mTexture = mWalkUp;
+
+				// handle movement of the object
+				setMovement();
+			}
+
+			break;
+
+		case RIGHT:
+
+			if (mState == STAND)
+				mTexture = mStandRight;
+			else
+			{
+				mTexture = mWalkRight;
+
+				// handle movement of the object
+				setMovement();
+			}
+
+			break;
+
+		case DOWN:
+
+			if (mState == STAND)
+				mTexture = mStandDown;
+			else
+			{
+				mTexture = mWalkDown;
+
+				// handle movement of the object
+				setMovement();
+			}
+
+			break;
+
+		case LEFT:
+
+			if (mState == STAND)
+				mTexture = mStandLeft;
+			else
+			{
+				mTexture = mWalkLeft;
+
+				// handle movement of the object
+				setMovement();
+			}
+
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	/**
+	 * Method to move the object
+	 */
+	private void setMovement()
+	{
+		// get difference of the positions
+		int difX = mGoalPos.x - mCurPos.x;
+		int difY = mGoalPos.y - mCurPos.y;
+
+		// check if position is reached (with tolerance)
+		if (Math.abs(difX) <= SPEED / 2 && Math.abs(difY) <= SPEED / 2)
+		{
+			mState = STAND;
+		}
+		else
+		{
+			// set new direction
+			if (!mKeepDir)
+			{
+				if (Math.abs(difX) < Math.abs(difY))
+				{
+					if (difY > 0)
+						mDirection = DOWN;
+					else
+						mDirection = UP;
+				}
+				else
+				{
+					if (difX > 0)
+						mDirection = RIGHT;
+					else
+						mDirection = LEFT;
+				}
+
+				mKeepDir = true;
+			}
+			/*
+			 * move object as long as x or y position curPos and goalPos is
+			 * equal. Change direction or do nothing afterwards.
+			 */
+			else if (mDirection == UP || mDirection == DOWN)
+			{
+				if (Math.abs(difY) <= SPEED / 2)
+				{
+					mKeepDir = false;
+				}
+				else
+				{
+					if (mDirection == UP)
+						mCurPos.y -= SPEED;
+					else if (mDirection == DOWN)
+						mCurPos.y += SPEED;
+
+					mState = WALK;
+				}
+			}
+			else
+			{
+				if (Math.abs(difX) <= SPEED / 2)
+				{
+					mKeepDir = false;
+				}
+				else
+				{
+					if (mDirection == LEFT)
+						mCurPos.x -= SPEED;
+					else if (mDirection == RIGHT)
+						mCurPos.x += SPEED;
+
+					mState = WALK;
+				}
+			}
+		}
+
+	}
+
+	@Override
+	public void update()
+	{
+		// set stand texture if object is not moving
+		if (mState == STAND)
+		{
+			mNumOfFrames = 1;
+		}
+		// set walk texture if object is moving
+		else if (mState == WALK)
+		{
+			mNumOfFrames = 8;
+		}
+
+		// update position of the sprite sheet rectangle
+		mSourceRect.left = mSpriteWidth * mCurrentFrame;
+		mSourceRect.right = mSourceRect.left + mSpriteWidth;
+
+		mCurrentFrame++;
+
+		// reset frame
+		if (mCurrentFrame >= mNumOfFrames)
+		{
+			mCurrentFrame = 0;
+		}
+	}
+
+	@Override
+	public void draw(Canvas canvas)
+	{
+		// draw object to canvas
+		canvas.drawBitmap(mTexture, mSourceRect, getPosRect(), null);
+	}
+
+	/**
+	 * Method to define the position of the object based on the centre of the
+	 * image
+	 * 
+	 * @return The position of the object
+	 */
+	private Rect getPosRect()
+	{
+		// define a zoom factor to enlarge or diminish the object
+		int zoom = 5;
+
+		return new Rect(mCurPos.x - mSpriteWidth * zoom, mCurPos.y
+				- mSpriteHeight * zoom, mCurPos.x + mSpriteWidth * zoom,
+				mCurPos.y + mSpriteHeight * zoom);
+	}
+
+	@Override
+	public void setPos(Point pos)
+	{
+		// set new position and start moving
+		mGoalPos = pos;
+		mKeepDir = false;
+		mState = WALK;
+	}
+}
