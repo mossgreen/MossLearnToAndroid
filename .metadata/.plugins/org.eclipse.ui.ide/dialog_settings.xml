@@ -2,10 +2,12 @@
 <section name="Workbench">
 	<section name="CleanDialogSettings">
 		<item value="484" key="DIALOG_WIDTH"/>
+		<item value="true" key="BUILD_ALL"/>
 		<item value="true" key="TOGGLE_SELECTED"/>
-		<item value="354" key="DIALOG_HEIGHT"/>
-		<item value="-1202" key="DIALOG_X_ORIGIN"/>
+		<item value="423" key="DIALOG_HEIGHT"/>
+		<item value="718" key="DIALOG_X_ORIGIN"/>
 		<item value="75" key="DIALOG_Y_ORIGIN"/>
+		<item value="true" key="BUILD_NOW"/>
 	</section>
 	<section name="ExternalProjectImportWizard">
 		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
@@ -17,5 +19,14 @@
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item value="526" key="DIALOG_WIDTH"/>
+		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
+		<item value="529" key="DIALOG_HEIGHT"/>
+		<item value="457" key="DIALOG_X_ORIGIN"/>
+		<item value="22" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
