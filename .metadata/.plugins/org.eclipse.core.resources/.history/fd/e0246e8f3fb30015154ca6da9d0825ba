@@ -135,7 +135,7 @@ public class GameLoop extends SurfaceView implements Runnable,
 						if(leftPressed){
 							
 							x -= 20;
-							y += 20;
+							y -= 20;
 							
 							canvas.drawRect(x-25, y-25, x+25, y+25, paint);
 							

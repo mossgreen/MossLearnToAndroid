@@ -2,6 +2,7 @@ package com.jcasey;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -31,9 +32,9 @@ public class GameLoop extends SurfaceView implements Runnable,
 	
 	Paint paint = new Paint();
 	
-	Bitmap background;
+	private Bitmap rocket;
 	
-	int xcor[] = { 0, 200, 190, 218, 260, 275, 298, 309, 327, 336, 368, 382,
+	int xcor[] = { 0, 0, 200, 190, 218, 260, 275, 298, 309, 327, 336, 368, 382,
 			448, 462, 476, 498, 527, 600, 600, 0, 0 };
 	int ycor[] = { 616, 540, 550, 605, 605, 594, 530, 520, 520, 527, 626, 636,
 			636, 623, 535, 504, 481, 481, 750, 750, 616 };
@@ -75,6 +76,9 @@ public class GameLoop extends SurfaceView implements Runnable,
 
 	public void init()
 	{
+		
+		rocket = BitmapFactory.decodeResource(getResources(),
+				R.drawable.craftmain);
 		path = new Path();
 
 		for (int i = 0; i < xcor.length; i++) {
@@ -125,6 +129,7 @@ public class GameLoop extends SurfaceView implements Runnable,
 					{
 						paint.setColor(Color.GREEN);
 						canvas.drawRect(x-25, y-25, x+25, y+25, paint);
+//						canvas.drawBitmap(rocket,x, y,paint);
 						
 						t = INITIAL_TIME; // reset the time variable
 						
@@ -132,16 +137,7 @@ public class GameLoop extends SurfaceView implements Runnable,
 					}
 					else
 					{
-						if(leftPressed){
-							
-							x -= 20;
-							y += 20;
-							
-							canvas.drawRect(x-25, y-25, x+25, y+25, paint);
-							
-						}else {
-							canvas.drawRect(x-5, y-5, x+5, y+5, paint);
-						}
+						canvas.drawBitmap(rocket,200, 200,  null);
 					}
 				}
 	
@@ -235,9 +231,6 @@ public class GameLoop extends SurfaceView implements Runnable,
 	
 	public void reset()
 	{	
-		this.leftPressed = false;;
-		this.rightPressed = false;
-		this.upPressed = false;
 		gameover = false;
 		
 		x = width /2;
@@ -246,9 +239,9 @@ public class GameLoop extends SurfaceView implements Runnable,
 	}
 	
 	
-	public void setLeftStatus(){
-		this.leftPressed = true;
+	public void setUpStatus(){
+		this.leftPressed = false;
 		this.rightPressed = false;
-		this.upPressed = false;
+		this.upPressed = true;
 	}
 }

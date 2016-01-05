@@ -48,7 +48,7 @@ public class SimpleGravity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				gameLoop.setLeftStatus();
+				gameLoop.setUpStatus();
 				
 			}
 		});
