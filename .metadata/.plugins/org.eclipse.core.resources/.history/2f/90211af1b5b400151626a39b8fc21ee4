@@ -6,10 +6,9 @@ class CraftModel {
 	
 	
 	
-	
+	private static final float SIDE_THRUSTER_DURATION = 0.8f;
 	
 	// the left/right thruster last times duration
-	private static final float SIDE_THRUSTER_DURATION = 1.0f;
 	private static final float MAIN_THRUSTER_DURATION = 1.0f;// the main thruster last times duration
 	private static final float THRUSTER_ACCEL = 7.0f; //The accelerate of thruster
 	private static final float FUEL_CONSUME = 2.0f; // Consumed fuel on each fire
@@ -41,6 +40,15 @@ class CraftModel {
 	// acceleration in meters/second^2
 	private float accelX = 0;
 	private float accelY = 0;
+
+	CraftModel(Context context,float g) {
+		super();
+		float outValue = context.getResources().getValue(R.dimen.THRUSTER_DURATION, 1.0, 1.0);
+				//getValue(R.dimen.THRUSTER_DURATION);
+
+		this.g = g;
+		this.accelY = g;
+	}
 	
 	CraftModel(float g) {
 		this.g = g;

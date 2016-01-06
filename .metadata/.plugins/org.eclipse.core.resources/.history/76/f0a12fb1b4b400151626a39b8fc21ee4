@@ -26,7 +26,7 @@ public class Craft {
 
 	
 	Craft(int posX, int posY, float g, float r) {
-		craftModel = new CraftModel( g);
+		craftModel = new CraftModel(g);
 		this.posX = posX;
 		this.posY = posY;
 		pixelMeterRatio = r;

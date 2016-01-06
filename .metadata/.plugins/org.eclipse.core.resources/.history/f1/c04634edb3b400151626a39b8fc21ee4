@@ -1,24 +1,12 @@
 package com.victor.marslander;
 
-import android.content.Context;
-
 class CraftModel {
 	
-	
-	
-	
-	
-	// the left/right thruster last times duration
-	private static final float SIDE_THRUSTER_DURATION = 1.0f;
+	// the left/right thruster last times duration  	   
+	private float SIDE_THRUSTER_DURATION ;
 	private static final float MAIN_THRUSTER_DURATION = 1.0f;// the main thruster last times duration
 	private static final float THRUSTER_ACCEL = 7.0f; //The accelerate of thruster
 	private static final float FUEL_CONSUME = 2.0f; // Consumed fuel on each fire
-	
-	
-	
-	
-	
-	
 	// state
 	private float headAngle = 0.0f; // in degree;
 	private boolean isMainThrusterOn = false; // if main thruster fired
@@ -41,7 +29,7 @@ class CraftModel {
 	// acceleration in meters/second^2
 	private float accelX = 0;
 	private float accelY = 0;
-	
+
 	CraftModel(float g) {
 		this.g = g;
 		this.accelY = g;

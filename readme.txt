@@ -8,6 +8,28 @@ Q1: when I add a xml in android values folder named consts.xml, my R failed agai
 
 solved it by deleting this xml file.
 
+Q2:add float value in xml I should use another way, like:
+
+<resources>
+    <item name="text_line_spacing" format="float" type="dimen">1.0</item>
+</resources>
+
+and use it by :
+
+
+TypedValue outValue = new TypedValue();
+getResources().getValue(R.dimen.text_line_spacing, outValue, true);
+float value = outValue.getFloat();  
+
+Q3. I still have problem with getResources(), so I got a method to solve it :
+
+by:
+
+add the value in constructer and using 
+
+		float outValue = context.getResources().getDimension(R.dimen.THRUSTER_DURATION );
+
+
 20160103
 
 Q?
