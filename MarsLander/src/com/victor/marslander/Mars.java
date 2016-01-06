@@ -8,28 +8,28 @@ import android.graphics.Point;
 import android.util.Log;
 
 public class Mars {
-	private final int MIN_WIDTH = 30;
-	private final int BASE_HEIGHT = 50;
-	private final float MIN_GRADIENT = 0.2f;
-	private int _minSingleFlatWidth;
-	private int _maxSingleFlatWidth;
-	private int _remainingFlatWidth;
-	private int _remainingSlopeWidth;
-	private int _maxHeight;
+	private final int MINWIDTH = 30;
+	private final int BASEHEIGHT = 50;
+	private final float MINGRADIENT = 0.2f;
+	private int minSingleFlatWidth;
+	private int maxSingleFlatWidth;
+	private int remainingFlatWidth;
+	private int remainingSlopeWidth;
+	private int maxHeight;
 
-	private int _screenHeight;
+	private int screenHeight;
 
-	private final Random _rdm = new Random(System.currentTimeMillis());
-	private Vector<Point> _map;
-	private Path _ground;
+	private final Random rdm = new Random(System.currentTimeMillis());
+	private Vector<Point> map;
+	private Path ground;
 
 	public Mars(float r, int scrWidth, int scrHeight, int minWidth, int maxWidth, int maxHeight) {
-		_minSingleFlatWidth = minWidth;
-		_maxSingleFlatWidth = maxWidth;
-		_maxHeight = maxHeight;
-		_remainingFlatWidth = (int) (r * scrWidth);
-		_remainingSlopeWidth = scrWidth - _remainingFlatWidth;
-		_screenHeight = scrHeight;
+		this.minSingleFlatWidth = minWidth;
+		this.maxSingleFlatWidth = maxWidth;
+		this.maxHeight = maxHeight;
+		this.remainingFlatWidth = (int) (r * scrWidth);
+		this.remainingSlopeWidth = scrWidth - remainingFlatWidth;
+		this.screenHeight = scrHeight;
 	}
 
 	/**
@@ -37,24 +37,24 @@ public class Mars {
 	 */
 	private void generateMap() {
 		//
-		_map = new Vector<Point>();
-		_ground = null;
+		map = new Vector<Point>();
+		ground = null;
 		
 		Point currP, newP;
 		
-		_map.add(new Point(0, _screenHeight));
-		currP = new Point(0, _screenHeight - BASE_HEIGHT - _rdm.nextInt(_maxHeight));
-		_map.add(currP);
+		map.add(new Point(0, screenHeight));
+		currP = new Point(0, screenHeight - BASEHEIGHT - rdm.nextInt(maxHeight));
+		map.add(currP);
 
 		//first slope
 		newP = getSlopeEnd(currP);
 		if (newP != null) {
 			currP = newP;
-			_map.add(currP);
+			map.add(currP);
 		}
 		
-		while (_remainingSlopeWidth > 0 || _remainingFlatWidth > 0) {
-			if (_rdm.nextBoolean()) {
+		while (remainingSlopeWidth > 0 || remainingFlatWidth > 0) {
+			if (rdm.nextBoolean()) {
 				// flat
 				newP = getFlatEnd(currP);
 			} else {
@@ -62,12 +62,12 @@ public class Mars {
 			}
 			if (newP != null) {
 				currP = newP;
-				_map.add(currP);
+				map.add(currP);
 			}
 		}
 		
-		_map.add(new Point(currP.x, _screenHeight));
-		_map.add(new Point(0, _screenHeight));
+		map.add(new Point(currP.x, screenHeight));
+		map.add(new Point(0, screenHeight));
 	}
 	
 	/**
@@ -75,12 +75,12 @@ public class Mars {
 	 * @return Vector The ground points
 	 */
 	public Vector<Point> getGroundPoints(){
-		if(_map != null){
-			return _map;
+		if(map != null){
+			return map;
 		}
 		
 		getGround();
-		return _map;
+		return map;
 	}
 	
 	/**
@@ -88,21 +88,21 @@ public class Mars {
 	 * @return The ground path
 	 */
 	public Path getGround(){
-		if(_ground != null){
-			return _ground;
+		if(ground != null){
+			return ground;
 		}
 		
 		generateMap();
 		
 		Point p;
-		_ground = new Path();
-		int len = _map.size();
+		ground = new Path();
+		int len = map.size();
 		for(int i=0; i<len; i++){
-			p = _map.elementAt(i);
-			_ground.lineTo(p.x, p.y);
+			p = map.elementAt(i);
+			ground.lineTo(p.x, p.y);
 		}
-		_ground.close();
-		return _ground;
+		ground.close();
+		return ground;
 	}
 
 	/**
@@ -112,19 +112,19 @@ public class Mars {
 	 */
 	private Point getFlatEnd(Point curr) {
 
-		if (_remainingFlatWidth <= 0) {
+		if (remainingFlatWidth <= 0) {
 			return null;
 		}
 		int width = 0;
-		if (_remainingFlatWidth <= _minSingleFlatWidth * 2) {
+		if (remainingFlatWidth <= minSingleFlatWidth * 2) {
 			// last one
-			width = _remainingFlatWidth;
-			_remainingFlatWidth = 0;
+			width = remainingFlatWidth;
+			remainingFlatWidth = 0;
 			return new Point(curr.x + width, curr.y);
 		}
 
-		width = _rdm.nextInt(_maxSingleFlatWidth - _minSingleFlatWidth) + _minSingleFlatWidth;
-		_remainingFlatWidth -= width;
+		width = rdm.nextInt(maxSingleFlatWidth - minSingleFlatWidth) + minSingleFlatWidth;
+		remainingFlatWidth -= width;
 		return new Point(curr.x + width, curr.y);
 	}
 
@@ -134,23 +134,23 @@ public class Mars {
 	 * @return The slope point
 	 */
 	private Point getSlopeEnd(Point curr) {
-		if (_remainingSlopeWidth <= 0) {
+		if (remainingSlopeWidth <= 0) {
 			return null;
 		}
 
-		int width = MIN_WIDTH;
-		if (_remainingSlopeWidth > MIN_WIDTH) {
-			width = _rdm.nextInt(_remainingSlopeWidth) + 1;
+		int width = MINWIDTH;
+		if (remainingSlopeWidth > MINWIDTH) {
+			width = rdm.nextInt(remainingSlopeWidth) + 1;
 		}
 		
 		int y = curr.y;
 		float r = (float)Math.abs(y - curr.y) / width;
-		while(r < MIN_GRADIENT){
-			y = _screenHeight - BASE_HEIGHT - _rdm.nextInt(_maxHeight);
+		while(r < MINGRADIENT){
+			y = screenHeight - BASEHEIGHT - rdm.nextInt(maxHeight);
 			r =  (float)Math.abs(y - curr.y) / width;
 		}
 		
-		_remainingSlopeWidth -= width;
+		remainingSlopeWidth -= width;
 		return new Point(curr.x + width, y);
 	}
 

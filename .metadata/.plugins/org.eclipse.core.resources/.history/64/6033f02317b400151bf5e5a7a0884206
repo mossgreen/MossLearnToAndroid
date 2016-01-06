@@ -1,0 +1,282 @@
+package com.victor.marslander;
+
+import android.graphics.Matrix;
+import android.graphics.Path;
+import android.util.Log;
+
+public class Craft {
+	protected class CraftModel {
+		private static final float SIDE_THRUSTER_DURATION = 1.0f;// the left/right thruster last times duration
+		private static final float MAIN_THRUSTER_DURATION = 1.0f;// the main thruster last times duration
+		private static final float THRUSTER_ACCEL = 7.0f; //The accelerate of thruster
+		private static final float FUEL_CONSUME = 2.0f; // Consumed fuel on each fire
+		// state
+		private float headAngle = 0.0f; // in degree;
+		private boolean isMainThrusterOn = false; // if main thruster fired
+		private float mainThrustTimespan;// control the time of main thruster's
+		private boolean isLeftThrusterOn = false;// if left thruster fired
+		private float leftThrustTimespan;
+		private boolean isRightThrusterOn = false;// if right thruster fired
+		private float rightThrustTimespan;
+		private float fuelRemaining = 100.00f;
+
+		// position
+		private float _offsetX = 0; //in meter
+		private float _offsetY = 0; //in meter
+
+		// velocity in meters/second
+		private float _veloX = 0;
+		private float _veloY = 0;
+		private float _g = 0; // the accelerate's value
+
+		// acceleration in meters/second^2
+		private float accelX = 0;
+		private float accelY = 0;
+
+		CraftModel(float g) {
+			_g = g;
+			accelY = _g;
+		}
+
+		/**
+		 * Turn right when the craft remains enough fuel.
+		 */
+		protected void turnRight() {
+			if (isLeftThrusterOn || fuelRemaining <= 0)
+				return;
+			fuelRemaining = fuelRemaining - FUEL_CONSUME;
+			headAngle += 18.0;
+			leftThrustTimespan = 0.0f;
+			isLeftThrusterOn = true;
+		}
+		
+		/**
+		 * Turn left when the craft remains enough fuel.
+		 */
+		protected void turnLeft() {
+			if (isRightThrusterOn || fuelRemaining <= 0)
+				return;
+			fuelRemaining = fuelRemaining - FUEL_CONSUME;
+			headAngle -= 18.0;
+			rightThrustTimespan = 0.0f;
+			isRightThrusterOn = true;
+		}
+		
+		/**
+		 * Thrust when the craft remains enough fuel.
+		 */
+		protected void thrust() {
+			if (isMainThrusterOn || fuelRemaining <= 0)
+				return;
+			mainThrustTimespan = 0.0f;
+			fuelRemaining = fuelRemaining - FUEL_CONSUME;
+			isMainThrusterOn = true;
+		}
+
+		protected float getFuelRemaining() {
+			return fuelRemaining;
+		}
+
+		protected float getOffsetX() {
+			return _offsetX;
+		}
+
+		protected float getOffsetY() {
+			return _offsetY;
+		}
+
+		protected float getAngle() {
+			return headAngle;
+		}
+
+		protected boolean IsLeftThrusterOn() {
+			return isLeftThrusterOn;
+		}
+
+		protected boolean IsRightThrusterOn() {
+			return isRightThrusterOn;
+		}
+		
+		protected boolean IsMainThrusterOn() {
+			return isMainThrusterOn;
+		}
+
+		/**
+		 * Update the status and position of the craft.
+		 * @param dt 
+		 */
+		protected void update(float dt) {
+			// s = vt + 1/2at^2
+			_offsetX = _veloX * dt + accelX * dt * dt/2;
+			_offsetY = _veloY * dt + accelY * dt * dt/2;
+			
+			//v' = v + at
+			_veloX += accelX * dt;
+			_veloY += accelY * dt;
+			
+			
+			if (isLeftThrusterOn) {
+				accelX = 5 * (float)Math.sin(Math.toRadians(headAngle));
+				accelY = 5 * -(float)Math.cos(Math.toRadians(headAngle)) + _g;
+				leftThrustTimespan += dt;
+				if (leftThrustTimespan >= SIDE_THRUSTER_DURATION) {
+					isLeftThrusterOn = false;
+					accelX = 0;
+					accelY = _g;
+				}
+			}
+
+			if (isRightThrusterOn) {
+				accelX = 5 * (float)Math.sin(Math.toRadians(headAngle));
+				accelY = 5 * -(float)Math.cos(Math.toRadians(headAngle)) + _g;
+				rightThrustTimespan += dt;
+				if (rightThrustTimespan >= SIDE_THRUSTER_DURATION) {
+					isRightThrusterOn = false;
+					accelX = 0;
+					accelY = _g;
+				}
+			}
+			
+			if (isMainThrusterOn) {
+				accelX = THRUSTER_ACCEL * (float)Math.sin(Math.toRadians(headAngle));
+				accelY = THRUSTER_ACCEL * -(float)Math.cos(Math.toRadians(headAngle)) + _g;
+				mainThrustTimespan += dt;
+				if (mainThrustTimespan >= MAIN_THRUSTER_DURATION){
+					isMainThrusterOn = false;
+					accelX = 0;
+					accelY = _g;
+				}
+			}
+		}
+	}
+
+	// constant
+	public static final int WIDTH = 50;
+	public static final int HEIGHT = 73;
+	public static final int SIDE_FLAME_WIDTH = 12;
+	public static final int SIDE_FLAME_HEIGHT = 16;
+	public static final int MAIN_FLAME_WIDTH = 20;
+	public static final int MAIN_FLAME_HEIGHT = 27;
+
+	private static final float SIDE_FLAME_OFFSET_X = WIDTH / 2 - SIDE_FLAME_WIDTH;
+	private static final float SIDE_FLAME_OFFSET_Y = 27.0f;
+	private static final float MAIN_FLAME_OFFSET_X = -MAIN_FLAME_WIDTH / 2;
+	private static final float MAIN_FLAME_OFFSET_Y = 27.0f;
+
+	private int _posX = 0; 
+	private int _posY = 0; 
+	private float _pixelMeterRatio;
+	private CraftModel _craftModel;
+
+	
+	Craft(int posX, int posY, float g, float r) {
+		_craftModel = new CraftModel(g);
+		_posX = posX;
+		_posY = posY;
+		_pixelMeterRatio = r;
+	}
+	
+	/**
+	 * Get the craft's outline.
+	 * @return The path of the craft
+	 */
+	public Path genOutline(){
+		Path outline = new Path();
+		outline.moveTo(_posX + WIDTH /2, _posY);
+		outline.lineTo(_posX + WIDTH, _posY + HEIGHT /2);
+		outline.lineTo(_posX + WIDTH, _posY + HEIGHT);
+		outline.lineTo(_posX, _posY + HEIGHT);
+		outline.lineTo(_posX, _posY + HEIGHT / 2);
+		outline.close();
+		
+		Matrix m = new Matrix();
+		m.postRotate(getAngle(), getCenterX(), getCenterY());
+		outline.transform(m);
+		
+		return outline;
+	}
+
+	/**
+	 * Update the x,y position.
+	 * @param dt 
+	 */
+	public void update(float dt) {
+		_craftModel.update(dt);
+		_posX += _pixelMeterRatio * _craftModel.getOffsetX();
+		_posY += _pixelMeterRatio * _craftModel.getOffsetY();
+	}
+	
+	public float getFuelRemaining() {
+		return _craftModel.getFuelRemaining();
+	}
+	
+	public float getX() {
+		return _posX;
+	}
+	
+	public void setX(int x){
+		_posX = x;
+	}
+
+	public float getY() {
+		return _posY;
+	}
+	public void setY(int y){
+		_posY = y;
+	}
+	
+	public float getCenterX() {
+		return _posX + WIDTH / 2;
+	}
+
+	public float getCenterY() {
+		return _posY + HEIGHT / 2;
+	}
+
+	public float getLeftFlamePosX() {
+		return getCenterX() - SIDE_FLAME_OFFSET_X - SIDE_FLAME_WIDTH;
+	}
+
+	public float getRightFlamePosX() {
+		return getCenterX() + SIDE_FLAME_OFFSET_X;
+	}
+
+	public float getSideFlamePosY() {
+		return getCenterY() + SIDE_FLAME_OFFSET_Y;
+	}
+	
+	public float getMainFlamePosX() {
+		return getCenterX() + MAIN_FLAME_OFFSET_X;
+	}
+
+	public float getMainFlamePosY() {
+		return getCenterY() + MAIN_FLAME_OFFSET_Y;
+	}
+	
+	public float getAngle() {
+		return _craftModel.getAngle();
+	}
+
+	public boolean IsLeftThrusterOn() {
+		return _craftModel.IsLeftThrusterOn();
+	}
+
+	public boolean IsRightThrusterOn() {
+		return _craftModel.IsRightThrusterOn();
+	}
+	
+	public boolean IsMainThrusterOn(){
+		return _craftModel.IsMainThrusterOn();
+	}
+	
+	public void turnRight() {
+		_craftModel.turnRight();
+	}
+
+	public void turnLeft() {
+		_craftModel.turnLeft();
+	}
+	public void thrust() {
+		_craftModel.thrust();
+	}
+}

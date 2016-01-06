@@ -11,40 +11,40 @@ public class MarsLanderScene {
 
 	// constants
 	private final float GRAVITY = 2.0f;
-	private final float PIXEL_METER_RATIO = 8;
+	private final float PIXELMETERRATIO = 8;
 	public static final int STATE_READY = 0;
 	public static final int STATE_RUNNING = 1;
 	public static final int STATE_WON = 2;
 	public static final int STATE_CRASHED = 3;
 	public static final int STATE_FALL_LEFT = 4;
 	public static final int STATE_FALL_RIGHT = 5;
-	private int _state = STATE_READY;
+	private int state = STATE_READY;
 
 	// sence
-	private int _screenWidth;// the screen width value
-	private int _screenHeight;// the screen height value
-	private long _timeStamp; // get the time stamp
-	private final Random _rdm = new Random(System.currentTimeMillis());//get a random value via Returns the current time in milliseconds
+	private int screenWidth;// the screen width value
+	private int screenHeight;// the screen height value
+	private long timeStamp; // get the time stamp
+	private final Random rdm = new Random(System.currentTimeMillis());//get a random value via Returns the current time in milliseconds
 
 	// object
-	private Craft _craft;
-	private Mars _mars;
+	private Craft craft;
+	private Mars mars;
 
 	public MarsLanderScene(int screenWidth, int screenHeight) {
-		_screenWidth = screenWidth;
-		_screenHeight = screenHeight;
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
 		init();
 	}
 
 	public void setScreenWidth(int screenWidth, int screenHeight) {
-		_screenWidth = screenWidth;
-		_screenHeight = screenHeight;
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
 		init();
 	}
 
 	public void doStart() {
 		init();
-		_state = STATE_RUNNING;
+		state = STATE_RUNNING;
 	}
 
 	/**
@@ -53,24 +53,24 @@ public class MarsLanderScene {
 	 */
 	private void init() {
 		// create craft
-		int posX = Craft.WIDTH * 2 + _rdm.nextInt(_screenWidth - Craft.WIDTH * 4);
-		_craft = new Craft(posX, 0, GRAVITY, PIXEL_METER_RATIO);
+		int posX = Craft.WIDTH * 2 + rdm.nextInt(screenWidth - Craft.WIDTH * 4);
+		craft = new Craft(posX, 0, GRAVITY, PIXELMETERRATIO);
 
-		_mars = new Mars(0.3f, _screenWidth, _screenHeight, (int) (Craft.WIDTH * 1.3f), Craft.WIDTH * 2, 300);
+		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (Craft.WIDTH * 1.3f), Craft.WIDTH * 2, 300);
 		//
-		_timeStamp = System.nanoTime();
+		timeStamp = System.nanoTime();
 	}
 
 	public Craft getCraft() {
-		return _craft;
+		return craft;
 	}
 
 	public Mars getMars() {
-		return _mars;
+		return mars;
 	}
 
 	public int getState() {
-		return _state;
+		return state;
 	}
 
 	/**
@@ -78,33 +78,33 @@ public class MarsLanderScene {
 	 */
 	public void update() {
 		final long t = System.nanoTime();
-		final float dt = (float) (t - _timeStamp) * (1.0f / 1000000000.0f);// 
-		_craft.update(dt);
+		final float dt = (float) (t - timeStamp) * (1.0f / 1000000000.0f);// 
+		craft.update(dt);
 
 		// side
-		if (_craft.getCenterX() < 0) {
-			_craft.setX(_screenWidth - Craft.WIDTH / 2);
-		} else if (_craft.getCenterX() > _screenWidth) {
-			_craft.setX(-Craft.WIDTH / 2);
+		if (craft.getCenterX() < 0) {
+			craft.setX(screenWidth - Craft.WIDTH / 2);
+		} else if (craft.getCenterX() > screenWidth) {
+			craft.setX(-Craft.WIDTH / 2);
 		}
 
 		// crash test
-		Path p = _craft.genOutline();
-		p.op(_mars.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
+		Path p = craft.genOutline();
+		p.op(mars.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
 		if (!p.isEmpty()) {
-			if (!isFlatGround(_craft.getX(), Craft.WIDTH)) {
-				_state = STATE_CRASHED;
+			if (!isFlatGround(craft.getX(), Craft.WIDTH)) {
+				state = STATE_CRASHED;
 			} else {
-				if (_craft.getAngle() > 0) {
-					_state = STATE_FALL_RIGHT;
-				} else if (_craft.getAngle() < 0) {
-					_state = STATE_FALL_LEFT;
+				if (craft.getAngle() > 0) {
+					state = STATE_FALL_RIGHT;
+				} else if (craft.getAngle() < 0) {
+					state = STATE_FALL_LEFT;
 				} else {
-					_state = STATE_WON;
+					state = STATE_WON;
 				}
 			}
 		}
-		_timeStamp = t;
+		timeStamp = t;
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class MarsLanderScene {
 	 * @return boolean True for landed successfully otherwise return false.
 	 */
 	private boolean isFlatGround(float x, int w) {
-		Vector<Point> points = _mars.getGroundPoints();
+		Vector<Point> points = mars.getGroundPoints();
 		int len = points.size();
 		int i = 1;
 		for (; i < len; i++) {
@@ -142,7 +142,7 @@ public class MarsLanderScene {
 		}
 
 		if (pEnd.x - pStart.x > w) {
-			// enought
+			// enough
 			return true;
 		}
 
