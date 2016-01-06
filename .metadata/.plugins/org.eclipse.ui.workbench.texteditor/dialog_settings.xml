@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="reset" key="selection"/>
+		<item value="initEraserBtn" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="initEraserBtn"/>
+			<item value="eraser"/>
+			<item value="save"/>
 			<item value="reset"/>
 			<item value="res"/>
 			<item value="drawRect"/>
 			<item value="RED"/>
 			<item value="Right"/>
-			<item value="context"/>
-			<item value="getApplicationContext"/>
-			<item value="running"/>
 		</list>
 		<list key="replacehistory">
 			<item value="isRunning"/>
