@@ -42,7 +42,7 @@ public class MarsLanderScene {
 		init();
 	}
 
-	public void startGame() {
+	public void doStart() {
 		init();
 		state = STATE_RUNNING;
 	}

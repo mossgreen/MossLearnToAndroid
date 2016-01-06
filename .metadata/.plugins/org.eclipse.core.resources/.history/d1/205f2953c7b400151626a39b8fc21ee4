@@ -11,8 +11,8 @@ import android.widget.ImageButton;
 
 
 public class MarsLanderActivity extends Activity {
-	private static final String APP_TAG = "MARSLANDER";
-    private  final int MENUSTART = getResources().getInteger(R.integer.START_STATUS);
+	private static final String APPTAG = "MARSLANDER";
+    private static final int MENUSTART = 0;
     private MarsLanderView view;
     private ImageButton bmMainFlame, btnLeftThruster, btnRightThruster;
     
@@ -26,18 +26,18 @@ public class MarsLanderActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-		if (itemId == MENUSTART) {
-			view.getScene().startGame();
-			return true;
-		}
+        switch (item.getItemId()) {// if clicked the start 
+            case MENUSTART:  
+            	view.getScene().doStart();
+                return true;
+        }
 
         return false;
     }
   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    	Log.d(APP_TAG, "create activity");
+    	Log.d(APPTAG, "create activity");
         super.onCreate(savedInstanceState);        
         setContentView(R.layout.lander_layout); // set the content view or our widget lookups will fail
         view = (MarsLanderView)findViewById(R.id.MarsLanderView);

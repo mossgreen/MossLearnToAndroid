@@ -2,6 +2,5 @@
 <resources>
     
     <integer name="REFRESH_RATE">20</integer>
-    <integer name="START_STATUS">0</integer>
     
 </resources>

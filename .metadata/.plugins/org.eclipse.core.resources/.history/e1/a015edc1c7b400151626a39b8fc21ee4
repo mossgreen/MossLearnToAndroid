@@ -28,7 +28,7 @@ public class MarsLanderActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 		if (itemId == MENUSTART) {
-			view.getScene().startGame();
+			view.getScene().doStart();
 			return true;
 		}
 
