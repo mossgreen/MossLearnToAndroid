@@ -26,11 +26,11 @@ public class MarsLanderActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {// if clicked the start 
-            case MENUSTART:  
-            	view.getScene().startGame();
-                return true;
-        }
+        int itemId = item.getItemId();
+		if (itemId == MENUSTART) {
+			view.getScene().startGame();
+			return true;
+		}
 
         return false;
     }
