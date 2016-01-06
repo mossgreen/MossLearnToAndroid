@@ -13,15 +13,21 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+/**
+ * @author gufeifei
+ *
+ */
+/**
+ * @author gufeifei
+ *
+ */
+/**
+ * @author gufeifei
+ *
+ */
 public class GameLoop extends SurfaceView implements Runnable,
 		SurfaceHolder.Callback, OnTouchListener {
 	
-	/**
-	 * @author John Casey 11/04/2014
-	 * Sample code for subject ISCG7424 Mobile Application Development
-	 * 
-	 * Code illustrates collision detection and models gravity using synthetic time.
-	 */
 	
 	public static final double INITIAL_TIME = 3.5;
 	static final int REFRESH_RATE = 20;
@@ -60,6 +66,14 @@ public class GameLoop extends SurfaceView implements Runnable,
 		init();
 	}
 
+	/**
+	 * 
+	 * @param context
+	 * 	context is something in the ....
+	 * @param attrs
+	 * 	........
+	 * @param defStyle
+	 */
 	public GameLoop(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 
@@ -71,6 +85,7 @@ public class GameLoop extends SurfaceView implements Runnable,
 
 		init();
 	}
+
 
 
 	public void init()
@@ -87,6 +102,10 @@ public class GameLoop extends SurfaceView implements Runnable,
 	}
 
 	
+	
+	/* (non-Javadoc)
+	 * @see android.view.View#onSizeChanged(int, int, int, int)
+	 */
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
@@ -96,6 +115,9 @@ public class GameLoop extends SurfaceView implements Runnable,
 		x = width /2;
 	}
 
+	/**
+	 * 
+	 */
 	public void run() {
 		while(true)
 		{
@@ -192,11 +214,13 @@ public class GameLoop extends SurfaceView implements Runnable,
 		return (crossings % 2 != 0); // even or odd
 	}
 
+	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
 
 	}
 
+	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		main = new Thread(this);
 		if (main != null)
@@ -204,6 +228,7 @@ public class GameLoop extends SurfaceView implements Runnable,
 
 	}
 
+	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		boolean retry = true;
 		while (retry)

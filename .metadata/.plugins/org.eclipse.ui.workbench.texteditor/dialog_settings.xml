@@ -2,23 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="initEraserBtn" key="selection"/>
+		<item value="paintGround" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="initEraserBtn"/>
-			<item value="eraser"/>
-			<item value="save"/>
-			<item value="reset"/>
-			<item value="res"/>
-			<item value="drawRect"/>
-			<item value="RED"/>
-			<item value="Right"/>
+			<item value="_paintGround"/>
+			<item value="_bmSideFlame"/>
+			<item value="_bmWon"/>
+			<item value="_bmCraft"/>
+			<item value="_bmBackground"/>
+			<item value="_screenWidth"/>
+			<item value="_screenHeight"/>
+			<item value="_bmMainFlame"/>
 		</list>
 		<list key="replacehistory">
-			<item value="isRunning"/>
+			<item value="paintGround"/>
+			<item value="bmSideFlame"/>
+			<item value="bmWon"/>
+			<item value="bmCraft"/>
+			<item value="bmBackground"/>
+			<item value="screenWidth"/>
+			<item value="screenHeight"/>
+			<item value="bmMainFlame"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
