@@ -1,15 +1,16 @@
 package com.victor.marslander;
 
 import android.content.Context;
+import android.text.TextDirectionHeuristic;
+import android.content.Context;
 
 class CraftModel {
 	
 	
 	
 	
-	
 	// the left/right thruster last times duration
-	private static final float SIDE_THRUSTER_DURATION = 1.0f;
+	private  final float SIDE_THRUSTER_DURATION = 1.0f;
 	private static final float MAIN_THRUSTER_DURATION = 1.0f;// the main thruster last times duration
 	private static final float THRUSTER_ACCEL = 7.0f; //The accelerate of thruster
 	private static final float FUEL_CONSUME = 2.0f; // Consumed fuel on each fire

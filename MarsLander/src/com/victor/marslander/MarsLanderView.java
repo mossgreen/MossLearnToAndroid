@@ -25,8 +25,7 @@ import android.view.SurfaceView;
  */
 public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
-	private static final String APP_TAG = "MARS_LANDER";
-	private static final int REFRESH_RATE = 20;
+	private  final int REFRESH_RATE = getResources().getInteger(R.integer.REFRESH_RATE);
 
 	SurfaceHolder holder;
 
@@ -43,8 +42,8 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 	Matrix matrix = new Matrix();
 
 	// game using
-	private int screenWidth = 480;
-	private int screenHeight = 640;
+	private int screenWidth;
+	private int screenHeight ;
 
 	Thread mainThread;
 	private MarsLanderScene scene;
@@ -78,12 +77,12 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 	 * Pre-loads corresponding resources into bitmap.
 	 */
 	public void init() {
-		Log.d(APP_TAG, "init SurfaceView");
+		
 
 		//
 		scene = new MarsLanderScene(screenWidth, screenHeight);
 
-		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craft);
+		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
 		bmCraft = Bitmap.createScaledBitmap(temp, Craft.WIDTH, Craft.HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_left);
