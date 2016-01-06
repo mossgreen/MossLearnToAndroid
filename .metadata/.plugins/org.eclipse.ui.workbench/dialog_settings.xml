@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="WorkbenchPreferenceDialogSettings">
-		<item value="651" key="DIALOG_X_ORIGIN"/>
+		<item value="536" key="DIALOG_X_ORIGIN"/>
 		<item value="230" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.preferences.keysPreferencePage">
@@ -14,19 +14,15 @@
 		<item value="350" key="dialogWidth"/>
 		<list key="textEntries">
 			<item value="1"/>
-			<item value="1"/>
 		</list>
 		<list key="orderedElements">
 			<item value="org.eclipse.pde.runtime.LogView"/>
-			<item value="com.android.ide.eclipse.ddms.views.LogCatView"/>
 		</list>
 		<list key="orderedProviders">
-			<item value="org.eclipse.e4.ui.parts"/>
 			<item value="org.eclipse.e4.ui.parts"/>
 		</list>
 		<list key="textArray">
 			<item value="error"/>
-			<item value="log"/>
 		</list>
 	</section>
 	<section name="NewWizardAction">

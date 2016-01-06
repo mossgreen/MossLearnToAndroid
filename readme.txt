@@ -1,4 +1,12 @@
+20160107
 
+Q? R problem
+
+project->android Tools —> fix project properties
+
+Q1: when I add a xml in android values folder named consts.xml, my R failed again.
+
+solved it by deleting this xml file.
 
 20160103
 
