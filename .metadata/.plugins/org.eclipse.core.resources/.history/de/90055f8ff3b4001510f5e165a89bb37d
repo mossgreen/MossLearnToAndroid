@@ -11,7 +11,7 @@ class CraftModel {
 	private final float MAIN_Engine_DURATION = 1.0f;// the main Engine last
 														// times duration
 	private final float Engine_ACCEL = 7.0f; // The accelerate of Engine
-	private final float FUEL_CONSUME = 5.0f; // Consumed fuel on each fire
+	private final float FUEL_CONSUME = 10.0f; // Consumed fuel on each fire
 	
 	private float ANGEL_CHANGED = 18.0f;
 

@@ -45,7 +45,7 @@ public class MarsLanderActivity extends Activity {
         bmMainFlame.setOnClickListener(new OnClickListener() {	
 			@Override
 			public void onClick(View v) {
-				view.getScene().getCraft().thrustUp();
+				view.getScene().getCraft().thrust();
 			}
 		});
         

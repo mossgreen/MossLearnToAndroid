@@ -188,21 +188,21 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 
 		if (scene.getState() == MarsLanderScene.STATE_RUNNING) {
 			// flame
-			if (craft.IsLeftEngineOn()) {
+			if (craft.IsLeftThrusterOn()) {
 				matrix.reset();
 				matrix.setTranslate(craft.getLeftFlamePosX(), craft.getSideFlamePosY());
 				matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
 				canvas.drawBitmap(bmSideFlame, matrix, null);
 			}
 
-			if (craft.IsRightEngineOn()) {
+			if (craft.IsRightThrusterOn()) {
 				matrix.reset();
 				matrix.setTranslate(craft.getRightFlamePosX(), craft.getSideFlamePosY());
 				matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
 				canvas.drawBitmap(bmSideFlame, matrix, null);
 			}
 
-			if (craft.IsMainEngineOn()) {
+			if (craft.IsMainThrusterOn()) {
 				matrix.reset();
 				matrix.setTranslate(craft.getMainFlamePosX(), craft.getMainFlamePosY());
 				matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());

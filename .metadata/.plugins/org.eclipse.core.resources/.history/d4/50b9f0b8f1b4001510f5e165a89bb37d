@@ -202,16 +202,16 @@ public class Craft {
 	 * assess 
 	 * @return
 	 */
-	public boolean IsLeftEngineOn() {
-		return craftModel.IsLeftEngineOn();
+	public boolean IsLeftThrusterOn() {
+		return craftModel.IsLeftThrusterOn();
 	}
 
-	public boolean IsRightEngineOn() {
-		return craftModel.IsRightEngineOn();
+	public boolean IsRightThrusterOn() {
+		return craftModel.IsRightThrusterOn();
 	}
 	
-	public boolean IsMainEngineOn(){
-		return craftModel.IsMainEngineOn();
+	public boolean IsMainThrusterOn(){
+		return craftModel.IsMainThrusterOn();
 	}
 	
 	public void turnRight() {
@@ -221,7 +221,7 @@ public class Craft {
 	public void turnLeft() {
 		craftModel.turnLeft();
 	}
-	public void thrustUp() {
-		craftModel.thrustUp();
+	public void thrust() {
+		craftModel.thrust();
 	}
 }

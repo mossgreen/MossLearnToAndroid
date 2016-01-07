@@ -11,12 +11,10 @@ class CraftModel {
 	private final float MAIN_Engine_DURATION = 1.0f;// the main Engine last
 														// times duration
 	private final float Engine_ACCEL = 7.0f; // The accelerate of Engine
-	private final float FUEL_CONSUME = 5.0f; // Consumed fuel on each fire
-	
-	private float ANGEL_CHANGED = 18.0f;
+	private final float FUEL_CONSUME = 10.0f; // Consumed fuel on each fire
 
 	// initialize the state
-	private float headAngle = 0f; // in degree;
+	private float headAngle = 0; // in degree;
 	private boolean isMainEngineOn = false; // if main Engine fired
 	private boolean isLeftEngineOn = false;// if left Engine fired
 	private boolean isRightEngineOn = false;// if right Engine fired
@@ -53,7 +51,7 @@ class CraftModel {
 			return;
 		} else {
 			fuelRemaining = fuelRemaining - FUEL_CONSUME;
-			headAngle += ANGEL_CHANGED;
+			headAngle += 18.0;
 			leftThrustTimespan = 0.0f;
 			isLeftEngineOn = true;
 		}
@@ -68,7 +66,7 @@ class CraftModel {
 			return;
 		} else {
 			fuelRemaining = fuelRemaining - FUEL_CONSUME;
-			headAngle -= ANGEL_CHANGED;
+			headAngle -= 18.0;
 			rightThrustTimespan = 0.0f;
 			isRightEngineOn = true;
 		}
@@ -77,7 +75,7 @@ class CraftModel {
 	/**
 	 * Thrust when the craft remains enough fuel.
 	 */
-	protected void thrustUp() {
+	protected void thrust() {
 		if (isMainEngineOn || fuelRemaining <= 0) {
 			return;
 		} else {

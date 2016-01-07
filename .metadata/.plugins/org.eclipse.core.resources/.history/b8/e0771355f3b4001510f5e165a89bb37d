@@ -221,7 +221,7 @@ public class Craft {
 	public void turnLeft() {
 		craftModel.turnLeft();
 	}
-	public void thrustUp() {
-		craftModel.thrustUp();
+	public void thrust() {
+		craftModel.thrust();
 	}
 }
