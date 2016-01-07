@@ -4,6 +4,7 @@ import com.victor.marslander.R;
 import com.victor.marslander.R.id;
 import com.victor.marslander.R.layout;
 import com.victor.marslander.R.string;
+import com.victor.marslander.game.MarsLanderView;
 
 import android.app.Activity;
 import android.os.Bundle;

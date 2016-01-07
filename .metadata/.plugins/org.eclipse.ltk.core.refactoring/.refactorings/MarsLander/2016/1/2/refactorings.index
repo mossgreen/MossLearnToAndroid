@@ -9,3 +9,6 @@
 1452199704113	Rename package 'com.victor.marslander.model'
 1452199871691	Rename type 'Mars'
 1452199929634	Rename type 'Craft'
+1452200595548	Move compilation unit
+1452200604769	Copy package
+1452200627707	Delete element
