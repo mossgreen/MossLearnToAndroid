@@ -4,6 +4,7 @@ import com.victor.marslander.R;
 import com.victor.marslander.R.drawable;
 import com.victor.marslander.R.integer;
 import com.victor.marslander.craft.CraftView;
+import com.victor.marslander.mars.GameController;
 
 import android.content.Context;
 import android.graphics.Bitmap;
