@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="headAngle" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="headAngle"/>
+			<item value="Thruster"/>
+			<item value="transform"/>
+			<item value="pixelMeterRatio"/>
+			<item value="MAIN_FLAME_CRAFT_HEIGHT "/>
+			<item value="SIDE_FLAME_CRAFT_HEIGHT "/>
+			<item value="Craft.HEIGHT"/>
+			<item value="HEIGHT"/>
+		</list>
+		<list key="replacehistory">
+			<item value="Engine"/>
+			<item value="MAIN_FLAME_HEIGHT "/>
+			<item value="SIDE_FLAME_HEIGHT "/>
+			<item value="Craft.CRAFT_HEIGHT"/>
+			<item value="CRAFT_HEIGHT"/>
+			<item value="Craft.CRAFT_WIDTH"/>
+			<item value="public"/>
+			<item value="MarsLanderScene"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="265" key="DIALOG_WIDTH"/>
+		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
+		<item value="399" key="DIALOG_HEIGHT"/>
+		<item value="906" key="DIALOG_X_ORIGIN"/>
+		<item value="348" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
