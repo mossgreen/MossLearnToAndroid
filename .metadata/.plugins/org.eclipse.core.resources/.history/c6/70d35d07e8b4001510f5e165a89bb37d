@@ -174,7 +174,6 @@ public class Craft {
 	/**
 	 * getter of the X position of the main flame of the craft
 	 * @return
-	 * 	the X position of the main flame
 	 */
 	public float getMainFlamePosX() {
 		return getCenterX() + MAIN_FLAME_OFFSET_X;
@@ -183,25 +182,15 @@ public class Craft {
 	/**
 	 * getter of the Y position of the main flame of the craft
 	 * @return
-	 * 	the Y position of the main flame
 	 */
 	public float getMainFlamePosY() {
 		return getCenterY() + MAIN_FLAME_OFFSET_Y;
 	}
 	
-	/**
-	 * getter of the angle that rotated of the craft
-	 * @return
-	 * 	the degree that craft rotates
-	 */
 	public float getAngle() {
 		return craftModel.getAngle();
 	}
 
-	/**
-	 * assess 
-	 * @return
-	 */
 	public boolean IsLeftThrusterOn() {
 		return craftModel.IsLeftThrusterOn();
 	}

@@ -198,10 +198,6 @@ public class Craft {
 		return craftModel.getAngle();
 	}
 
-	/**
-	 * assess 
-	 * @return
-	 */
 	public boolean IsLeftThrusterOn() {
 		return craftModel.IsLeftThrusterOn();
 	}

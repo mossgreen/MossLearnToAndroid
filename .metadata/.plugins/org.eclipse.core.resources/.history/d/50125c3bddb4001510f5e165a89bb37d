@@ -11,7 +11,7 @@ public class MarsLanderScene {
 
 	// constants
 	private final float GRAVITY = 2.0f;
-	private final float PIXELMETERRATIO = 20;
+	private final float PIXELMETERRATIO = 8;
 	public static final int STATE_READY = 0;
 	public static final int STATE_RUNNING = 1;
 	public static final int STATE_WON = 2;

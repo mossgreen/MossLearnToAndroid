@@ -52,18 +52,14 @@ public class Craft {
 	 */
 	public Path genOutline(){
 		Path outline = new Path();
-		outline.moveTo(posX + CRAFT_WIDTH /2, posY); // is the head point of craft
+		outline.moveTo(posX + CRAFT_WIDTH /2, posY);
 		outline.lineTo(posX + CRAFT_WIDTH, posY + CRAFT_HEIGHT /2);
 		outline.lineTo(posX + CRAFT_WIDTH, posY + CRAFT_HEIGHT);
 		outline.lineTo(posX, posY + CRAFT_HEIGHT);
 		outline.lineTo(posX, posY + CRAFT_HEIGHT / 2);
 		outline.close();
 		
-		
-		//used to rotate the craft
 		Matrix m = new Matrix();
-		
-		//Post_concats the matrix with the specified rotation.
 		m.postRotate(getAngle(), getCenterX(), getCenterY());
 		outline.transform(m);
 		
@@ -71,9 +67,8 @@ public class Craft {
 	}
 
 	/**
-	 * Update the x,y position in coordinate
+	 * Update the x,y position.
 	 * @param dt 
-	 * 	 hard to explain... 
 	 */
 	public void update(float dt) {
 		craftModel.update(dt);
@@ -81,127 +76,57 @@ public class Craft {
 		posY += pixelMeterRatio * craftModel.getOffsetY();
 	}
 	
-	/**
-	 * getter
-	 * @return
-	 * 	the fuel of the craft
-	 */
 	public float getFuelRemaining() {
 		return craftModel.getFuelRemaining();
 	}
 	
-	/**
-	 * 
-	 * @return
-	 * 	the x position of craft in coordinate
-	 */
 	public float getX() {
 		return posX;
 	}
 	
-	/**
-	 * set the x position of craft in coordinate
-	 * @param x
-	 * 	the x position of craft in coordinate
-	 */
 	public void setX(int x){
 		posX = x;
 	}
 
-	/**
-	 * getter of Y position of craft
-	 * @return
-	 * 	the Y position of craft in coordinate
-	 */
 	public float getY() {
 		return posY;
 	}
-	
-	/**
-	 * setter of Y position of craft
-	 * @param y
-	 *  the Y position of craft in coordinate
-	 */
 	public void setY(int y){
 		posY = y;
 	}
 	
-	/**
-	 * getter of X position of center point of craft in coordinate
-	 * @return
-	 *  the X position of the center of craft in coordinate
-	 */
 	public float getCenterX() {
 		return posX + CRAFT_WIDTH / 2;
 	}
 
-	/**
-	 * getter of Y position of center point  of craft in coordinate
-	 * @return
-	 *  the Y position of the center of craft in coordinate
-	 */
 	public float getCenterY() {
 		return posY + CRAFT_HEIGHT / 2;
 	}
 
-	/**
-	 * getter of the X position of the left Flame of craft in coordinate
-	 * @return
-	 * 	the x position of the left flame of the craft
-	 */
 	public float getLeftFlamePosX() {
 		return getCenterX() - SIDE_FLAME_OFFSET_X - SIDE_FLAME_WIDTH;
 	}
 
-	/**
-	 * getter of the X position of the right flame of craft
-	 * @return
-	 * 	the y position of the right flame of craft
-	 */
 	public float getRightFlamePosX() {
 		return getCenterX() + SIDE_FLAME_OFFSET_X;
 	}
 
-	/**
-	 * getter of the Y position of the flames of the craft
-	 * @return
-	 * the y position of the right flame of the craft
-	 */
 	public float getSideFlamePosY() {
 		return getCenterY() + SIDE_FLAME_OFFSET_Y;
 	}
 	
-	/**
-	 * getter of the X position of the main flame of the craft
-	 * @return
-	 * 	the X position of the main flame
-	 */
 	public float getMainFlamePosX() {
 		return getCenterX() + MAIN_FLAME_OFFSET_X;
 	}
 
-	/**
-	 * getter of the Y position of the main flame of the craft
-	 * @return
-	 * 	the Y position of the main flame
-	 */
 	public float getMainFlamePosY() {
 		return getCenterY() + MAIN_FLAME_OFFSET_Y;
 	}
 	
-	/**
-	 * getter of the angle that rotated of the craft
-	 * @return
-	 * 	the degree that craft rotates
-	 */
 	public float getAngle() {
 		return craftModel.getAngle();
 	}
 
-	/**
-	 * assess 
-	 * @return
-	 */
 	public boolean IsLeftThrusterOn() {
 		return craftModel.IsLeftThrusterOn();
 	}
