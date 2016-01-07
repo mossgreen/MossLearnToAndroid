@@ -1,6 +1,6 @@
 package com.victor.marslander;
 
-import com.victor.marslander.craft.CraftView;
+import com.victor.marslander.craft.Craft;
 import com.victor.marslander.mars.MarsLanderScene;
 
 import android.content.Context;
@@ -86,13 +86,13 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 		scene = new MarsLanderScene(screenWidth, screenHeight);
 
 		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
-		bmCraft = Bitmap.createScaledBitmap(temp, CraftView.CRAFT_WIDTH, CraftView.CRAFT_HEIGHT, true);
+		bmCraft = Bitmap.createScaledBitmap(temp, Craft.CRAFT_WIDTH, Craft.CRAFT_HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_left);
-		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, CraftView.CRAFT_HEIGHT, CraftView.CRAFT_WIDTH, true);
+		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, Craft.CRAFT_HEIGHT, Craft.CRAFT_WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_right);
-		bmCraftFallRight = Bitmap.createScaledBitmap(temp, CraftView.CRAFT_HEIGHT, CraftView.CRAFT_WIDTH, true);
+		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.CRAFT_HEIGHT, Craft.CRAFT_WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.boom);
 		bmBoom = Bitmap.createScaledBitmap(temp, 50, 38, true);
@@ -101,10 +101,10 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 		bmWon = Bitmap.createScaledBitmap(temp, temp.getWidth(), temp.getHeight(), true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.flame);
-		bmSideFlame = Bitmap.createScaledBitmap(temp, CraftView.SIDE_FLAME_WIDTH, CraftView.SIDE_FLAME_HEIGHT, true);
+		bmSideFlame = Bitmap.createScaledBitmap(temp, Craft.SIDE_FLAME_WIDTH, Craft.SIDE_FLAME_HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.flame);
-		bmMainFlame = Bitmap.createScaledBitmap(temp, CraftView.MAIN_FLAME_WIDTH, CraftView.MAIN_FLAME_HEIGHT, true);
+		bmMainFlame = Bitmap.createScaledBitmap(temp, Craft.MAIN_FLAME_WIDTH, Craft.MAIN_FLAME_HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 		bmBackground = Bitmap.createScaledBitmap(temp, screenWidth, screenHeight, true);
@@ -150,7 +150,7 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 	private void doDraw(Canvas canvas) {
 		canvas.drawBitmap(bmBackground, 0, 0, null);// draw background
 		if (scene.getState() == MarsLanderScene.STATE_READY) { // show the first view of this app, draw the craft at the center on screen.
-			canvas.drawBitmap(bmCraft, (screenWidth - CraftView.CRAFT_WIDTH) / 2, screenHeight / 2, null);
+			canvas.drawBitmap(bmCraft, (screenWidth - Craft.CRAFT_WIDTH) / 2, screenHeight / 2, null);
 			return;
 		}
 
@@ -159,7 +159,7 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 		canvas.drawPath(path, paintGround);
 
 		// get the craft instance
-		CraftView craft = scene.getCraft();
+		Craft craft = scene.getCraft();
 		
 		// draw remains fuel
 		Paint paint = new Paint();

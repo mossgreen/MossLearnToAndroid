@@ -3,7 +3,7 @@ package com.victor.marslander.mars;
 import java.util.Random;
 import java.util.Vector;
 
-import com.victor.marslander.craft.CraftView;
+import com.victor.marslander.craft.Craft;
 
 import android.graphics.Path;
 import android.graphics.Point;
@@ -29,8 +29,8 @@ public class MarsLanderScene {
 	private final Random rdm = new Random(System.currentTimeMillis());//get a random value via Returns the current time in milliseconds
 
 	// object
-	private CraftView craft;
-	private MarsView mars;
+	private Craft craft;
+	private Mars mars;
 
 	public MarsLanderScene(int screenWidth, int screenHeight) {
 		this.screenWidth = screenWidth;
@@ -55,19 +55,19 @@ public class MarsLanderScene {
 	 */
 	private void init() {
 		// create craft
-		int posX = CraftView.CRAFT_WIDTH * 2 + rdm.nextInt(screenWidth - CraftView.CRAFT_WIDTH * 4);
-		craft = new CraftView(posX, 0, GRAVITY, PIXELMETERRATIO);
+		int posX = Craft.CRAFT_WIDTH * 2 + rdm.nextInt(screenWidth - Craft.CRAFT_WIDTH * 4);
+		craft = new Craft(posX, 0, GRAVITY, PIXELMETERRATIO);
 
-		mars = new MarsView(0.3f, screenWidth, screenHeight, (int) (CraftView.CRAFT_WIDTH * 1.3f), CraftView.CRAFT_WIDTH * 2, 300);
+		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (Craft.CRAFT_WIDTH * 1.3f), Craft.CRAFT_WIDTH * 2, 300);
 		//
 		timeStamp = System.nanoTime();
 	}
 
-	public CraftView getCraft() {
+	public Craft getCraft() {
 		return craft;
 	}
 
-	public MarsView getMars() {
+	public Mars getMars() {
 		return mars;
 	}
 
@@ -85,16 +85,16 @@ public class MarsLanderScene {
 
 		// side
 		if (craft.getCenterX() < 0) {
-			craft.setX(screenWidth - CraftView.CRAFT_WIDTH / 2);
+			craft.setX(screenWidth - Craft.CRAFT_WIDTH / 2);
 		} else if (craft.getCenterX() > screenWidth) {
-			craft.setX(-CraftView.CRAFT_WIDTH / 2);
+			craft.setX(-Craft.CRAFT_WIDTH / 2);
 		}
 
 		// crash test
 		Path p = craft.genOutline();
 		p.op(mars.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
 		if (!p.isEmpty()) {
-			if (!isFlatGround(craft.getX(), CraftView.CRAFT_WIDTH)) {
+			if (!isFlatGround(craft.getX(), Craft.CRAFT_WIDTH)) {
 				state = STATE_CRASHED;
 			} else {
 				if (craft.getAngle() > 0) {
