@@ -1,5 +1,10 @@
 package com.victor.marslander;
 
+import com.victor.marslander.R;
+import com.victor.marslander.R.id;
+import com.victor.marslander.R.layout;
+import com.victor.marslander.R.string;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;

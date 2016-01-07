@@ -39,7 +39,7 @@ public class Craft {
 	 * 	the craft is affected by the gravity 
 	 * @param r
 	 */
-	Craft(int posX, int posY, float g, float r) {
+	public Craft(int posX, int posY, float g, float r) {
 		craftModel = new CraftModel( g);
 		this.posX = posX;
 		this.posY = posY;
