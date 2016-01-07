@@ -1,7 +1,7 @@
 package com.victor.marslander;
 
-import com.victor.marslander.craft.Craft;
 import com.victor.marslander.mars.MarsLanderScene;
+import com.victor.marslander.model.Craft;
 
 import android.content.Context;
 import android.graphics.Bitmap;
