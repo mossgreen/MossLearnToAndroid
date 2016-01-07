@@ -83,13 +83,13 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 		scene = new MarsLanderScene(screenWidth, screenHeight);
 
 		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
-		bmCraft = Bitmap.createScaledBitmap(temp, Craft.CRAFT_WIDTH, Craft.CRAFT_HEIGHT, true);
+		bmCraft = Bitmap.createScaledBitmap(temp, Craft.WIDTH, Craft.HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_left);
-		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, Craft.CRAFT_HEIGHT, Craft.CRAFT_WIDTH, true);
+		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_right);
-		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.CRAFT_HEIGHT, Craft.CRAFT_WIDTH, true);
+		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.boom);
 		bmBoom = Bitmap.createScaledBitmap(temp, 50, 38, true);
@@ -147,7 +147,7 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 	private void doDraw(Canvas canvas) {
 		canvas.drawBitmap(bmBackground, 0, 0, null);// draw background
 		if (scene.getState() == MarsLanderScene.STATE_READY) { // show the first view of this app, draw the craft at the center on screen.
-			canvas.drawBitmap(bmCraft, (screenWidth - Craft.CRAFT_WIDTH) / 2, screenHeight / 2, null);
+			canvas.drawBitmap(bmCraft, (screenWidth - Craft.WIDTH) / 2, screenHeight / 2, null);
 			return;
 		}
 

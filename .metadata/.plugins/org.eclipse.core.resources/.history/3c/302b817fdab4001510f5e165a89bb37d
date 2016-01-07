@@ -53,10 +53,10 @@ public class MarsLanderScene {
 	 */
 	private void init() {
 		// create craft
-		int posX = Craft.CRAFT_WIDTH * 2 + rdm.nextInt(screenWidth - Craft.CRAFT_WIDTH * 4);
+		int posX = Craft.WIDTH * 2 + rdm.nextInt(screenWidth - Craft.WIDTH * 4);
 		craft = new Craft(posX, 0, GRAVITY, PIXELMETERRATIO);
 
-		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (Craft.CRAFT_WIDTH * 1.3f), Craft.CRAFT_WIDTH * 2, 300);
+		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (Craft.WIDTH * 1.3f), Craft.WIDTH * 2, 300);
 		//
 		timeStamp = System.nanoTime();
 	}
@@ -83,16 +83,16 @@ public class MarsLanderScene {
 
 		// side
 		if (craft.getCenterX() < 0) {
-			craft.setX(screenWidth - Craft.CRAFT_WIDTH / 2);
+			craft.setX(screenWidth - Craft.WIDTH / 2);
 		} else if (craft.getCenterX() > screenWidth) {
-			craft.setX(-Craft.CRAFT_WIDTH / 2);
+			craft.setX(-Craft.WIDTH / 2);
 		}
 
 		// crash test
 		Path p = craft.genOutline();
 		p.op(mars.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
 		if (!p.isEmpty()) {
-			if (!isFlatGround(craft.getX(), Craft.CRAFT_WIDTH)) {
+			if (!isFlatGround(craft.getX(), Craft.WIDTH)) {
 				state = STATE_CRASHED;
 			} else {
 				if (craft.getAngle() > 0) {

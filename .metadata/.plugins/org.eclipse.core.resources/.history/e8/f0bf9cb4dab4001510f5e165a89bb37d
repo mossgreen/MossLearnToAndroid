@@ -9,7 +9,7 @@ public class Craft {
 
 	// constant
 	public static final int CRAFT_WIDTH = 50;
-	public static final int CRAFT_HEIGHT = 73;
+	public static final int HEIGHT = 73;
 	public static final int SIDE_FLAME_WIDTH = 12;
 	public static final int SIDE_FLAME_HEIGHT = 20;
 	public static final int MAIN_FLAME_WIDTH = 20;
@@ -40,10 +40,10 @@ public class Craft {
 	public Path genOutline(){
 		Path outline = new Path();
 		outline.moveTo(posX + CRAFT_WIDTH /2, posY);
-		outline.lineTo(posX + CRAFT_WIDTH, posY + CRAFT_HEIGHT /2);
-		outline.lineTo(posX + CRAFT_WIDTH, posY + CRAFT_HEIGHT);
-		outline.lineTo(posX, posY + CRAFT_HEIGHT);
-		outline.lineTo(posX, posY + CRAFT_HEIGHT / 2);
+		outline.lineTo(posX + CRAFT_WIDTH, posY + HEIGHT /2);
+		outline.lineTo(posX + CRAFT_WIDTH, posY + HEIGHT);
+		outline.lineTo(posX, posY + HEIGHT);
+		outline.lineTo(posX, posY + HEIGHT / 2);
 		outline.close();
 		
 		Matrix m = new Matrix();
@@ -83,11 +83,11 @@ public class Craft {
 	}
 	
 	public float getCenterX() {
-		return posX + CRAFT_WIDTH / 2;
+		return posX + WIDTH / 2;
 	}
 
 	public float getCenterY() {
-		return posY + CRAFT_HEIGHT / 2;
+		return posY + HEIGHT / 2;
 	}
 
 	public float getLeftFlamePosX() {

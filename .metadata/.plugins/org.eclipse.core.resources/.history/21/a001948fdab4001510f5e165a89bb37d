@@ -53,10 +53,10 @@ public class MarsLanderScene {
 	 */
 	private void init() {
 		// create craft
-		int posX = Craft.CRAFT_WIDTH * 2 + rdm.nextInt(screenWidth - Craft.CRAFT_WIDTH * 4);
+		int posX = Craft.WIDTH * 2 + rdm.nextInt(screenWidth - Craft.WIDTH * 4);
 		craft = new Craft(posX, 0, GRAVITY, PIXELMETERRATIO);
 
-		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (Craft.CRAFT_WIDTH * 1.3f), Craft.CRAFT_WIDTH * 2, 300);
+		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (Craft.WIDTH * 1.3f), Craft.WIDTH * 2, 300);
 		//
 		timeStamp = System.nanoTime();
 	}

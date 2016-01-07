@@ -9,11 +9,11 @@ public class Craft {
 
 	// constant
 	public static final int CRAFT_WIDTH = 50;
-	public static final int CRAFT_HEIGHT = 73;
+	public static final int CRAFT_CRAFT_HEIGHT = 73;
 	public static final int SIDE_FLAME_WIDTH = 12;
-	public static final int SIDE_FLAME_HEIGHT = 20;
+	public static final int SIDE_FLAME_CRAFT_HEIGHT = 20;
 	public static final int MAIN_FLAME_WIDTH = 20;
-	public static final int MAIN_FLAME_HEIGHT = 50;
+	public static final int MAIN_FLAME_CRAFT_HEIGHT = 50;
 
 	private static final float SIDE_FLAME_OFFSET_X = CRAFT_WIDTH / 2 - SIDE_FLAME_WIDTH;
 	private static final float SIDE_FLAME_OFFSET_Y = 27.0f;
