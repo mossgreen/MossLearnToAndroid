@@ -92,9 +92,9 @@ public class GameController {
 		}
 
 		// crash test
-		Path craftOutline = craftView.genOutline();
-		craftOutline.op(marsView.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
-		if (!craftOutline.isEmpty()) {
+		Path p = craftView.genOutline();
+		p.op(marsView.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
+		if (!p.isEmpty()) {
 			if (!isFlatGround(craftView.getX(), CraftView.CRAFT_WIDTH)) {
 				state = STATE_CRASHED;
 			} else {
