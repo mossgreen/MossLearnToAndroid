@@ -180,14 +180,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 //			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
 			return;
-		} else if (gameCtl.getState() == GameController.STATE_FALL_LEFT) { //crashed when the craft landed failed on the left side.
-//			canvas.drawBitmap(bmCraftFallLeft, craft.getX(), craft.getCenterY(), null);
-			return;
-		} else if (gameCtl.getState() == GameController.STATE_FALL_RIGHT) {//crashed when the craft landed failed on the right side.
-//			canvas.drawBitmap(bmCraftFallRight, craft.getCenterX(), craft.getCenterY(), null);
-			return;
 		} else if (gameCtl.getState() == GameController.STATE_WON) {// landed successfully
-			canvas.drawBitmap(bmCraft, matrix, null);
+//			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmWon, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 		}
 		

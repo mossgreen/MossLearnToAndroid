@@ -95,7 +95,7 @@ public class GameController {
 		Path craftOutline = craftView.genOutline();
 		craftOutline.op(marsView.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
 		if (!craftOutline.isEmpty()) {
-			if (!isFlatGround(craftView.getX(), CraftView.CRAFT_WIDTH) || craftView.getAngle() != 0) {
+			if (!isFlatGround(craftView.getX(), CraftView.CRAFT_WIDTH)) {
 				state = STATE_CRASHED;
 			} else {
 				if (craftView.getAngle() > 0) {
