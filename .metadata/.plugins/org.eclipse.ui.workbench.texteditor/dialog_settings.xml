@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="headAngle" key="selection"/>
+		<item value="STATE_CRASHED" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="STATE_CRASHED"/>
 			<item value="headAngle"/>
 			<item value="Thruster"/>
 			<item value="transform"/>
@@ -15,7 +16,6 @@
 			<item value="MAIN_FLAME_CRAFT_HEIGHT "/>
 			<item value="SIDE_FLAME_CRAFT_HEIGHT "/>
 			<item value="Craft.HEIGHT"/>
-			<item value="HEIGHT"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Engine"/>
