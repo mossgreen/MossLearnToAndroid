@@ -30,8 +30,8 @@ public class GameController {
 	private final Random rdm = new Random(System.currentTimeMillis());//get a random value via Returns the current time in milliseconds
 
 	// object
-	private CraftView craftView;
-	private MarsView marsView;
+	private CraftView craft;
+	private MarsView mars;
 
 	public GameController(int screenWidth, int screenHeight) {
 		this.screenWidth = screenWidth;
@@ -57,19 +57,19 @@ public class GameController {
 	private void init() {
 		// create craft
 		int posX = CraftView.CRAFT_WIDTH * 2 + rdm.nextInt(screenWidth - CraftView.CRAFT_WIDTH * 4);
-		craftView = new CraftView(posX, 0, GRAVITY, PIXELMETERRATIO);
+		craft = new CraftView(posX, 0, GRAVITY, PIXELMETERRATIO);
 
-		marsView = new MarsView(0.3f, screenWidth, screenHeight, (int) (CraftView.CRAFT_WIDTH * 1.3f), CraftView.CRAFT_WIDTH * 2, 300);
+		mars = new MarsView(0.3f, screenWidth, screenHeight, (int) (CraftView.CRAFT_WIDTH * 1.3f), CraftView.CRAFT_WIDTH * 2, 300);
 		//
 		timeStamp = System.nanoTime();
 	}
 
 	public CraftView getCraft() {
-		return craftView;
+		return craft;
 	}
 
 	public MarsView getMars() {
-		return marsView;
+		return mars;
 	}
 
 	public int getState() {
@@ -82,25 +82,25 @@ public class GameController {
 	public void update() {
 		final long t = System.nanoTime();
 		final float dt = (float) (t - timeStamp) * (1.0f / 1000000000.0f);// 
-		craftView.update(dt);
+		craft.update(dt);
 
 		// side
-		if (craftView.getCenterX() < 0) {
-			craftView.setX(screenWidth - CraftView.CRAFT_WIDTH / 2);
-		} else if (craftView.getCenterX() > screenWidth) {
-			craftView.setX(-CraftView.CRAFT_WIDTH / 2);
+		if (craft.getCenterX() < 0) {
+			craft.setX(screenWidth - CraftView.CRAFT_WIDTH / 2);
+		} else if (craft.getCenterX() > screenWidth) {
+			craft.setX(-CraftView.CRAFT_WIDTH / 2);
 		}
 
 		// crash test
-		Path p = craftView.genOutline();
-		p.op(marsView.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
+		Path p = craft.genOutline();
+		p.op(mars.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
 		if (!p.isEmpty()) {
-			if (!isFlatGround(craftView.getX(), CraftView.CRAFT_WIDTH)) {
+			if (!isFlatGround(craft.getX(), CraftView.CRAFT_WIDTH)) {
 				state = STATE_CRASHED;
 			} else {
-				if (craftView.getAngle() > 0) {
+				if (craft.getAngle() > 0) {
 					state = STATE_FALL_RIGHT;
-				} else if (craftView.getAngle() < 0) {
+				} else if (craft.getAngle() < 0) {
 					state = STATE_FALL_LEFT;
 				} else {
 					state = STATE_WON;
@@ -117,7 +117,7 @@ public class GameController {
 	 * @return boolean True for landed successfully otherwise return false.
 	 */
 	private boolean isFlatGround(float x, int w) {
-		Vector<Point> points = marsView.getGroundPoints();
+		Vector<Point> points = mars.getGroundPoints();
 		int len = points.size();
 		int i = 1;
 		for (; i < len; i++) {

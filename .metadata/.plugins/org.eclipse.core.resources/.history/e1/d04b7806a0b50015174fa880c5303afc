@@ -31,7 +31,7 @@ public class GameController {
 
 	// object
 	private CraftView craftView;
-	private MarsView marsView;
+	private MarsView mars;
 
 	public GameController(int screenWidth, int screenHeight) {
 		this.screenWidth = screenWidth;
@@ -59,7 +59,7 @@ public class GameController {
 		int posX = CraftView.CRAFT_WIDTH * 2 + rdm.nextInt(screenWidth - CraftView.CRAFT_WIDTH * 4);
 		craftView = new CraftView(posX, 0, GRAVITY, PIXELMETERRATIO);
 
-		marsView = new MarsView(0.3f, screenWidth, screenHeight, (int) (CraftView.CRAFT_WIDTH * 1.3f), CraftView.CRAFT_WIDTH * 2, 300);
+		mars = new MarsView(0.3f, screenWidth, screenHeight, (int) (CraftView.CRAFT_WIDTH * 1.3f), CraftView.CRAFT_WIDTH * 2, 300);
 		//
 		timeStamp = System.nanoTime();
 	}
@@ -69,7 +69,7 @@ public class GameController {
 	}
 
 	public MarsView getMars() {
-		return marsView;
+		return mars;
 	}
 
 	public int getState() {
@@ -93,7 +93,7 @@ public class GameController {
 
 		// crash test
 		Path p = craftView.genOutline();
-		p.op(marsView.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
+		p.op(mars.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
 		if (!p.isEmpty()) {
 			if (!isFlatGround(craftView.getX(), CraftView.CRAFT_WIDTH)) {
 				state = STATE_CRASHED;
@@ -117,7 +117,7 @@ public class GameController {
 	 * @return boolean True for landed successfully otherwise return false.
 	 */
 	private boolean isFlatGround(float x, int w) {
-		Vector<Point> points = marsView.getGroundPoints();
+		Vector<Point> points = mars.getGroundPoints();
 		int len = points.size();
 		int i = 1;
 		for (; i < len; i++) {

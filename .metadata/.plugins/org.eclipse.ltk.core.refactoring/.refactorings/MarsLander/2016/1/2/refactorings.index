@@ -15,3 +15,5 @@
 1452208073390	Rename type 'MarsLanderView'
 1452208264506	Rename type 'MarsLanderScene'
 1452208270333	Move compilation unit
+1452213461266	Rename field 'mars'
+1452213711760	Rename field 'scene'

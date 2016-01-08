@@ -34,7 +34,7 @@ public class MarsLanderActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 		if (itemId == MENUSTART) {
-			view.getGameCtl().startGame();
+			view.getScene().startGame();
 			return true;
 		}
 
@@ -51,7 +51,7 @@ public class MarsLanderActivity extends Activity {
         bmMainFlame.setOnClickListener(new OnClickListener() {	
 			@Override
 			public void onClick(View v) {
-				view.getGameCtl().getCraft().thrustUp();
+				view.getScene().getCraft().thrustUp();
 			}
 		});
         
@@ -59,7 +59,7 @@ public class MarsLanderActivity extends Activity {
         btnLeftThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				view.getGameCtl().getCraft().turnRight();
+				view.getScene().getCraft().turnRight();
 			}
 		});
 		
@@ -67,7 +67,7 @@ public class MarsLanderActivity extends Activity {
         btnRightThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				view.getGameCtl().getCraft().turnLeft();
+				view.getScene().getCraft().turnLeft();
 			}
 		});
     }

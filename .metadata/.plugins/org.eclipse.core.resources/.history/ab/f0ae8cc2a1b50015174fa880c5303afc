@@ -154,7 +154,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 		if (gameCtl.getState() == GameController.STATE_READY) { // show the first view of this app, draw the craft at the center on screen.
 			canvas.drawBitmap(bmCraft, (screenWidth - CraftView.CRAFT_WIDTH) / 2, screenHeight / 2, null);
 			return;
-		}else{
+		}
 
 		// get the ground points map
 		Path path = gameCtl.getMars().getGround();
@@ -213,7 +213,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 				matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
 				canvas.drawBitmap(bmMainFlame, matrix, null);
 			}
-		}
 		}
 	}
 
