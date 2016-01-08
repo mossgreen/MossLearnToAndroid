@@ -10,9 +10,9 @@ class CraftModel {
 	
 	
 	// the left/right thruster last times duration
-	private  final float SIDE_THRUSTER_DURATION = 1.0f;
-	private static final float MAIN_THRUSTER_DURATION = 1.0f;// the main thruster last times duration
-	private static final float THRUSTER_ACCEL = 7.0f; //The accelerate of thruster
+	private  final float SIDE_ENGINE_DURATION = 1.0f;
+	private static final float MAIN_ENGINE_DURATION = 1.0f;// the main thruster last times duration
+	private static final float ENGINE_ACCEL = 7.0f; //The accelerate of thruster
 	private static final float FUEL_CONSUME = 2.0f; // Consumed fuel on each fire
 	
 	
@@ -22,12 +22,12 @@ class CraftModel {
 	
 	// state
 	private float headAngle = 0.0f; // in degree;
-	private boolean isMainThrusterOn = false; // if main thruster fired
-	private float mainThrustTimespan;// control the time of main thruster's
-	private boolean isLeftThrusterOn = false;// if left thruster fired
-	private float leftThrustTimespan;
-	private boolean isRightThrusterOn = false;// if right thruster fired
-	private float rightThrustTimespan;
+	private boolean isMainEngineOn = false; // if main thruster fired
+	private float mainEngineTimespan;// control the time of main thruster's
+	private boolean isLeftEngineOn = false;// if left thruster fired
+	private float leftEngineTimespan;
+	private boolean isRightEngineOn = false;// if right thruster fired
+	private float rightEngineTimespan;
 	private float fuelRemaining = 100.00f;
 
 	// position
@@ -52,35 +52,35 @@ class CraftModel {
 	 * Turn right when the craft remains enough fuel.
 	 */
 	protected void turnRight() {
-		if (isLeftThrusterOn || fuelRemaining <= 0)
+		if (isLeftEngineOn || fuelRemaining <= 0)
 			return;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
 		headAngle += 18.0;
-		leftThrustTimespan = 0.0f;
-		isLeftThrusterOn = true;
+		leftEngineTimespan = 0.0f;
+		isLeftEngineOn = true;
 	}
 	
 	/**
 	 * Turn left when the craft remains enough fuel.
 	 */
 	protected void turnLeft() {
-		if (isRightThrusterOn || fuelRemaining <= 0)
+		if (isRightEngineOn || fuelRemaining <= 0)
 			return;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
 		headAngle -= 18.0;
-		rightThrustTimespan = 0.0f;
-		isRightThrusterOn = true;
+		rightEngineTimespan = 0.0f;
+		isRightEngineOn = true;
 	}
 	
 	/**
-	 * Thrust when the craft remains enough fuel.
+	 * Engine when the craft remains enough fuel.
 	 */
 	protected void thrust() {
-		if (isMainThrusterOn || fuelRemaining <= 0)
+		if (isMainEngineOn || fuelRemaining <= 0)
 			return;
-		mainThrustTimespan = 0.0f;
+		mainEngineTimespan = 0.0f;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
-		isMainThrusterOn = true;
+		isMainEngineOn = true;
 	}
 
 	protected float getFuelRemaining() {
@@ -99,16 +99,16 @@ class CraftModel {
 		return headAngle;
 	}
 
-	protected boolean IsLeftThrusterOn() {
-		return isLeftThrusterOn;
+	protected boolean IsLeftEngineOn() {
+		return isLeftEngineOn;
 	}
 
-	protected boolean IsRightThrusterOn() {
-		return isRightThrusterOn;
+	protected boolean IsRightEngineOn() {
+		return isRightEngineOn;
 	}
 	
-	protected boolean IsMainThrusterOn() {
-		return isMainThrusterOn;
+	protected boolean IsMainEngineOn() {
+		return isMainEngineOn;
 	}
 
 	/**
@@ -126,34 +126,34 @@ class CraftModel {
 		veloY += accelY * dt;
 		
 		
-		if (isLeftThrusterOn) {
+		if (isLeftEngineOn) {
 			accelX = 5 * (float)Math.sin(Math.toRadians(headAngle));
 			accelY = 5 * -(float)Math.cos(Math.toRadians(headAngle)) + g;
-			leftThrustTimespan += dt;
-			if (leftThrustTimespan >= SIDE_THRUSTER_DURATION) {
-				isLeftThrusterOn = false;
+			leftEngineTimespan += dt;
+			if (leftEngineTimespan >= SIDE_ENGINE_DURATION) {
+				isLeftEngineOn = false;
 				accelX = 0;
 				accelY = g;
 			}
 		}
 
-		if (isRightThrusterOn) {
+		if (isRightEngineOn) {
 			accelX = 5 * (float)Math.sin(Math.toRadians(headAngle));
 			accelY = 5 * -(float)Math.cos(Math.toRadians(headAngle)) + g;
-			rightThrustTimespan += dt;
-			if (rightThrustTimespan >= SIDE_THRUSTER_DURATION) {
-				isRightThrusterOn = false;
+			rightEngineTimespan += dt;
+			if (rightEngineTimespan >= SIDE_ENGINE_DURATION) {
+				isRightEngineOn = false;
 				accelX = 0;
 				accelY = g;
 			}
 		}
 		
-		if (isMainThrusterOn) {
-			accelX = THRUSTER_ACCEL * (float)Math.sin(Math.toRadians(headAngle));
-			accelY = THRUSTER_ACCEL * -(float)Math.cos(Math.toRadians(headAngle)) + g;
-			mainThrustTimespan += dt;
-			if (mainThrustTimespan >= MAIN_THRUSTER_DURATION){
-				isMainThrusterOn = false;
+		if (isMainEngineOn) {
+			accelX = ENGINE_ACCEL * (float)Math.sin(Math.toRadians(headAngle));
+			accelY = ENGINE_ACCEL * -(float)Math.cos(Math.toRadians(headAngle)) + g;
+			mainEngineTimespan += dt;
+			if (mainEngineTimespan >= MAIN_ENGINE_DURATION){
+				isMainEngineOn = false;
 				accelX = 0;
 				accelY = g;
 			}

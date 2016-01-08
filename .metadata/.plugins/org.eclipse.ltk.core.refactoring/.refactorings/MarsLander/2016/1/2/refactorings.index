@@ -19,3 +19,6 @@
 1452213711760	Rename field 'scene'
 1452221180780	Rename local variable 'p'
 1452292618300	Rename package 'com.victor.marslander'
+1452294943967	Rename type 'MarsLanderActivity'
+1452295717279	Rename type 'Craft'
+1452295808787	Rename type 'CraftView'
