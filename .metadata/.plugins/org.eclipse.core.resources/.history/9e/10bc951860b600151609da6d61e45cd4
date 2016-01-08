@@ -36,7 +36,7 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 	private Bitmap bmCraftFallLeft;
 	private Bitmap bmCraftFallRight;
 	private Bitmap bmBoom;
-	private Bitmap bmWon, bmLose;
+	private Bitmap bmWon;
 	private Bitmap bmSideFlame;
 	private Bitmap bmMainFlame;
 	private Paint paintGround;
@@ -97,10 +97,6 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.won);
 		bmWon = Bitmap.createScaledBitmap(temp, temp.getWidth(), temp.getHeight(), true);
-		
-		temp = BitmapFactory.decodeResource(getResources(), R.drawable.lose);
-		bmLose = Bitmap.createScaledBitmap(temp, temp.getWidth(), temp.getHeight(), true);
-		
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.flame);
 		bmSideFlame = Bitmap.createScaledBitmap(temp, Craft.SIDE_FLAME_WIDTH, Craft.SIDE_FLAME_HEIGHT, true);
@@ -177,15 +173,12 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 		if (scene.getState() == MarsLanderScene.STATE_CRASHED) {// if the craft crashed
 			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
-			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 			return;
 		} else if (scene.getState() == MarsLanderScene.STATE_FALL_LEFT) { //crashed when the craft landed failed on the left side.
 			canvas.drawBitmap(bmCraftFallLeft, craft.getX(), craft.getCenterY(), null);
-			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 			return;
 		} else if (scene.getState() == MarsLanderScene.STATE_FALL_RIGHT) {//crashed when the craft landed failed on the right side.
 			canvas.drawBitmap(bmCraftFallRight, craft.getCenterX(), craft.getCenterY(), null);
-			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 			return;
 		} else if (scene.getState() == MarsLanderScene.STATE_WON) {// landed successfully
 			canvas.drawBitmap(bmCraft, matrix, null);
