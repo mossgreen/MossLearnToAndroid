@@ -1,4 +1,4 @@
-package com.victor.marslander.mars;
+package com.victor.marslander;
 
 import java.util.Random;
 import java.util.Vector;
@@ -7,7 +7,7 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.util.Log;
 
-public class MarsView {
+public class Mars {
 	private final int MINWIDTH = 30;
 	private final int BASEHEIGHT = 50;
 	private final float MINGRADIENT = 0.2f;
@@ -23,7 +23,7 @@ public class MarsView {
 	private Vector<Point> map;
 	private Path ground;
 
-	public MarsView(float r, int scrWidth, int scrHeight, int minWidth, int maxWidth, int maxHeight) {
+	public Mars(float r, int scrWidth, int scrHeight, int minWidth, int maxWidth, int maxHeight) {
 		this.minSingleFlatWidth = minWidth;
 		this.maxSingleFlatWidth = maxWidth;
 		this.maxHeight = maxHeight;

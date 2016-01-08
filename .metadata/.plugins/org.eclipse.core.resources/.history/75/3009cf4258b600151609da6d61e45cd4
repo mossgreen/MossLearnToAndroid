@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.feifei.marslander">
+    package="com.victor.marslander">
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -10,7 +10,7 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
         <activity
-            android:name="com.feifei.marslander.MarsLanderActivity"
+            android:name="MarsLanderActivity"
             android:theme="@android:style/Theme.WithActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

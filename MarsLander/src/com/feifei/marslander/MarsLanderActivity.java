@@ -1,10 +1,4 @@
-package com.victor.marslander;
-
-import com.victor.marslander.R;
-import com.victor.marslander.R.id;
-import com.victor.marslander.R.layout;
-import com.victor.marslander.R.string;
-import com.victor.marslander.game.GameView;
+package com.feifei.marslander;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -14,12 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import com.feifei.marslander.R;
 
 
 public class MarsLanderActivity extends Activity {
 	private static final String APP_TAG = "MARSLANDER";
     private  final int MENUSTART = 0;
-    private GameView view;
+    private MarsLanderView view;
     private ImageButton bmMainFlame, btnLeftThruster, btnRightThruster;
     
     @Override
@@ -34,7 +29,7 @@ public class MarsLanderActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 		if (itemId == MENUSTART) {
-			view.getGameCtl().startGame();
+			view.getScene().startGame();
 			return true;
 		}
 
@@ -46,12 +41,12 @@ public class MarsLanderActivity extends Activity {
     	Log.d(APP_TAG, "create activity");
         super.onCreate(savedInstanceState);        
         setContentView(R.layout.lander_layout); // set the content view or our widget lookups will fail
-        view = (GameView)findViewById(R.id.MarsLanderView);
+        view = (MarsLanderView)findViewById(R.id.MarsLanderView);
         bmMainFlame = (ImageButton)findViewById(R.id.btnThruster);
         bmMainFlame.setOnClickListener(new OnClickListener() {	
 			@Override
 			public void onClick(View v) {
-				view.getGameCtl().getCraft().thrustUp();
+				view.getScene().getCraft().thrust();
 			}
 		});
         
@@ -59,7 +54,7 @@ public class MarsLanderActivity extends Activity {
         btnLeftThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				view.getGameCtl().getCraft().turnRight();
+				view.getScene().getCraft().turnRight();
 			}
 		});
 		
@@ -67,7 +62,7 @@ public class MarsLanderActivity extends Activity {
         btnRightThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				view.getGameCtl().getCraft().turnLeft();
+				view.getScene().getCraft().turnLeft();
 			}
 		});
     }
