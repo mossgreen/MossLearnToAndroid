@@ -1,9 +1,6 @@
 package com.feifei.marslander;
 import com.feifei.marslander.game.*;
-import com.feifei.marslander.model.Craft;
-
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -41,8 +38,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); 
-        
-        Craft craft = new Craft(this);
         
         setContentView(R.layout.lander_layout); // set the content view or our widget lookups will fail
         gameView = (com.feifei.marslander.game.GameView)findViewById(R.id.MarsLanderView);

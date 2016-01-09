@@ -63,7 +63,6 @@ public class Craft {
 	private int posX = 0; 
 	private int posY = 0; 
 	private float pixelMeterRatio;
-	private Context context;
 	
 	
 	
@@ -76,15 +75,6 @@ public class Craft {
 		pixelMeterRatio = r;
 	}
 	
-	public Craft(Context context) {
-		this.context = context;
-		
-	}
-	
-	public void loadResources(){
-		
-	}
-
 	/**
 	 * Get the craft's outline.
 	 * @return The path of the craft

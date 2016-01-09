@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.feifei.marslander.interfaces.Sprite"/>
+<fullyQualifiedTypeName name="com.feifei.marslander.game.GameModel"/>
+<fullyQualifiedTypeName name="com.feifei.marslander.CraftModel"/>
+<fullyQualifiedTypeName name="com.feifei.marslander.game.GameView"/>
+<fullyQualifiedTypeName name="com.feifei.marslander.model.Craft"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+</qualifiedTypeNameHistroy>

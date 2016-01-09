@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); 
         
-        Craft craft = new Craft(this);
+        Craft craft = new Craft(Context context);
         
         setContentView(R.layout.lander_layout); // set the content view or our widget lookups will fail
         gameView = (com.feifei.marslander.game.GameView)findViewById(R.id.MarsLanderView);

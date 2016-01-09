@@ -63,7 +63,6 @@ public class Craft {
 	private int posX = 0; 
 	private int posY = 0; 
 	private float pixelMeterRatio;
-	private Context context;
 	
 	
 	
@@ -77,11 +76,7 @@ public class Craft {
 	}
 	
 	public Craft(Context context) {
-		this.context = context;
 		
-	}
-	
-	public void loadResources(){
 		
 	}
 
