@@ -80,16 +80,16 @@ public class GameController {
 
 		// side
 		if (craft.getCenterX() < 0) {
-			craft.setX(screenWidth - craft.getCraftWidth() / 2);
+			craft.setX(screenWidth - Craft.WIDTH / 2);
 		} else if (craft.getCenterX() > screenWidth) {
-			craft.setX(-craft.getCraftWidth() / 2);
+			craft.setX(-Craft.WIDTH / 2);
 		}
 
 		// crash test
 		Path p = craft.genOutline();
 		p.op(mars.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
 		if (!p.isEmpty()) {
-			if (!isFlatGround(craft.getX(), craft.getCraftWidth())) {
+			if (!isFlatGround(craft.getX(), Craft.WIDTH)) {
 				state = STATE_CRASHED;
 			} else {
 				if (craft.getAngle() > 0) {
