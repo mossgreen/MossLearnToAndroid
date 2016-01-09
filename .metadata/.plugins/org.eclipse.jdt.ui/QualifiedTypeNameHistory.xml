@@ -6,4 +6,5 @@
 <fullyQualifiedTypeName name="com.feifei.marslander.game.GameView"/>
 <fullyQualifiedTypeName name="com.feifei.marslander.model.Craft"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="java.security.PublicKey"/>
 </qualifiedTypeNameHistroy>

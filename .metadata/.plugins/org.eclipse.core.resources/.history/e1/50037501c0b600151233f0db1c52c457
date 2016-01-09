@@ -1,4 +1,4 @@
-package com.victor.marslander;
+package com.feifei.marslander.game;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,16 +18,22 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.feifei.marslander.R;
+import com.feifei.marslander.R.drawable;
+import com.feifei.marslander.R.integer;
+import com.feifei.marslander.model.Craft;
+
 /**
  * This class is mainly used for draw the mars lander view and pre-loads corresponding resources into bitmap.
  *
  * @version 1.0
  */
-public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
+public class GameView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
 	private  final int REFRESH_RATE = getResources().getInteger(R.integer.REFRESH_RATE);
 
 	SurfaceHolder holder;
+
 
 	// display object
 	private Bitmap bmBackground;
@@ -35,7 +41,7 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 	private Bitmap bmCraftFallLeft;
 	private Bitmap bmCraftFallRight;
 	private Bitmap bmBoom;
-	private Bitmap bmWon;
+	private Bitmap bmWon, bmLose;
 	private Bitmap bmSideFlame;
 	private Bitmap bmMainFlame;
 	private Paint paintGround;
@@ -46,17 +52,18 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 	private int screenHeight ;
 
 	Thread mainThread;
-	private MarsLanderScene scene;
+	private Craft craft;
+	private GameController gameController;
 
-	public MarsLanderView(Context context) {
+	public GameView(Context context) {
 		super(context);
 	}
 
-	public MarsLanderView(Context context, AttributeSet attrs, int defStyle) {
+	public GameView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
-	public MarsLanderView(Context context, AttributeSet attrs) {
+	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
@@ -69,8 +76,8 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 		init();
 	}
 
-	public MarsLanderScene getScene() {
-		return scene;
+	public GameController getGameModel() {
+		return gameController;
 	}
 
 	/**
@@ -80,22 +87,26 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 		
 
 		//
-		scene = new MarsLanderScene(screenWidth, screenHeight);
+		gameController = new GameController(screenWidth, screenHeight);
 
 		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
-		bmCraft = Bitmap.createScaledBitmap(temp, Craft.CRAFT_WIDTH, Craft.CRAFT_HEIGHT, true);
+		bmCraft = Bitmap.createScaledBitmap(temp, Craft.getCraftWidth(), Craft.HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_left);
-		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, Craft.CRAFT_HEIGHT, Craft.CRAFT_WIDTH, true);
+		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_right);
-		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.CRAFT_HEIGHT, Craft.CRAFT_WIDTH, true);
+		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.boom);
 		bmBoom = Bitmap.createScaledBitmap(temp, 50, 38, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.won);
 		bmWon = Bitmap.createScaledBitmap(temp, temp.getWidth(), temp.getHeight(), true);
+		
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.lose);
+		bmLose = Bitmap.createScaledBitmap(temp, temp.getWidth(), temp.getHeight(), true);
+		
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.flame);
 		bmSideFlame = Bitmap.createScaledBitmap(temp, Craft.SIDE_FLAME_WIDTH, Craft.SIDE_FLAME_HEIGHT, true);
@@ -123,8 +134,8 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 			try {
 				synchronized (holder) {
 					// update model
-					if (scene.getState() == MarsLanderScene.STATE_RUNNING)
-						scene.update();
+					if (gameController.getState() == GameController.STATE_RUNNING)
+						gameController.update();
 
 					// drawing
 					canvas = holder.lockCanvas();
@@ -145,18 +156,23 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 	 * @param canvas The draw canvas.
 	 */
 	private void doDraw(Canvas canvas) {
-		canvas.drawBitmap(bmBackground, 0, 0, null);// draw background
-		if (scene.getState() == MarsLanderScene.STATE_READY) { // show the first view of this app, draw the craft at the center on screen.
-			canvas.drawBitmap(bmCraft, (screenWidth - Craft.CRAFT_WIDTH) / 2, screenHeight / 2, null);
+		
+		// draw background
+		canvas.drawBitmap(bmBackground, 0, 0, null);
+		
+		// show the first view of this app, draw the craft at the center on screen.
+		if (gameController.getState() == GameController.STATE_READY) { 
+			canvas.drawBitmap(bmCraft, (screenWidth - Craft.getCraftWidth()) / 2, screenHeight / 2, null);
 			return;
 		}
 
 		// get the ground points map
-		Path path = scene.getMars().getGround();
+		Path path = gameController.getMars().getGround();
 		canvas.drawPath(path, paintGround);
 
 		// get the craft instance
-		Craft craft = scene.getCraft();
+		Craft craft = gameController.getCraft();
+		
 		
 		// draw remains fuel
 		Paint paint = new Paint();
@@ -169,40 +185,43 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 		matrix.setTranslate(craft.getX(), craft.getY());
 		matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
 		
-		if (scene.getState() == MarsLanderScene.STATE_CRASHED) {// if the craft crashed
+		if (gameController.getState() == GameController.STATE_CRASHED) {// if the craft crashed
 			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 			return;
-		} else if (scene.getState() == MarsLanderScene.STATE_FALL_LEFT) { //crashed when the craft landed failed on the left side.
+		} else if (gameController.getState() == GameController.STATE_FALL_LEFT) { //crashed when the craft landed failed on the left side.
 			canvas.drawBitmap(bmCraftFallLeft, craft.getX(), craft.getCenterY(), null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 			return;
-		} else if (scene.getState() == MarsLanderScene.STATE_FALL_RIGHT) {//crashed when the craft landed failed on the right side.
+		} else if (gameController.getState() == GameController.STATE_FALL_RIGHT) {//crashed when the craft landed failed on the right side.
 			canvas.drawBitmap(bmCraftFallRight, craft.getCenterX(), craft.getCenterY(), null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 			return;
-		} else if (scene.getState() == MarsLanderScene.STATE_WON) {// landed successfully
+		} else if (gameController.getState() == GameController.STATE_WON) {// landed successfully
 			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmWon, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 		}
 		
 		canvas.drawBitmap(bmCraft, matrix, null);// draw the craft
 
-		if (scene.getState() == MarsLanderScene.STATE_RUNNING) {
+		if (gameController.getState() == GameController.STATE_RUNNING) {
 			// flame
-			if (craft.IsLeftThrusterOn()) {
+			if (craft.IsLeftEngineOn()) {
 				matrix.reset();
 				matrix.setTranslate(craft.getLeftFlamePosX(), craft.getSideFlamePosY());
 				matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
 				canvas.drawBitmap(bmSideFlame, matrix, null);
 			}
 
-			if (craft.IsRightThrusterOn()) {
+			if (craft.IsRightEngineOn()) {
 				matrix.reset();
 				matrix.setTranslate(craft.getRightFlamePosX(), craft.getSideFlamePosY());
 				matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
 				canvas.drawBitmap(bmSideFlame, matrix, null);
 			}
 
-			if (craft.IsMainThrusterOn()) {
+			if (craft.IsMainEngineOn()) {
 				matrix.reset();
 				matrix.setTranslate(craft.getMainFlamePosX(), craft.getMainFlamePosY());
 				matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
@@ -217,9 +236,9 @@ public class MarsLanderView extends SurfaceView implements SurfaceHolder.Callbac
 		int action = event.getActionMasked();
 		if (action == MotionEvent.ACTION_DOWN) {
 			if (event.getX() < screenWidth / 2) {
-				scene.getCraft().turnRight();
+				gameController.getCraft().turnRight();
 			} else {
-				scene.getCraft().turnLeft();
+				gameController.getCraft().turnLeft();
 			}
 		} else if(action == MotionEvent.ACTION_UP) {
 			Log.i("FFF", "AAAAAA");

@@ -90,13 +90,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 		gameController = new GameController(screenWidth, screenHeight);
 
 		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
-		bmCraft = Bitmap.createScaledBitmap(temp, craft.getCraftWidth(), craft.getCraftHeight(), true);
+		bmCraft = Bitmap.createScaledBitmap(temp, craft.getCraftWidth(), Craft.HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_left);
-		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, craft.getCraftHeight(), craft.getCraftWidth(), true);
+		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, craft.getCraftHeight(), Craft.WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_right);
-		bmCraftFallRight = Bitmap.createScaledBitmap(temp, craft.getCraftHeight(), craft.getCraftWidth(), true);
+		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.boom);
 		bmBoom = Bitmap.createScaledBitmap(temp, 50, 38, true);

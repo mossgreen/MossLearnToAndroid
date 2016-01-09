@@ -69,10 +69,6 @@ public class Craft {
 		return WIDTH;
 	}
 	
-	public static int getCraftHeight(){
-		return HEIGHT;
-	}
-	
 	
 	
 	public Craft(int posX, int posY, float g, float r)  {
