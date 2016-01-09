@@ -37,7 +37,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 
 	// display object
 	private Bitmap bmBackground;
-	private Bitmap bmCraft;
+	private Bitmap setScreenWidth;
 	private Bitmap bmCraftFallLeft;
 	private Bitmap bmCraftFallRight;
 	private Bitmap bmBoom;
@@ -156,12 +156,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 	 * @param canvas The draw canvas.
 	 */
 	private void doDraw(Canvas canvas) {
-		
-		// draw background
-		canvas.drawBitmap(bmBackground, 0, 0, null);
-		
-		// show the first view of this app, draw the craft at the center on screen.
-		if (gameController.getState() == GameController.STATE_READY) { 
+		canvas.drawBitmap(bmBackground, 0, 0, null);// draw background
+		if (gameController.getState() == GameController.STATE_READY) { // show the first view of this app, draw the craft at the center on screen.
 			canvas.drawBitmap(bmCraft, (screenWidth - Craft.WIDTH) / 2, screenHeight / 2, null);
 			return;
 		}
@@ -171,7 +167,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 		canvas.drawPath(path, paintGround);
 
 		// get the craft instance
-		Craft craft = gameController.getCraft();
+//		Craft craft = gameModel.getCraft();
 		
 		
 		// draw remains fuel
