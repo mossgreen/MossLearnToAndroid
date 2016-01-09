@@ -3,7 +3,7 @@ package com.feifei.marslander.game;
 import java.util.Random;
 import java.util.Vector;
 
-import com.feifei.marslander.Craft;
+import com.feifei.marslander.CraftModel;
 import com.feifei.marslander.Mars;
 
 import android.graphics.Path;
@@ -30,7 +30,7 @@ public class GameModel {
 	private final Random rdm = new Random(System.currentTimeMillis());//get a random value via Returns the current time in milliseconds
 
 	// object
-	private Craft craft;
+	private CraftModel craft;
 	private Mars mars;
 
 	public GameModel(int screenWidth, int screenHeight) {
@@ -56,15 +56,15 @@ public class GameModel {
 	 */
 	private void init() {
 		// create craft
-		int posX = Craft.WIDTH * 2 + rdm.nextInt(screenWidth - Craft.WIDTH * 4);
-		craft = new Craft(posX, 0, GRAVITY, PIXELMETERRATIO);
+		int posX = CraftModel.WIDTH * 2 + rdm.nextInt(screenWidth - CraftModel.WIDTH * 4);
+		craft = new CraftModel(posX, 0, GRAVITY, PIXELMETERRATIO);
 
-		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (Craft.WIDTH * 1.3f), Craft.WIDTH * 2, 300);
+		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (CraftModel.WIDTH * 1.3f), CraftModel.WIDTH * 2, 300);
 		//
 		timeStamp = System.nanoTime();
 	}
 
-	public Craft getCraft() {
+	public CraftModel getCraft() {
 		return craft;
 	}
 
@@ -86,16 +86,16 @@ public class GameModel {
 
 		// side
 		if (craft.getCenterX() < 0) {
-			craft.setX(screenWidth - Craft.WIDTH / 2);
+			craft.setX(screenWidth - CraftModel.WIDTH / 2);
 		} else if (craft.getCenterX() > screenWidth) {
-			craft.setX(-Craft.WIDTH / 2);
+			craft.setX(-CraftModel.WIDTH / 2);
 		}
 
 		// crash test
 		Path p = craft.genOutline();
 		p.op(mars.getGround(), Path.Op.INTERSECT);//Set this path to the result of applying the Op to this path and the specified path. 
 		if (!p.isEmpty()) {
-			if (!isFlatGround(craft.getX(), Craft.WIDTH)) {
+			if (!isFlatGround(craft.getX(), CraftModel.WIDTH)) {
 				state = STATE_CRASHED;
 			} else {
 				if (craft.getAngle() > 0) {

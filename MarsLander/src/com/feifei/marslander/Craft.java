@@ -1,10 +1,13 @@
 package com.feifei.marslander;
 
+import com.feifei.marslander.interfaces.Sprite;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Path;
+import android.graphics.Point;
 
-public class Craft {
+public class Craft implements Sprite {
 	
 
 	// constant
@@ -27,7 +30,7 @@ public class Craft {
 
 	
 	public Craft(int posX, int posY, float g, float r) {
-		craftModel = new CraftModel( g);
+//		craftModel = new CraftModel( g);
 		this.posX = posX;
 		this.posY = posY;
 		pixelMeterRatio = r;
@@ -135,5 +138,35 @@ public class Craft {
 	}
 	public void thrust() {
 		craftModel.thrust();
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Canvas canvas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPos(Point pos) {
+		// TODO Auto-generated method stub
+		
 	}
 }

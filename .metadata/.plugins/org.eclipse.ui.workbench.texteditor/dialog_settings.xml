@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="STATE_CRASHED" key="selection"/>
-		<item value="false" key="casesensitive"/>
+		<item value="GameModel" key="selection"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="STATE_CRASHED"/>
-			<item value="headAngle"/>
+			<item value="MarsLanderScene"/>
+			<item value="MENUSTART"/>
+			<item value="bmWon"/>
+			<item value="Thrust"/>
 			<item value="Thruster"/>
-			<item value="transform"/>
-			<item value="pixelMeterRatio"/>
-			<item value="MAIN_FLAME_CRAFT_HEIGHT "/>
-			<item value="SIDE_FLAME_CRAFT_HEIGHT "/>
-			<item value="Craft.HEIGHT"/>
+			<item value="THRUSTER"/>
+			<item value="victor"/>
+			<item value="feifei"/>
 		</list>
 		<list key="replacehistory">
+			<item value="GameModel"/>
+			<item value="MENU_START"/>
 			<item value="Engine"/>
+			<item value="ENGINE"/>
+			<item value="E"/>
+			<item value="feifei"/>
 			<item value="MAIN_FLAME_HEIGHT "/>
 			<item value="SIDE_FLAME_HEIGHT "/>
-			<item value="Craft.CRAFT_HEIGHT"/>
-			<item value="CRAFT_HEIGHT"/>
-			<item value="Craft.CRAFT_WIDTH"/>
-			<item value="public"/>
-			<item value="MarsLanderScene"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

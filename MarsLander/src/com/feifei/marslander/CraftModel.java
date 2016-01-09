@@ -1,10 +1,12 @@
 package com.feifei.marslander;
 
 import android.content.Context;
+import android.graphics.Matrix;
+import android.graphics.Path;
 import android.text.TextDirectionHeuristic;
 import android.content.Context;
 
-class CraftModel {
+public class CraftModel {
 	
 	
 	
@@ -43,15 +45,61 @@ class CraftModel {
 	private float accelX = 0;
 	private float accelY = 0;
 	
-	CraftModel(float g) {
+	
+	
+	// constant
+	public static final int WIDTH = 50;
+	public static final int HEIGHT = 73;
+	public static final int SIDE_FLAME_WIDTH = 12;
+	public static final int SIDE_FLAME_HEIGHT = 16;
+	public static final int MAIN_FLAME_WIDTH = 20;
+	public static final int MAIN_FLAME_HEIGHT = 27;
+
+	private static final float SIDE_FLAME_OFFSET_X = WIDTH / 2 - SIDE_FLAME_WIDTH;
+	private static final float SIDE_FLAME_OFFSET_Y = 27.0f;
+	private static final float MAIN_FLAME_OFFSET_X = -MAIN_FLAME_WIDTH / 2;
+	private static final float MAIN_FLAME_OFFSET_Y = 27.0f;
+
+	private int posX = 0; 
+	private int posY = 0; 
+	private float pixelMeterRatio;
+	
+	
+	
+	public CraftModel(int posX, int posY, float g, float r)  {
 		this.g = g;
 		this.accelY = g;
+		
+		this.posX = posX;
+		this.posY = posY;
+		pixelMeterRatio = r;
 	}
+	
+	/**
+	 * Get the craft's outline.
+	 * @return The path of the craft
+	 */
+	public Path genOutline(){
+		Path outline = new Path();
+		outline.moveTo(posX + WIDTH /2, posY);
+		outline.lineTo(posX + WIDTH, posY + HEIGHT /2);
+		outline.lineTo(posX + WIDTH, posY + HEIGHT);
+		outline.lineTo(posX, posY + HEIGHT);
+		outline.lineTo(posX, posY + HEIGHT / 2);
+		outline.close();
+		
+		Matrix m = new Matrix();
+		m.postRotate(getAngle(), getCenterX(), getCenterY());
+		outline.transform(m);
+		
+		return outline;
+	}
+	
 
 	/**
 	 * Turn right when the craft remains enough fuel.
 	 */
-	protected void turnRight() {
+	public void turnRight() {
 		if (isLeftEngineOn || fuelRemaining <= 0)
 			return;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
@@ -63,7 +111,7 @@ class CraftModel {
 	/**
 	 * Turn left when the craft remains enough fuel.
 	 */
-	protected void turnLeft() {
+	public void turnLeft() {
 		if (isRightEngineOn || fuelRemaining <= 0)
 			return;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
@@ -75,7 +123,7 @@ class CraftModel {
 	/**
 	 * Engine when the craft remains enough fuel.
 	 */
-	protected void thrust() {
+	public void thrust() {
 		if (isMainEngineOn || fuelRemaining <= 0)
 			return;
 		mainEngineTimespan = 0.0f;
@@ -83,40 +131,85 @@ class CraftModel {
 		isMainEngineOn = true;
 	}
 
-	protected float getFuelRemaining() {
+	public float getFuelRemaining() {
 		return fuelRemaining;
 	}
 
-	protected float getOffsetX() {
+	public float getOffsetX() {
 		return offsetX;
 	}
 
-	protected float getOffsetY() {
+	public float getOffsetY() {
 		return offsetY;
 	}
 
-	protected float getAngle() {
+	public float getAngle() {
 		return headAngle;
 	}
 
-	protected boolean IsLeftEngineOn() {
+	public boolean IsLeftEngineOn() {
 		return isLeftEngineOn;
 	}
 
-	protected boolean IsRightEngineOn() {
+	public boolean IsRightEngineOn() {
 		return isRightEngineOn;
 	}
 	
-	protected boolean IsMainEngineOn() {
+	public boolean IsMainEngineOn() {
 		return isMainEngineOn;
 	}
+	
+	public float getX() {
+		return posX;
+	}
+	
+	public void setX(int x){
+		posX = x;
+	}
+
+	public float getY() {
+		return posY;
+	}
+	public void setY(int y){
+		posY = y;
+	}
+	
+	public float getCenterX() {
+		return posX + WIDTH / 2;
+	}
+
+	public float getCenterY() {
+		return posY + HEIGHT / 2;
+	}
+
+	public float getLeftFlamePosX() {
+		return getCenterX() - SIDE_FLAME_OFFSET_X - SIDE_FLAME_WIDTH;
+	}
+
+	public float getRightFlamePosX() {
+		return getCenterX() + SIDE_FLAME_OFFSET_X;
+	}
+
+	public float getSideFlamePosY() {
+		return getCenterY() + SIDE_FLAME_OFFSET_Y;
+	}
+	
+	public float getMainFlamePosX() {
+		return getCenterX() + MAIN_FLAME_OFFSET_X;
+	}
+
+	public float getMainFlamePosY() {
+		return getCenterY() + MAIN_FLAME_OFFSET_Y;
+	}
+	
+	
 
 	/**
 	 * this code and Idea is from John casey
 	 * Update the status and position of the craft.
 	 * @param dt 
 	 */
-	protected void update(float dt) {
+	public void update(float dt) {
 		// s = vt + 1/2at^2
 		offsetX = veloX * dt + accelX * dt * dt/2;
 		offsetY = veloY * dt + accelY * dt * dt/2;
@@ -158,5 +251,8 @@ class CraftModel {
 				accelY = g;
 			}
 		}
+		
+		posX += pixelMeterRatio * getOffsetX();
+		posY += pixelMeterRatio * getOffsetY();
 	}
 }

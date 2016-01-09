@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 		if (itemId == MENU_START) {
-			view.getScene().startGame();
+			view.getGameModel().startGame();
 			return true;
 		}
 
@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
         bmMainFlame.setOnClickListener(new OnClickListener() {	
 			@Override
 			public void onClick(View v) {
-				view.getScene().getCraft().thrust();
+				view.getGameModel().getCraft().thrust();
 			}
 		});
         
@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
         btnLeftThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				view.getScene().getCraft().turnRight();
+				view.getGameModel().getCraft().turnRight();
 			}
 		});
 		
@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
         btnRightThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				view.getScene().getCraft().turnLeft();
+				view.getGameModel().getCraft().turnLeft();
 			}
 		});
     }
