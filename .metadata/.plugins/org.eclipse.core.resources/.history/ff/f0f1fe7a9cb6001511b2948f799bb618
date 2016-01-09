@@ -18,10 +18,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.feifei.marslander.Craft;
+import com.feifei.marslander.CraftModel;
 import com.feifei.marslander.R;
 import com.feifei.marslander.R.drawable;
 import com.feifei.marslander.R.integer;
-import com.feifei.marslander.model.CraftModel;
 
 /**
  * This class is mainly used for draw the mars lander view and pre-loads corresponding resources into bitmap.

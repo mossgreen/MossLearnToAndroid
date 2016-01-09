@@ -18,10 +18,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.feifei.marslander.Craft;
+import com.feifei.marslander.CraftModel;
 import com.feifei.marslander.R;
 import com.feifei.marslander.R.drawable;
 import com.feifei.marslander.R.integer;
-import com.feifei.marslander.model.CraftModel;
 
 /**
  * This class is mainly used for draw the mars lander view and pre-loads corresponding resources into bitmap.
@@ -90,13 +91,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 		gameModel = new GameModel(screenWidth, screenHeight);
 
 		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
-		bmCraft = Bitmap.createScaledBitmap(temp, CraftModel.WIDTH, CraftModel.HEIGHT, true);
+		bmCraft = Bitmap.createScaledBitmap(temp, Craft.WIDTH, Craft.HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_left);
-		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, CraftModel.HEIGHT, CraftModel.WIDTH, true);
+		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_right);
-		bmCraftFallRight = Bitmap.createScaledBitmap(temp, CraftModel.HEIGHT, CraftModel.WIDTH, true);
+		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.boom);
 		bmBoom = Bitmap.createScaledBitmap(temp, 50, 38, true);
@@ -109,10 +110,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 		
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.flame);
-		bmSideFlame = Bitmap.createScaledBitmap(temp, CraftModel.SIDE_FLAME_WIDTH, CraftModel.SIDE_FLAME_HEIGHT, true);
+		bmSideFlame = Bitmap.createScaledBitmap(temp, Craft.SIDE_FLAME_WIDTH, Craft.SIDE_FLAME_HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.flame);
-		bmMainFlame = Bitmap.createScaledBitmap(temp, CraftModel.MAIN_FLAME_WIDTH, CraftModel.MAIN_FLAME_HEIGHT, true);
+		bmMainFlame = Bitmap.createScaledBitmap(temp, Craft.MAIN_FLAME_WIDTH, Craft.MAIN_FLAME_HEIGHT, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 		bmBackground = Bitmap.createScaledBitmap(temp, screenWidth, screenHeight, true);
@@ -158,7 +159,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 	private void doDraw(Canvas canvas) {
 		canvas.drawBitmap(bmBackground, 0, 0, null);// draw background
 		if (gameModel.getState() == GameModel.STATE_READY) { // show the first view of this app, draw the craft at the center on screen.
-			canvas.drawBitmap(bmCraft, (screenWidth - CraftModel.WIDTH) / 2, screenHeight / 2, null);
+			canvas.drawBitmap(bmCraft, (screenWidth - Craft.WIDTH) / 2, screenHeight / 2, null);
 			return;
 		}
 

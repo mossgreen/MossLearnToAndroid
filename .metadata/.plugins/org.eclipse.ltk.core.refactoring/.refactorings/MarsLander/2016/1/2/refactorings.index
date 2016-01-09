@@ -25,3 +25,6 @@
 1452313855552	Rename type 'MarsLanderScene'
 1452313931218	Rename type 'MarsLanderView'
 1452314088954	Move compilation units
+1452321519913	Rename field 'craft'
+1452321777863	Delete element
+1452322056526	Move compilation units

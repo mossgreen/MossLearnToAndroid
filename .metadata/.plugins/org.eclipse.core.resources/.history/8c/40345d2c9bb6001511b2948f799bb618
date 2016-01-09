@@ -1,5 +1,4 @@
 package com.feifei.marslander;
-import com.feifei.marslander.game.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +12,7 @@ import android.widget.ImageButton;
 public class MainActivity extends Activity {
 	private static final String APP_TAG = "MARSLANDER";
     private  final int MENU_START = 0;
-    private GameView gameView;
+    private com.feifei.marslander.game.GameView view;
     private ImageButton bmMainFlame, btnLeftThruster, btnRightThruster;
     
     @Override
@@ -28,7 +27,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 		if (itemId == MENU_START) {
-			gameView.getGameModel().startGame();
+			view.getGameModel().startGame();
 			return true;
 		}
 
@@ -40,12 +39,12 @@ public class MainActivity extends Activity {
     	Log.d(APP_TAG, "create activity");
         super.onCreate(savedInstanceState);        
         setContentView(R.layout.lander_layout); // set the content view or our widget lookups will fail
-        gameView = (com.feifei.marslander.game.GameView)findViewById(R.id.MarsLanderView);
+        view = (com.feifei.marslander.game.GameView)findViewById(R.id.MarsLanderView);
         bmMainFlame = (ImageButton)findViewById(R.id.btnThruster);
         bmMainFlame.setOnClickListener(new OnClickListener() {	
 			@Override
 			public void onClick(View v) {
-				gameView.getGameModel().getCraft().thrust();
+				view.getGameModel().getCraft().thrust();
 			}
 		});
         
@@ -53,7 +52,7 @@ public class MainActivity extends Activity {
         btnLeftThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				gameView.getGameModel().getCraft().turnRight();
+				view.getGameModel().getCraft().turnRight();
 			}
 		});
 		
@@ -61,7 +60,7 @@ public class MainActivity extends Activity {
         btnRightThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				gameView.getGameModel().getCraft().turnLeft();
+				view.getGameModel().getCraft().turnLeft();
 			}
 		});
     }
