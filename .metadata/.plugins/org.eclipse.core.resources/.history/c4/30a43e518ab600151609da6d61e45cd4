@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <com.feifei.marslander.game.GameView
+    <com.feifei.marslander.GameView
         android:id="@+id/MarsLanderView"
         android:layout_width="fill_parent"
         android:layout_height="match_parent" />

@@ -7,12 +7,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import com.feifei.marslander.R;
 
 
 public class MainActivity extends Activity {
 	private static final String APP_TAG = "MARSLANDER";
     private  final int MENU_START = 0;
-    private com.feifei.marslander.game.GameView view;
+    private GameView view;
     private ImageButton bmMainFlame, btnLeftThruster, btnRightThruster;
     
     @Override
@@ -39,7 +40,7 @@ public class MainActivity extends Activity {
     	Log.d(APP_TAG, "create activity");
         super.onCreate(savedInstanceState);        
         setContentView(R.layout.lander_layout); // set the content view or our widget lookups will fail
-        view = (com.feifei.marslander.game.GameView)findViewById(R.id.MarsLanderView);
+        view = (GameView)findViewById(R.id.MarsLanderView);
         bmMainFlame = (ImageButton)findViewById(R.id.btnThruster);
         bmMainFlame.setOnClickListener(new OnClickListener() {	
 			@Override
