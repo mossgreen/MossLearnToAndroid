@@ -126,6 +126,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
 		bmCraft = Bitmap.createScaledBitmap(temp, Craft.WIDTH, Craft.HEIGHT, true);
 
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_left);
+		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
+
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_right);
+		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.boom);
 		bmBoom = Bitmap.createScaledBitmap(temp, 50, 38, true);
