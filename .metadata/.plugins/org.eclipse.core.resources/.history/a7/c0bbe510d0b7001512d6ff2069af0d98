@@ -1,9 +1,7 @@
 package com.feifei.marslander.game;
 
-import java.io.File;
-import java.io.IOException;
-
 import com.feifei.marslander.R;
+import com.feifei.marslander.R.string;
 import com.feifei.marslander.model.Craft;
 
 import android.content.Context;
@@ -18,9 +16,7 @@ import android.graphics.Paint.Style;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.Shader;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -169,7 +165,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		holder.setFormat(PixelFormat.TRANSPARENT);
 		holder.addCallback(this);
 	}
-	
 	
 
 
