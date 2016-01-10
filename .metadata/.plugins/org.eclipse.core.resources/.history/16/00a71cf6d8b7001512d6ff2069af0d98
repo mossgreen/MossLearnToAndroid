@@ -1,5 +1,8 @@
 package com.feifei.marslander.game;
 
+import java.io.File;
+import java.io.IOException;
+
 import com.feifei.marslander.R;
 import com.feifei.marslander.model.Craft;
 
@@ -15,7 +18,9 @@ import android.graphics.Paint.Style;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.Shader;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -52,7 +57,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	private int screenWidth;
 	private int screenHeight;
 	
-	//variables for drawing fuel on the screen
+	//some int
 	private int fuelPositionX;
 	private int fuelPositionY;
 	private int fuelPainterSize;
@@ -62,6 +67,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	Thread mainThread;
 	
 	//initialize the reference to model object
+	private Craft craft;
 	private GameLoop gameLoop;
 
 	/**

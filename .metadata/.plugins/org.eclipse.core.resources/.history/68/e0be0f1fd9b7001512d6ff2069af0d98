@@ -52,7 +52,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	private int screenWidth;
 	private int screenHeight;
 	
-	//variables for drawing fuel on the screen
+	//some int
 	private int fuelPositionX;
 	private int fuelPositionY;
 	private int fuelPainterSize;
@@ -62,6 +62,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	Thread mainThread;
 	
 	//initialize the reference to model object
+	private Craft craft;
 	private GameLoop gameLoop;
 
 	/**

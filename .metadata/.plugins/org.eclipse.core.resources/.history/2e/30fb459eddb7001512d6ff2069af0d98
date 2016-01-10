@@ -120,8 +120,8 @@ public class Craft {
 	 */
 	public void turnRight() {
 		
-		/* if the left engine is already on
-		 *  or the craft's fuel gauge is empty
+		/* if the left engine is on
+		 *  or using out of the fuel
 		 *  the craft cannot turn right
 		 *  otherwise, the craft will rotate to the right a little bit
 		 *  and set the left engine status to true
@@ -139,14 +139,6 @@ public class Craft {
 	 * Turn left when the craft remains enough fuel.
 	 */
 	public void turnLeft() {
-		
-		/* if the right engine is is already on
-		 *  or the craft's fuel gauge is empty
-		 *  the craft cannot turn left
-		 *  otherwise, the craft will rotate to the right a little bit
-		 *  and set the right engine status to true
-		 *  this movement will consume certain fuel
-		 */
 		if (isRightEngineOn || fuelRemaining <= 0)
 			return;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
@@ -160,14 +152,6 @@ public class Craft {
 	 * and consume fuel when engine started
 	 */
 	public void thrust() {
-		
-		/* if the main engine is already on
-		 *  or the craft's fuel gauge is empty
-		 *  the craft cannot thrust up
-		 *  otherwise, the craft will thrust a little bit
-		 *  and set the main engine status to true
-		 *  this movement will consume certain fuel
-		 */
 		if (isMainEngineOn || fuelRemaining <= 0)
 			return;
 		mainEngineTimespan = 0.0f;

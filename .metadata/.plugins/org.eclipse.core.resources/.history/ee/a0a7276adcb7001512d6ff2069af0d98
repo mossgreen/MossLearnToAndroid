@@ -19,7 +19,7 @@ public class Craft {
 	public static final int SIDE_FLAME_WIDTH = 12;
 	public static final int SIDE_FLAME_HEIGHT = 16;
 	public static final int MAIN_FLAME_WIDTH = 20;
-	public static final int MAIN_FLAME_HEIGHT = 27;
+	public static final int MAIN_FLAME_HEIGHT = 30;
 
 	private static final float SIDE_FLAME_OFFSET_X = WIDTH / 2 - SIDE_FLAME_WIDTH;
 	private static final float SIDE_FLAME_OFFSET_Y = 27.0f;
@@ -85,26 +85,17 @@ public class Craft {
 
 	/**
 	 * Get the craft's outline.
-	 * wrap the craft by using path
+	 * this path is wrapping the craft and the engine outline
 	 * 
 	 * @return The path of the craft
 	 */
 	public Path genOutline() {
-		
-		/* five points indicate five positions of the craft
-		 * from the top point of the craft
-		 * to right side from top to bottom
-		 * then bottom from right to left
-		 * then left side, from bottom to top
-		 * at last, go back to the top point of craft
-		 */
-		
 		Path outline = new Path();
 		outline.moveTo(posX + WIDTH / 2, posY);
-		outline.lineTo(posX + WIDTH, posY + HEIGHT / 2);
-		outline.lineTo(posX + WIDTH, posY + HEIGHT);
-		outline.lineTo(posX, posY + HEIGHT);
-		outline.lineTo(posX, posY + HEIGHT / 2);
+		outline.lineTo(posX + WIDTH, (posY + HEIGHT/2 +(int)MAIN_FLAME_OFFSET_Y));
+		outline.lineTo(posX + WIDTH, (posY + HEIGHT +(int)MAIN_FLAME_OFFSET_Y));
+		outline.lineTo(posX, (posY + HEIGHT +(int)MAIN_FLAME_OFFSET_Y));
+		outline.lineTo(posX, (posY + HEIGHT/2 +(int)MAIN_FLAME_OFFSET_Y));
 		outline.close();
 
 		//matrix for transforming coordinates of craft object
@@ -119,14 +110,6 @@ public class Craft {
 	 * Turn right when the craft remains enough fuel.
 	 */
 	public void turnRight() {
-		
-		/* if the left engine is already on
-		 *  or the craft's fuel gauge is empty
-		 *  the craft cannot turn right
-		 *  otherwise, the craft will rotate to the right a little bit
-		 *  and set the left engine status to true
-		 *  this movement will consume certain fuel
-		 */
 		if (isLeftEngineOn || fuelRemaining <= 0)
 			return;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
@@ -139,14 +122,6 @@ public class Craft {
 	 * Turn left when the craft remains enough fuel.
 	 */
 	public void turnLeft() {
-		
-		/* if the right engine is is already on
-		 *  or the craft's fuel gauge is empty
-		 *  the craft cannot turn left
-		 *  otherwise, the craft will rotate to the right a little bit
-		 *  and set the right engine status to true
-		 *  this movement will consume certain fuel
-		 */
 		if (isRightEngineOn || fuelRemaining <= 0)
 			return;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
@@ -160,14 +135,6 @@ public class Craft {
 	 * and consume fuel when engine started
 	 */
 	public void thrust() {
-		
-		/* if the main engine is already on
-		 *  or the craft's fuel gauge is empty
-		 *  the craft cannot thrust up
-		 *  otherwise, the craft will thrust a little bit
-		 *  and set the main engine status to true
-		 *  this movement will consume certain fuel
-		 */
 		if (isMainEngineOn || fuelRemaining <= 0)
 			return;
 		mainEngineTimespan = 0.0f;
