@@ -48,26 +48,23 @@ public class Mars {
 	 * Generates map
 	 */
 	private void generateMap() {
-		// initialize the map container
+		//
 		map = new Vector<Point>();
 		ground = null;
 		
 		Point currP, newP;
 		
-		//start from the left bottom of the screen
-		//than extends to right of the screen
 		map.add(new Point(0, screenHeight));
 		currP = new Point(0, screenHeight - BASE_HEIGHT - rdm.nextInt(maxHeight));
 		map.add(currP);
 
-		//generate the first slope
+		//first slope
 		newP = getSlopeEnd(currP);
 		if (newP != null) {
 			currP = newP;
 			map.add(currP);
 		}
 		
-		// add new slope in the map if there is enough space for another slope
 		while (remainingSlopeWidth > 0 || remainingFlatWidth > 0) {
 			if (rdm.nextBoolean()) {
 				// flat
@@ -86,7 +83,7 @@ public class Mars {
 	}
 	
 	/**
-	 * getter of  ground points.
+	 * Gets ground points.
 	 * @return Vector The ground points
 	 */
 	public Vector<Point> getGroundPoints(){
