@@ -28,6 +28,8 @@ public class GameLoop {
 	public static final int STATE_RUNNING = 1;
 	public static final int STATE_WON = 2;
 	public static final int STATE_CRASHED = 3;
+	public static final int STATE_FALL_LEFT = 4;
+	public static final int STATE_FALL_RIGHT = 5;
 	private int state = STATE_READY;
 	
 	
@@ -132,7 +134,6 @@ public class GameLoop {
 		go and check whether the ground is flat.
 		if it's not a flat ground, indicates the craft is crashed.
 		if the ground is flat, however the craft is not standing up, also indicated that the craft is crashed.
-		otherwise, the craft is landed on mars successfully.
 		*/
 
 		Path p = craft.genOutline();
@@ -141,8 +142,10 @@ public class GameLoop {
 			if (!isFlatGround(craft.getX(), Craft.WIDTH)) {
 				state = STATE_CRASHED;
 			} else {
-				if (craft.getAngle() != 0) {
-					state = STATE_CRASHED;
+				if (craft.getAngle() > 0) {
+					state = STATE_FALL_RIGHT;
+				} else if (craft.getAngle() < 0) {
+					state = STATE_FALL_LEFT;
 				} else {
 					state = STATE_WON;
 				}

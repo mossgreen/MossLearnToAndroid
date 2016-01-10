@@ -250,6 +250,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
 			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
 			return;
+		} else if (gameLoop.getState() == GameLoop.STATE_FALL_LEFT) { 
+			canvas.drawBitmap(bmCraftFallLeft, craft.getX(), craft.getCenterY(), null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
+			return;
+		} else if (gameLoop.getState() == GameLoop.STATE_FALL_RIGHT) {
+			canvas.drawBitmap(bmCraftFallRight, craft.getCenterX(), craft.getCenterY(), null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
+			return;
 		} else if (gameLoop.getState() == GameLoop.STATE_WON) {
 			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmWon, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);

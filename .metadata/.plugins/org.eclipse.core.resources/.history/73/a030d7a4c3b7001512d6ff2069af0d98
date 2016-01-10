@@ -28,6 +28,8 @@ public class GameLoop {
 	public static final int STATE_RUNNING = 1;
 	public static final int STATE_WON = 2;
 	public static final int STATE_CRASHED = 3;
+	public static final int STATE_FALL_LEFT = 4;
+	public static final int STATE_FALL_RIGHT = 5;
 	private int state = STATE_READY;
 	
 	
@@ -126,23 +128,20 @@ public class GameLoop {
 			craft.setX(-Craft.WIDTH / 2);
 		}
 
-		/*to detect when the space craft intersects with the mars landscape. 
-		set this path to the result of applying the Op to this path and the specified path. 
-		if there is intersection indicates that craft is on the mars now.
-		go and check whether the ground is flat.
-		if it's not a flat ground, indicates the craft is crashed.
-		if the ground is flat, however the craft is not standing up, also indicated that the craft is crashed.
-		otherwise, the craft is landed on mars successfully.
-		*/
-
+//to detect when the space craft intersects with the martian landscape. 
+		///set this path to the result of applying the Op to this path and the specified path.
 		Path p = craft.genOutline();
+		
+		
 		p.op(mars.getGround(), Path.Op.INTERSECT); 
 		if (!p.isEmpty()) {
 			if (!isFlatGround(craft.getX(), Craft.WIDTH)) {
 				state = STATE_CRASHED;
 			} else {
-				if (craft.getAngle() != 0) {
-					state = STATE_CRASHED;
+				if (craft.getAngle() > 0) {
+					state = STATE_FALL_RIGHT;
+				} else if (craft.getAngle() < 0) {
+					state = STATE_FALL_LEFT;
 				} else {
 					state = STATE_WON;
 				}

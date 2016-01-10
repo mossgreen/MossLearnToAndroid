@@ -132,7 +132,6 @@ public class GameLoop {
 		go and check whether the ground is flat.
 		if it's not a flat ground, indicates the craft is crashed.
 		if the ground is flat, however the craft is not standing up, also indicated that the craft is crashed.
-		otherwise, the craft is landed on mars successfully.
 		*/
 
 		Path p = craft.genOutline();
