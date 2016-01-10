@@ -199,8 +199,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 					canvas = holder.lockCanvas();
 					doDraw(canvas);
 					
-					// sorry, not enough time to fix the sound bugs...shame
-					//playSound();
+					
+					playSound();
 				}
 				Thread.sleep(REFRESH_RATE);
 			} catch (Exception e) {
@@ -248,11 +248,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 
 		
 		//rotate the craft if the head angle is changed
-		if(gameLoop.getState() != GameLoop.STATE_CRASHED){
-			matrix.reset();
-			matrix.setTranslate(craft.getX(), craft.getY());
-			matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
-		}
+		matrix.reset();
+		matrix.setTranslate(craft.getX(), craft.getY());
+		matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
 
 		if (gameLoop.getState() == GameLoop.STATE_CRASHED) {
 			canvas.drawBitmap(bmCraft, matrix, null);
