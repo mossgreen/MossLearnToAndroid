@@ -68,18 +68,15 @@ public class GameLoop {
 	}
 
 	/**
-	 * initialize craft and mars objects
-	 * get the most precise time stamp which is  available in the local system
+	 * Create the craft and obtain the time stamp value via the current 
+	 * time stamp of the most precise timer available on the local system, in nanoseconds.
 	 */
 	private void init() {
-		//set the x position of the craft in coordinate with random
-		int posX = Craft.WIDTH* 2 + rdm.nextInt(screenWidth - Craft.WIDTH * 4);
-		
-		//initialize craft object
+		// create craft
+		int posX = craft.getCraftWidth() * 2 + rdm.nextInt(screenWidth - craft.getCraftWidth() * 4);
 		craft = new Craft(posX, 0, GRAVITY, PIXELMETERRATIO);
 
-		//initialize mras object
-		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (Craft.WIDTH* 1.0f), Craft.WIDTH * 2, 300);
+		mars = new Mars(0.3f, screenWidth, screenHeight, (int) (craft.getCraftWidth()* 1.0f), craft.getCraftWidth() * 2, 300);
 		//
 		timeStamp = System.nanoTime();
 	}
