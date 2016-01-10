@@ -11,32 +11,36 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.util.Log;
 
+
 /**
- * @author com.victor.marslander, modified by Feifei GU in Jan/11/2016. this is
- *         an Assignment of subject ISCG7424 Mobile Application Development of
- *         Unitec, NZ. Code illustrates collision detection and models gravity
- *         using synthetic time.
+ * @author credited to com.victor.marslander, modified by Feifei GU Jan/11/2016. Assignment
+ *         of subject ISCG7424 Mobile Application Development of Unitec, NZ.
+ * 
  */
 public class GameLoop {
 
+
+	
+	
 	// game status constants
 	public static final int STATE_READY = 0;
 	public static final int STATE_RUNNING = 1;
 	public static final int STATE_WON = 2;
 	public static final int STATE_CRASHED = 3;
 	public static final int STATE_GAMEOVER = 4;
-
-	// set game state to ready
+	
+	//set game state to ready
 	private int state = STATE_READY;
-
+	
+	
 	// the screen width and height value
 	private int screenWidth;
 	private int screenHeight;
-
+	
 	// get the time stamp
-	private long timeStamp;
-
-	// get a random value via Returns the current time in milliseconds
+	private long timeStamp; 
+	
+	//get a random value via Returns the current time in milliseconds
 	private final Random rdm = new Random(System.currentTimeMillis());
 
 	// get references to objects in model package
@@ -45,7 +49,6 @@ public class GameLoop {
 
 	/**
 	 * constructor
-	 * 
 	 * @param screenWidth
 	 * @param screenHeight
 	 */
@@ -56,8 +59,9 @@ public class GameLoop {
 	}
 
 	/**
-	 * set the game to start. will initialize craft and mars objects and set the
-	 * game status to running
+	 * set the game to start.
+	 * will initialize craft and mars objects
+	 * and set the game status to running
 	 */
 	public void startGame() {
 		init();
@@ -65,25 +69,24 @@ public class GameLoop {
 	}
 
 	/**
-	 * initialize craft and mars objects get the most precise time stamp which
-	 * is available in the local system
+	 * initialize craft and mars objects
+	 * get the most precise time stamp which is  available in the local system
 	 */
 	private void init() {
-		// set the x position of the craft in coordinate with random
-		int posX = Craft.WIDTH * 2 + rdm.nextInt(screenWidth - Craft.WIDTH * 4);
-
-		// initialize craft object
+		//set the x position of the craft in coordinate with random
+		int posX = Craft.WIDTH* 2 + rdm.nextInt(screenWidth - Craft.WIDTH * 4);
+		
+		//initialize craft object
 		craft = new Craft(posX, 0);
 
-		// initialize mras object
-		mars = new Mars(screenWidth, screenHeight, Craft.WIDTH, Craft.WIDTH * 2);
+		//initialize mras object
+		mars = new Mars( screenWidth, screenHeight,  Craft.WIDTH , Craft.WIDTH * 2 );
 		//
 		timeStamp = System.nanoTime();
 	}
 
 	/**
 	 * getter of craft object
-	 * 
 	 * @return craft object
 	 */
 	public Craft getCraft() {
@@ -92,7 +95,6 @@ public class GameLoop {
 
 	/**
 	 * getter of the mars object
-	 * 
 	 * @return mars object
 	 */
 	public Mars getMars() {
@@ -101,14 +103,13 @@ public class GameLoop {
 
 	/**
 	 * getter of the game state
-	 * 
 	 * @return game state
 	 */
 	public int getState() {
 		return state;
 	}
-
-	public void setState(int state) {
+	
+	public void setState(int state){
 		this.state = state;
 	}
 
@@ -116,36 +117,32 @@ public class GameLoop {
 	 * Update all of the x_y positions in coordinate, and do crash test.
 	 */
 	public void update() {
-
-		// update craft with dt, which is to updated it in a very short of time
+		
+		//update craft with dt, which is to updated it in a very short of time
 		final long t = System.nanoTime();
 		final float extremelySmallNumber = 1.0f / 1000000000.0f;
 		final float dt = (float) (t - timeStamp) * extremelySmallNumber;
 		craft.update(dt);
 
-		/*
-		 * wrap around terrain: when a player goes to a left or right game
-		 * boundary instead of being blocked they will pass through to the
-		 * opposite side of the game field
-		 */
+		/*wrap around terrain: when a player goes to a left or right game boundary instead of
+		being blocked they will pass through to the opposite side of the game field */
 		if (craft.getCenterX() < 0) {
 			craft.setX(screenWidth - Craft.WIDTH / 2);
 		} else if (craft.getCenterX() > screenWidth) {
 			craft.setX(-Craft.WIDTH / 2);
 		}
 
-		/*
-		 * to detect when the space craft intersects with the mars landscape.
-		 * set this path to the result of applying the Op to this path and the
-		 * specified path. if there is intersection indicates that craft is on
-		 * the mars now. go and check whether the ground is flat. if it's not a
-		 * flat ground, indicates the craft is crashed. if the ground is flat,
-		 * however the craft is not standing up, also indicated that the craft
-		 * is crashed. otherwise, the craft is landed on mars successfully.
-		 */
+		/*to detect when the space craft intersects with the mars landscape. 
+		set this path to the result of applying the Op to this path and the specified path. 
+		if there is intersection indicates that craft is on the mars now.
+		go and check whether the ground is flat.
+		if it's not a flat ground, indicates the craft is crashed.
+		if the ground is flat, however the craft is not standing up, also indicated that the craft is crashed.
+		otherwise, the craft is landed on mars successfully.
+		*/
 
 		Path p = craft.genOutline();
-		p.op(mars.getGround(), Path.Op.INTERSECT);
+		p.op(mars.getGround(), Path.Op.INTERSECT); 
 		if (!p.isEmpty()) {
 			if (!isFlatGround(craft.getX(), Craft.WIDTH)) {
 				state = STATE_CRASHED;
@@ -162,11 +159,8 @@ public class GameLoop {
 
 	/**
 	 * Test for whether the craft landed on the flat ground.
-	 * 
-	 * @param x
-	 *            The x point value.
-	 * @param w
-	 *            The distance from x.
+	 * @param x The x point value.
+	 * @param w The distance from x.
 	 * @return boolean True for land is flat otherwise return false.
 	 */
 	private boolean isFlatGround(float x, int w) {

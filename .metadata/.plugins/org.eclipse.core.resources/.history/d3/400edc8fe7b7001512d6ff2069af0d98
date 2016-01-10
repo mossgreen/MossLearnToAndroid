@@ -49,7 +49,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	private Paint paintGround;
 	Matrix matrix = new Matrix();
 
-	// screen values
+	// game using
 	private int screenWidth;
 	private int screenHeight;
 

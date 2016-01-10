@@ -49,7 +49,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	private Paint paintGround;
 	Matrix matrix = new Matrix();
 
-	// screen values
+	// game using
 	private int screenWidth;
 	private int screenHeight;
 
@@ -120,10 +120,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	 */
 	public void init() {
 
-		//initialize the reference to the gameloop
+		//
 		gameLoop = new GameLoop(screenWidth, screenHeight);
-		
-		//initialize the bitmap resources that will be used in this class
+
 		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
 		bmCraft = Bitmap.createScaledBitmap(temp, Craft.WIDTH, Craft.HEIGHT, true);
 
@@ -170,12 +169,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	 * Setup the flag to play the sound of landing and crashing.
 	 */
 	private void playSound() {
-		
-		/*
-		 * i didn't finish the sound playing yet, and of course
-		 * this method is not called yet.
-		 * will fix it later
-		 */
 		if (gameLoop.getState() == GameLoop.STATE_WON) {
 			landing.start();
 			gameLoop.setState(GameLoop.STATE_GAMEOVER);
@@ -213,23 +206,19 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	}
 
 	/**
-	 * Draw background, craft, fuel gauge, crash picture and win picture etc.
+	 * Draw background, craft, fuel, crash and win etc.
 	 * 
 	 * @param canvas
 	 *            The draw canvas.
 	 */
 	private void doDraw(Canvas canvas) {
 
-		// draw background first
+		// draw background
 		canvas.drawBitmap(bmBackground, 0, 0, null);
 
-		// draw the starting view, in which the craft is at the center of screen
-		if (gameLoop.getState() == GameLoop.STATE_READY) {
-			canvas.drawBitmap(bmCraft, (screenWidth - Craft.WIDTH) / 2, screenHeight / 2, null);
-			return;
-		}
 
-		// get the ground points map and draw ground path
+
+		// get the ground points map
 		Path path = gameLoop.getMars().getGround();
 		canvas.drawPath(path, paintGround);
 
@@ -244,6 +233,16 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 
 		//draw the craft on the canvas
 		drawCraft(canvas, craft);
+		
+		// show the first view of this app, draw the craft at the center on
+		// screen.
+		drawStarting(canvas);
+	}
+
+	private void drawStarting(Canvas canvas) {
+		if (gameLoop.getState() == GameLoop.STATE_READY) {
+			canvas.drawBitmap(bmCraft, (screenWidth - Craft.WIDTH) / 2, screenHeight / 2, null);
+		}
 	}
 
 	/**
@@ -256,11 +255,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		paint.setColor(Color.WHITE);
 		paint.setStyle(Style.FILL);
 		paint.setTextSize(fuelPainterSize);
-		
-		/* the position of the fuel gauge is fixed
-		 * at the position of (screenWidth - fuelPositionX, fuelPositionY)
-		 * which indicates the right top of the screen
-		*/
 		canvas.drawText(drawFuel + craft.getFuelRemaining(), screenWidth - fuelPositionX, fuelPositionY, paint);
 	}
 
@@ -269,10 +263,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	 * @param craft
 	 */
 	private void rotateCraft(Craft craft) {
-		
-		/*
-		 * this method rotate the craft by using matrix
-		 */
 		if (gameLoop.getState() != GameLoop.STATE_CRASHED) {
 			matrix.reset();
 			matrix.setTranslate(craft.getX(), craft.getY());
@@ -290,11 +280,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	 * @param craft
 	 */
 	private void drawCraft(Canvas canvas, Craft craft) {
-		
-		//draw the craft first, because it will show in the view anyway
 		canvas.drawBitmap(bmCraft, matrix, null);
 
-		//then, check the state of the game
 		if (gameLoop.getState() == GameLoop.STATE_CRASHED) {
 			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
 			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 3, null);
@@ -304,13 +291,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 
 			if (gameLoop.getState() == GameLoop.STATE_RUNNING) {
 
-				/*
-				 * the following code is drawing  flames of the engines of the craft
-				 * the flames will also be rotated  with the angle of craft
-				 * the code firstly check the engines's status
-				 * and draw the right flame
-				 * 
-				 */
+				// flame
 				if (craft.IsLeftEngineOn()) {
 					matrix.reset();
 					matrix.setTranslate(craft.getLeftFlamePosX(), craft.getSideFlamePosY());
@@ -335,10 +316,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		}
 	}
 
-	/**
-	 * on touch listener
-	 * control the left and right engine of craft
-	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
@@ -350,6 +327,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 				gameLoop.getCraft().turnLeft();
 			}
 		} else if (action == MotionEvent.ACTION_UP) {
+			Log.i("FFF", "AAAAAA");
 		}
 
 		return super.onTouchEvent(event);
