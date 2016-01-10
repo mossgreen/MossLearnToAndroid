@@ -12,7 +12,46 @@ import android.content.Context;
  * 
  */
 public class Craft {
+
+	// the left/right thruster last times duration
+	private final float SIDE_ENGINE_DURATION = 1.0f;
+	private static final float MAIN_ENGINE_DURATION = 1.0f; 
 	
+	// The accelerate of thruster
+
+	private static final float MAIN_ENGINE_ACCEL = 7.0f; 
+	private static final float SIDE_ENGINE_ACCEL = 5.0f; 
+
+	private static final float FUEL_CONSUME = 2.0f; // Consumed fuel on each
+													// fire
+
+	// state
+	private float headAngle = 0.0f; // in degree;
+	private boolean isMainEngineOn = false; // if main thruster fired
+	private float mainEngineTimespan;// control the time of main thruster's
+	private boolean isLeftEngineOn = false;// if left thruster fired
+	private float leftEngineTimespan;
+	private boolean isRightEngineOn = false;// if right thruster fired
+	private float rightEngineTimespan;
+	private float fuelRemaining = 100.00f;
+
+	// position
+	private float offsetX = 0; // in meter
+	private float offsetY = 0; // in meter
+
+	// velocity in meters/second
+	
+
+	private float veloX = 0;
+	private float veloY = 0;
+
+
+	// acceleration in meters/second^2
+	private final float GRAVITY = 2.0f; 
+	private float g = GRAVITY; 
+	private float accelX = 0;
+	private float accelY = GRAVITY;
+
 	// constant
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 73;
@@ -25,41 +64,7 @@ public class Craft {
 	private static final float SIDE_FLAME_OFFSET_Y = 27.0f;
 	private static final float MAIN_FLAME_OFFSET_X = -MAIN_FLAME_WIDTH / 2;
 	private static final float MAIN_FLAME_OFFSET_Y = 27.0f;
-
-	// the left/right thruster last times duration
-	private final float SIDE_ENGINE_DURATION = 1.0f;
-	private static final float MAIN_ENGINE_DURATION = 1.0f; 
 	
-	// The accelerate of thruster
-	private static final float MAIN_ENGINE_ACCEL = 7.0f; 
-	private static final float SIDE_ENGINE_ACCEL = 5.0f; 
-
-	//fuel consumption of each thruster
-	private static final float FUEL_CONSUME = 2.0f; 
-
-	// craft state
-	private boolean isMainEngineOn = false;
-	private float mainEngineTimespan;
-	private boolean isLeftEngineOn = false;
-	private float leftEngineTimespan;
-	private boolean isRightEngineOn = false;
-	private float rightEngineTimespan;
-	private float fuelRemaining = 100.00f;
-
-	// position
-	private float offsetX = 0; // in meter
-	private float offsetY = 0; // in meter
-
-	// velocity in meters/second
-	private float veloX = 0;
-	private float veloY = 0;
-
-
-	// acceleration in meters/second^2
-	private final float GRAVITY = 2.0f; 
-	private float g = GRAVITY; 
-	private float accelX = 0;
-	private float accelY = GRAVITY;
 
 	// position of craft in coordinate 
 	private int posX = 0;
@@ -67,7 +72,6 @@ public class Craft {
 	private float pixelMeterRatio = 8;
 	
 	//angel of the craft
-	private float headAngle = 0.0f; 
 	private final float ANGLE_CHANGED = 18.0f;
 
 
@@ -269,18 +273,10 @@ public class Craft {
 		return getCenterY() + SIDE_FLAME_OFFSET_Y;
 	}
 
-	/**
-	 * getter of the main engine's flame's x position
-	 * @return
-	 */
 	public float getMainFlamePosX() {
 		return getCenterX() + MAIN_FLAME_OFFSET_X;
 	}
 
-	/**
-	 * getter of main engine's main flame's y position
-	 * @return
-	 */
 	public float getMainFlamePosY() {
 		return getCenterY() + MAIN_FLAME_OFFSET_Y;
 	}
@@ -299,13 +295,6 @@ public class Craft {
 		// v' = v + at
 		veloX += accelX * dt;
 		veloY += accelY * dt;
-		
-		/*
-		 * if any engine is on, 
-		 * there will an accelerate to the x and y position align with the head_angle of the craft
-		 * thrust time decided by the state controller of each engine
-		 * 
-		 * */
 
 		if (isLeftEngineOn) {
 			accelX = SIDE_ENGINE_ACCEL * (float) Math.sin(Math.toRadians(headAngle));

@@ -9,17 +9,15 @@ import android.util.Log;
 
 
 /**
- * @author credit to com.victor.marslander, modified by Feifei GU, Jan/11/2016. Assignment
+ * @author credit to  com.victor.marslander, modified by Feifei GU, Jan/11/2016. Assignment
  *         of subject ISCG7424 Mobile Application Development
  * 
  */
 public class Mars {
-	
-	//constants when build the groud line
 	private final int MIN_WIDTH = 30;
 	private final int BASE_HEIGHT = 50;
 	private final float MIN_GRADIENT = 0.2f;
-	public  final int maxHeight = 300;
+	public static final int maxHeight = 300;
 	
 	private float flatRemainingRatio = 0.3f;
 	
@@ -28,6 +26,7 @@ public class Mars {
 	private int remainingFlatWidth ;
 	private int remainingSlopeWidth;
 	
+//	mars = new Mars(flatRemainingRatio, screenWidth, screenHeight, (int) (Craft.WIDTH* 1.0f), Craft.WIDTH * 2 );
 
 
 	private int screenHeight;

@@ -12,7 +12,44 @@ import android.content.Context;
  * 
  */
 public class Craft {
+
+	// the left/right thruster last times duration
+	private final float SIDE_ENGINE_DURATION = 1.0f;
+	private static final float MAIN_ENGINE_DURATION = 1.0f;// the main thruster
+															// last times
+															// duration
+	private static final float ENGINE_ACCEL = 7.0f; // The accelerate of
+													// thruster
+	private static final float FUEL_CONSUME = 2.0f; // Consumed fuel on each
+													// fire
+
+	// state
+	private float headAngle = 0.0f; // in degree;
+	private boolean isMainEngineOn = false; // if main thruster fired
+	private float mainEngineTimespan;// control the time of main thruster's
+	private boolean isLeftEngineOn = false;// if left thruster fired
+	private float leftEngineTimespan;
+	private boolean isRightEngineOn = false;// if right thruster fired
+	private float rightEngineTimespan;
+	private float fuelRemaining = 100.00f;
+
+	// position
+	private float offsetX = 0; // in meter
+	private float offsetY = 0; // in meter
+
+	// velocity in meters/second
 	
+
+	private float veloX = 0;
+	private float veloY = 0;
+
+
+	// acceleration in meters/second^2
+	private final float GRAVITY = 2.0f; 
+	private float g = GRAVITY; 
+	private float accelX = 0;
+	private float accelY = GRAVITY;
+
 	// constant
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 73;
@@ -25,58 +62,22 @@ public class Craft {
 	private static final float SIDE_FLAME_OFFSET_Y = 27.0f;
 	private static final float MAIN_FLAME_OFFSET_X = -MAIN_FLAME_WIDTH / 2;
 	private static final float MAIN_FLAME_OFFSET_Y = 27.0f;
-
-	// the left/right thruster last times duration
-	private final float SIDE_ENGINE_DURATION = 1.0f;
-	private static final float MAIN_ENGINE_DURATION = 1.0f; 
 	
-	// The accelerate of thruster
-	private static final float MAIN_ENGINE_ACCEL = 7.0f; 
-	private static final float SIDE_ENGINE_ACCEL = 5.0f; 
-
-	//fuel consumption of each thruster
-	private static final float FUEL_CONSUME = 2.0f; 
-
-	// craft state
-	private boolean isMainEngineOn = false;
-	private float mainEngineTimespan;
-	private boolean isLeftEngineOn = false;
-	private float leftEngineTimespan;
-	private boolean isRightEngineOn = false;
-	private float rightEngineTimespan;
-	private float fuelRemaining = 100.00f;
-
-	// position
-	private float offsetX = 0; // in meter
-	private float offsetY = 0; // in meter
-
-	// velocity in meters/second
-	private float veloX = 0;
-	private float veloY = 0;
-
-
-	// acceleration in meters/second^2
-	private final float GRAVITY = 2.0f; 
-	private float g = GRAVITY; 
-	private float accelX = 0;
-	private float accelY = GRAVITY;
 
 	// position of craft in coordinate 
 	private int posX = 0;
 	private int posY = 0;
 	private float pixelMeterRatio = 8;
-	
-	//angel of the craft
-	private float headAngle = 0.0f; 
-	private final float ANGLE_CHANGED = 18.0f;
 
 
 	/**
-	 * constructor 
-	 * @param posX x position of craft in coordinate
-	 * @param posY y position of craft in coordinate
+	 * 
+	 * @param posX
+	 * @param posY
+	 * @param r
 	 */
 	public Craft(int posX, int posY) {
+
 
 		this.posX = posX;
 		this.posY = posY;
@@ -97,7 +98,6 @@ public class Craft {
 		outline.lineTo(posX, posY + HEIGHT / 2);
 		outline.close();
 
-		//matrix for transforming coordinates of craft object
 		Matrix m = new Matrix();
 		m.postRotate(getAngle(), getCenterX(), getCenterY());
 		outline.transform(m);
@@ -112,7 +112,7 @@ public class Craft {
 		if (isLeftEngineOn || fuelRemaining <= 0)
 			return;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
-		headAngle += ANGLE_CHANGED;
+		headAngle += 18.0;
 		leftEngineTimespan = 0.0f;
 		isLeftEngineOn = true;
 	}
@@ -124,14 +124,13 @@ public class Craft {
 		if (isRightEngineOn || fuelRemaining <= 0)
 			return;
 		fuelRemaining = fuelRemaining - FUEL_CONSUME;
-		headAngle -= ANGLE_CHANGED;
+		headAngle -= 18.0;
 		rightEngineTimespan = 0.0f;
 		isRightEngineOn = true;
 	}
 
 	/**
-	 * thrust when the craft remains enough fuel.
-	 * and consume fuel when engine started
+	 * Engine when the craft remains enough fuel.
 	 */
 	public void thrust() {
 		if (isMainEngineOn || fuelRemaining <= 0)
@@ -141,152 +140,79 @@ public class Craft {
 		isMainEngineOn = true;
 	}
 
-	/**
-	 * getter of remaining fuel
-	 * @return remaining fuel
-	 */
 	public float getFuelRemaining() {
 		return fuelRemaining;
 	}
 
-	/**
-	 * getter of offsetX of craft
-	 * @return
-	 */
 	public float getOffsetX() {
 		return offsetX;
 	}
 
-	/**
-	 * getter of offsetY of craft
-	 * @return
-	 */
 	public float getOffsetY() {
 		return offsetY;
 	}
 
-	/**
-	 * getter of head angle of craft
-	 * @return
-	 */
 	public float getAngle() {
 		return headAngle;
 	}
 
-	/**
-	 * getter the status of left engine
-	 * @return
-	 */
 	public boolean IsLeftEngineOn() {
 		return isLeftEngineOn;
 	}
 
-	/**
-	 * getter the status of right engine
-	 * @return
-	 */
 	public boolean IsRightEngineOn() {
 		return isRightEngineOn;
 	}
 
-	/**
-	 * getter of the status of main engine
-	 * @return
-	 */
 	public boolean IsMainEngineOn() {
 		return isMainEngineOn;
 	}
 
-	/**
-	 * getter of the x position of craft
-	 * @return
-	 */
 	public float getX() {
 		return posX;
 	}
 
-	/**
-	 * setter of x position of craft
-	 * @param x
-	 */
 	public void setX(int x) {
 		posX = x;
 	}
 
-	/**
-	 * getter of y position of craft
-	 * @return
-	 */
 	public float getY() {
 		return posY;
 	}
 
-	/**
-	 * setter of y position of craft
-	 * @param y
-	 */
 	public void setY(int y) {
 		posY = y;
 	}
 
-	/**
-	 * getter of center x position of craft
-	 * @return
-	 */
 	public float getCenterX() {
 		return posX + WIDTH / 2;
 	}
 
-	/**
-	 * getter of center y position of craft
-	 * @return
-	 */
 	public float getCenterY() {
 		return posY + HEIGHT / 2;
 	}
 
-	/**
-	 * getter of left flame x position of the craft
-	 * @return
-	 */
 	public float getLeftFlamePosX() {
 		return getCenterX() - SIDE_FLAME_OFFSET_X - SIDE_FLAME_WIDTH;
 	}
 
-	/**
-	 * getter of the right flame  x position
-	 * @return
-	 */
 	public float getRightFlamePosX() {
 		return getCenterX() + SIDE_FLAME_OFFSET_X;
 	}
 
-	/**
-	 * getter of side engine's flame y position
-	 * @return
-	 */
 	public float getSideFlamePosY() {
 		return getCenterY() + SIDE_FLAME_OFFSET_Y;
 	}
 
-	/**
-	 * getter of the main engine's flame's x position
-	 * @return
-	 */
 	public float getMainFlamePosX() {
 		return getCenterX() + MAIN_FLAME_OFFSET_X;
 	}
 
-	/**
-	 * getter of main engine's main flame's y position
-	 * @return
-	 */
 	public float getMainFlamePosY() {
 		return getCenterY() + MAIN_FLAME_OFFSET_Y;
 	}
 
 	/**
-	 * Simulated physical formula
 	 * Update the status and position of the craft.
 	 * 
 	 * @param dt
@@ -299,17 +225,10 @@ public class Craft {
 		// v' = v + at
 		veloX += accelX * dt;
 		veloY += accelY * dt;
-		
-		/*
-		 * if any engine is on, 
-		 * there will an accelerate to the x and y position align with the head_angle of the craft
-		 * thrust time decided by the state controller of each engine
-		 * 
-		 * */
 
 		if (isLeftEngineOn) {
-			accelX = SIDE_ENGINE_ACCEL * (float) Math.sin(Math.toRadians(headAngle));
-			accelY = SIDE_ENGINE_ACCEL * -(float) Math.cos(Math.toRadians(headAngle)) + g;
+			accelX = 5 * (float) Math.sin(Math.toRadians(headAngle));
+			accelY = 5 * -(float) Math.cos(Math.toRadians(headAngle)) + g;
 			leftEngineTimespan += dt;
 			if (leftEngineTimespan >= SIDE_ENGINE_DURATION) {
 				isLeftEngineOn = false;
@@ -319,8 +238,8 @@ public class Craft {
 		}
 
 		if (isRightEngineOn) {
-			accelX = SIDE_ENGINE_ACCEL * (float) Math.sin(Math.toRadians(headAngle));
-			accelY = SIDE_ENGINE_ACCEL * -(float) Math.cos(Math.toRadians(headAngle)) + g;
+			accelX = 5 * (float) Math.sin(Math.toRadians(headAngle));
+			accelY = 5 * -(float) Math.cos(Math.toRadians(headAngle)) + g;
 			rightEngineTimespan += dt;
 			if (rightEngineTimespan >= SIDE_ENGINE_DURATION) {
 				isRightEngineOn = false;
@@ -330,8 +249,8 @@ public class Craft {
 		}
 
 		if (isMainEngineOn) {
-			accelX = MAIN_ENGINE_ACCEL * (float) Math.sin(Math.toRadians(headAngle));
-			accelY = MAIN_ENGINE_ACCEL * -(float) Math.cos(Math.toRadians(headAngle)) + g;
+			accelX = ENGINE_ACCEL * (float) Math.sin(Math.toRadians(headAngle));
+			accelY = ENGINE_ACCEL * -(float) Math.cos(Math.toRadians(headAngle)) + g;
 			mainEngineTimespan += dt;
 			if (mainEngineTimespan >= MAIN_ENGINE_DURATION) {
 				isMainEngineOn = false;

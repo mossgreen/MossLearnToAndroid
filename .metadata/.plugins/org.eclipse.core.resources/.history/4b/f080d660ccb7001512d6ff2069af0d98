@@ -14,12 +14,10 @@ import android.util.Log;
  * 
  */
 public class Mars {
-	
-	//constants when build the groud line
 	private final int MIN_WIDTH = 30;
 	private final int BASE_HEIGHT = 50;
 	private final float MIN_GRADIENT = 0.2f;
-	public  final int maxHeight = 300;
+	public static final int maxHeight = 300;
 	
 	private float flatRemainingRatio = 0.3f;
 	

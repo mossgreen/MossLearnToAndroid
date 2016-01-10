@@ -20,15 +20,14 @@ import android.util.Log;
 public class GameLoop {
 
 
+	private final float GRAVITY = 2.0f; 
+	private final float PIXELMETERRATIO = 8;
 	
-	
-	// game status constants
+	// game constants
 	public static final int STATE_READY = 0;
 	public static final int STATE_RUNNING = 1;
 	public static final int STATE_WON = 2;
 	public static final int STATE_CRASHED = 3;
-	
-	//set game state to ready
 	private int state = STATE_READY;
 	
 	
@@ -76,7 +75,7 @@ public class GameLoop {
 		int posX = Craft.WIDTH* 2 + rdm.nextInt(screenWidth - Craft.WIDTH * 4);
 		
 		//initialize craft object
-		craft = new Craft(posX, 0);
+		craft = new Craft(posX, 0, GRAVITY, PIXELMETERRATIO);
 
 		//initialize mras object
 		mars = new Mars( screenWidth, screenHeight, (int) (Craft.WIDTH* 1.0f), Craft.WIDTH * 2 );
@@ -156,7 +155,7 @@ public class GameLoop {
 	 * Test for whether the craft landed on the flat ground.
 	 * @param x The x point value.
 	 * @param w The distance from x.
-	 * @return boolean True for land is flat otherwise return false.
+	 * @return boolean True for landed successfully otherwise return false.
 	 */
 	private boolean isFlatGround(float x, int w) {
 		Vector<Point> points = mars.getGroundPoints();

@@ -61,6 +61,9 @@ public class Craft {
 	private float accelX = 0;
 	private float accelY = GRAVITY;
 
+
+	
+
 	// position of craft in coordinate 
 	private int posX = 0;
 	private int posY = 0;

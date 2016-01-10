@@ -24,7 +24,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 /**
- * @author Originally from com.victor.marslander_2014, modified by Feifei GU Jan/11/2016
+ * @author Original from com.victor.marslander_2014, modified by Feifei GU Jan/11/2016
  *         Assignment of subject ISCG7424 Mobile Application Development 
  *         This  class is mainly used for draw the mars lander view and pre-loads corresponding resources into bitmap.
  *
@@ -218,7 +218,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		// show the first view of this app, draw the craft at the center on
 		// screen.
 		if (gameLoop.getState() == GameLoop.STATE_READY) {
-			canvas.drawBitmap(bmCraft, (screenWidth - Craft.WIDTH) / 2, screenHeight / 2, null);
+			canvas.drawBitmap(bmCraft, (screenWidth - Craft.getCraftWidth()) / 2, screenHeight / 2, null);
 			return;
 		}
 

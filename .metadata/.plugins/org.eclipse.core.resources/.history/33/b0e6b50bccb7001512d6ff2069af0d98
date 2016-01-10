@@ -12,19 +12,6 @@ import android.content.Context;
  * 
  */
 public class Craft {
-	
-	// constant
-	public static final int WIDTH = 50;
-	public static final int HEIGHT = 73;
-	public static final int SIDE_FLAME_WIDTH = 12;
-	public static final int SIDE_FLAME_HEIGHT = 16;
-	public static final int MAIN_FLAME_WIDTH = 20;
-	public static final int MAIN_FLAME_HEIGHT = 27;
-
-	private static final float SIDE_FLAME_OFFSET_X = WIDTH / 2 - SIDE_FLAME_WIDTH;
-	private static final float SIDE_FLAME_OFFSET_Y = 27.0f;
-	private static final float MAIN_FLAME_OFFSET_X = -MAIN_FLAME_WIDTH / 2;
-	private static final float MAIN_FLAME_OFFSET_Y = 27.0f;
 
 	// the left/right thruster last times duration
 	private final float SIDE_ENGINE_DURATION = 1.0f;
@@ -37,12 +24,13 @@ public class Craft {
 	//fuel consumption of each thruster
 	private static final float FUEL_CONSUME = 2.0f; 
 
-	// craft state
-	private boolean isMainEngineOn = false;
-	private float mainEngineTimespan;
-	private boolean isLeftEngineOn = false;
+	// state
+
+	private boolean isMainEngineOn = false; // if main thruster fired
+	private float mainEngineTimespan;// control the time of main thruster's
+	private boolean isLeftEngineOn = false;// if left thruster fired
 	private float leftEngineTimespan;
-	private boolean isRightEngineOn = false;
+	private boolean isRightEngineOn = false;// if right thruster fired
 	private float rightEngineTimespan;
 	private float fuelRemaining = 100.00f;
 
@@ -51,6 +39,8 @@ public class Craft {
 	private float offsetY = 0; // in meter
 
 	// velocity in meters/second
+	
+
 	private float veloX = 0;
 	private float veloY = 0;
 
@@ -60,6 +50,20 @@ public class Craft {
 	private float g = GRAVITY; 
 	private float accelX = 0;
 	private float accelY = GRAVITY;
+
+	// constant
+	public static final int WIDTH = 50;
+	public static final int HEIGHT = 73;
+	public static final int SIDE_FLAME_WIDTH = 12;
+	public static final int SIDE_FLAME_HEIGHT = 16;
+	public static final int MAIN_FLAME_WIDTH = 20;
+	public static final int MAIN_FLAME_HEIGHT = 27;
+
+	private static final float SIDE_FLAME_OFFSET_X = WIDTH / 2 - SIDE_FLAME_WIDTH;
+	private static final float SIDE_FLAME_OFFSET_Y = 27.0f;
+	private static final float MAIN_FLAME_OFFSET_X = -MAIN_FLAME_WIDTH / 2;
+	private static final float MAIN_FLAME_OFFSET_Y = 27.0f;
+	
 
 	// position of craft in coordinate 
 	private int posX = 0;

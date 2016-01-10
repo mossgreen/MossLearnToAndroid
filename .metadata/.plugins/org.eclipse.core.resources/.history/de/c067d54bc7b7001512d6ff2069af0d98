@@ -76,7 +76,7 @@ public class GameLoop {
 		int posX = Craft.WIDTH* 2 + rdm.nextInt(screenWidth - Craft.WIDTH * 4);
 		
 		//initialize craft object
-		craft = new Craft(posX, 0);
+		craft = new Craft(posX, 0, PIXELMETERRATIO);
 
 		//initialize mras object
 		mars = new Mars( screenWidth, screenHeight, (int) (Craft.WIDTH* 1.0f), Craft.WIDTH * 2 );

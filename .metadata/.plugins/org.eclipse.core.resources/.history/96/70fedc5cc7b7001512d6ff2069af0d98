@@ -218,7 +218,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		// show the first view of this app, draw the craft at the center on
 		// screen.
 		if (gameLoop.getState() == GameLoop.STATE_READY) {
-			canvas.drawBitmap(bmCraft, (screenWidth - Craft.WIDTH) / 2, screenHeight / 2, null);
+			canvas.drawBitmap(bmCraft, (screenWidth - Craft.getCraftWidth()) / 2, screenHeight / 2, null);
 			return;
 		}
 

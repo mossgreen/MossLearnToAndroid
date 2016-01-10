@@ -9,3 +9,5 @@
 1452423004869	Rename field 'MINGRADIENT'
 1452446820445	Rename local variable 'r'
 1452448230369	Rename local variable 'extremelySmall'
+1452450648218	Rename field 'ANGEL_CHANGED'
+1452450775874	Rename field 'ENGINE_ACCEL'
