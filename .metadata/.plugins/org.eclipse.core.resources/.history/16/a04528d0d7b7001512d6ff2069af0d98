@@ -180,6 +180,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 			crashes.start();
 			gameLoop.setState(GameLoop.STATE_GAMEOVER);
 		}
+		
+//		
+//		if(craft.IsMainEngineOn() && craft.IsRightEngineOn() && craft.IsLeftEngineOn()){
+//			thrusterFire.start();
+//		}
 	}
 	
 	
