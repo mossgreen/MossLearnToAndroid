@@ -90,14 +90,7 @@ public class GameLoop {
 		return craft;
 	}
 
-	/**
-	 * getter of the mars object
-	 * 
-	 * @return mars object
-	 */
-	public Mars getMars() {
-		return mars;
-	}
+
 
 	/**
 	 * getter of the game state
@@ -108,11 +101,6 @@ public class GameLoop {
 		return state;
 	}
 
-	/**
-	 * setter of the game state
-	 * 
-	 * @param state
-	 */
 	public void setState(int state) {
 		this.state = state;
 	}
@@ -122,7 +110,7 @@ public class GameLoop {
 	 */
 	public void update() {
 
-		// update craft with dt, which is to update it in a very short of time
+		// update craft with dt, which is to updated it in a very short of time
 		final long t = System.nanoTime();
 		final float extremelySmallNumber = 1.0f / 1000000000.0f;
 		final float dt = (float) (t - timeStamp) * extremelySmallNumber;
@@ -130,7 +118,7 @@ public class GameLoop {
 
 		/*
 		 * wrap around terrain: when a player goes to a left or right game
-		 * boundary instead of being blocked, they will pass through to the
+		 * boundary instead of being blocked they will pass through to the
 		 * opposite side of the game field
 		 */
 		if (craft.getCenterX() < 0) {
@@ -140,18 +128,13 @@ public class GameLoop {
 		}
 
 		/*
-		 * to detect when the craft intersects with the mars landscape. set the
-		 * path to the outline of craft. applying the Op to this path and the
-		 * mars ground path
-		 * 
-		 * if there is intersection, it indicates that craft is on the mars now.
-		 * and the status of craft is not decide yet then, go and check whether
-		 * the ground is flat.
-		 * 
-		 * if it's not a flat ground, it indicates that the craft is crashed. if
-		 * the ground is flat, however the craft is not standing up, it also
-		 * indicates that the craft is crashed. otherwise, the craft is landed
-		 * on mars successfully.
+		 * to detect when the space craft intersects with the mars landscape.
+		 * set this path to the result of applying the Op to this path and the
+		 * specified path. if there is intersection indicates that craft is on
+		 * the mars now. go and check whether the ground is flat. if it's not a
+		 * flat ground, indicates the craft is crashed. if the ground is flat,
+		 * however the craft is not standing up, also indicated that the craft
+		 * is crashed. otherwise, the craft is landed on mars successfully.
 		 */
 
 		Path p = craft.genOutline();
@@ -193,12 +176,8 @@ public class GameLoop {
 		Point pStart = points.elementAt(i - 1);
 		Point pEnd = points.elementAt(i);
 
-		/*
-		 * check the y position of two points if their y position is not equal
-		 * it indicates that there is a slope between them so have to return
-		 * false
-		 */
 		if (pStart.y != pEnd.y) {
+			// slope
 			return false;
 		}
 
@@ -211,12 +190,8 @@ public class GameLoop {
 			}
 		}
 
-		/*
-		 * to check the length of the flat ground if the length is enough for a
-		 * craft return true otherwise, return false
-		 */
 		if (pEnd.x - pStart.x > w) {
-
+			// enough
 			return true;
 		}
 
