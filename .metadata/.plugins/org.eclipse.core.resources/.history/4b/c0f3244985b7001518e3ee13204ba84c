@@ -3,8 +3,5 @@
     
     <integer name="REFRESH_RATE">20</integer>
     <integer name="START_STATUS">0</integer>
-    <integer name="drawFuelPositionX">250</integer>
-    <integer name="drawFuelPositionY">50</integer>
-    <integer name="fuelPainterSize">40</integer>
     
 </resources>

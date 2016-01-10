@@ -1,7 +1,6 @@
 package com.feifei.marslander.game;
 
 import com.feifei.marslander.R;
-import com.feifei.marslander.R.string;
 import com.feifei.marslander.model.Craft;
 
 import android.content.Context;
@@ -59,7 +58,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	private int fuelPositionX;
 	private int fuelPositionY;
 	private int fuelPainterSize;
-	private String drawFuel;
 
 
 	Thread mainThread;
@@ -155,16 +153,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		paintGround = new Paint();
 		paintGround.setShader(mShader);
 		
-		//Initialize sound of land, fly and crash.
+		//Initial sound of land, fly and crash.
 		landing = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.landing);
 		crashes = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.crashes);
 		thrusterFire = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.fly);
-		
-		//initialize the fuel painter
-		fuelPositionX = getResources().getInteger(R.integer.drawFuelPositionX);
-		fuelPositionY = getResources().getInteger(R.integer.drawFuelPositionY);
-		fuelPainterSize = getResources().getInteger(R.integer.fuelPainterSize);
-		drawFuel = getResources().getString(R.string.drawFuel);
 
 		holder = getHolder();
 		holder.setFormat(PixelFormat.TRANSPARENT);
@@ -232,14 +224,16 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 
 
 		// draw remains fuel
-
+		fuelPositionX = getResources().getInteger(R.integer.drawFuelPositionX);
+		fuelPositionY = getResources().getInteger(R.integer.drawFuelPositionY);
+		fuelPainterSize = getResources().getInteger(R.integer.fuelPainterSize);
 		
 		Paint paint = new Paint();
 		paint.setColor(Color.WHITE);
 		paint.setStyle(Style.FILL);
 		paint.setTextSize(fuelPainterSize);
 		
-		canvas.drawText(drawFuel+ craft.getFuelRemaining(), screenWidth - fuelPositionX, fuelPositionY, paint);
+		canvas.drawText("Fuel: " + craft.getFuelRemaining(), screenWidth - fuelPositionX, fuelPositionY, paint);
 
 		matrix.reset();
 		matrix.setTranslate(craft.getX(), craft.getY());

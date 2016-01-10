@@ -1,7 +1,6 @@
 package com.feifei.marslander.game;
 
 import com.feifei.marslander.R;
-import com.feifei.marslander.R.string;
 import com.feifei.marslander.model.Craft;
 
 import android.content.Context;
@@ -54,13 +53,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	// game using
 	private int screenWidth;
 	private int screenHeight;
-	
-	//some int
-	private int fuelPositionX;
-	private int fuelPositionY;
-	private int fuelPainterSize;
-	private String drawFuel;
-
 
 	Thread mainThread;
 	
@@ -155,16 +147,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		paintGround = new Paint();
 		paintGround.setShader(mShader);
 		
-		//Initialize sound of land, fly and crash.
+		//Initial sound of land, fly and crash.
 		landing = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.landing);
 		crashes = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.crashes);
 		thrusterFire = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.fly);
-		
-		//initialize the fuel painter
-		fuelPositionX = getResources().getInteger(R.integer.drawFuelPositionX);
-		fuelPositionY = getResources().getInteger(R.integer.drawFuelPositionY);
-		fuelPainterSize = getResources().getInteger(R.integer.fuelPainterSize);
-		drawFuel = getResources().getString(R.string.drawFuel);
 
 		holder = getHolder();
 		holder.setFormat(PixelFormat.TRANSPARENT);
@@ -228,37 +214,52 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 
 		// get the craft instance
 		Craft craft = gameLoop.getCraft();
-		
-
 
 		// draw remains fuel
-
-		
 		Paint paint = new Paint();
 		paint.setColor(Color.WHITE);
 		paint.setStyle(Style.FILL);
-		paint.setTextSize(fuelPainterSize);
-		
-		canvas.drawText(drawFuel+ craft.getFuelRemaining(), screenWidth - fuelPositionX, fuelPositionY, paint);
+		paint.setTextSize(40);
+		canvas.drawText("Fuel: " + craft.getFuelRemaining(), screenWidth - 250, 50, paint);
 
 		matrix.reset();
 		matrix.setTranslate(craft.getX(), craft.getY());
 		matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
 
-		if (gameLoop.getState() == GameLoop.STATE_CRASHED) {
+		if (gameLoop.getState() == GameLoop.STATE_CRASHED) {// if the craft
+															// crashed
 			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
 			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
 			return;
-		} else if (gameLoop.getState() == GameLoop.STATE_FALL_LEFT) { 
+		} else if (gameLoop.getState() == GameLoop.STATE_FALL_LEFT) { // crashed
+																		// when
+																		// the
+																		// craft
+																		// landed
+																		// failed
+																		// on
+																		// the
+																		// left
+																		// side.
 			canvas.drawBitmap(bmCraftFallLeft, craft.getX(), craft.getCenterY(), null);
 			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
 			return;
-		} else if (gameLoop.getState() == GameLoop.STATE_FALL_RIGHT) {
+		} else if (gameLoop.getState() == GameLoop.STATE_FALL_RIGHT) {// crashed
+																		// when
+																		// the
+																		// craft
+																		// landed
+																		// failed
+																		// on
+																		// the
+																		// right
+																		// side.
 			canvas.drawBitmap(bmCraftFallRight, craft.getCenterX(), craft.getCenterY(), null);
 			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
 			return;
-		} else if (gameLoop.getState() == GameLoop.STATE_WON) {
+		} else if (gameLoop.getState() == GameLoop.STATE_WON) {// landed
+																// successfully
 			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmWon, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
 		}

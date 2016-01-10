@@ -2,5 +2,4 @@
     <string name="app_name">MarsLander</string>
     <string name="menu_start">Start</string>
     <string name="APP_TAG">TEST</string>
-    <string name="drawFuel">Fuel: </string>
 </resources>
