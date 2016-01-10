@@ -87,9 +87,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		super(context, attrs);
 	}
 
-	/**
-	 * get the screen size
-	 */
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
@@ -99,16 +96,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		init();
 	}
 
-	/**
-	 * getter GameLoop object
-	 * @return
-	 */
-	public GameLoop getGameLoop() {
+	public GameLoop getGameModel() {
 		return gameLoop;
 	}
 
 	/**
-	 * Pre-loads corresponding resources like bitmap and sound.
+	 * Pre-loads corresponding resources into bitmap.
 	 */
 	public void init() {
 
@@ -116,13 +109,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		gameLoop = new GameLoop(screenWidth, screenHeight);
 
 		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
-		bmCraft = Bitmap.createScaledBitmap(temp, Craft.WIDTH, Craft.HEIGHT, true);
+		bmCraft = Bitmap.createScaledBitmap(temp, craft.getCraftWidth(), craft.getCraftHeight(), true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_left);
-		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
+		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, craft.getCraftHeight(), craft.getCraftWidth(), true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_right);
-		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
+		bmCraftFallRight = Bitmap.createScaledBitmap(temp, craft.getCraftHeight(), craft.getCraftWidth(), true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.boom);
 		bmBoom = Bitmap.createScaledBitmap(temp, 50, 38, true);
@@ -146,25 +139,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		Shader mShader = new BitmapShader(temp, Shader.TileMode.REPEAT, Shader.TileMode.MIRROR);
 		paintGround = new Paint();
 		paintGround.setShader(mShader);
-		
-		//Initial sound of land, fly and crash.
-		landing = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.landing);
-		crashes = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.crashes);
-		thrusterFire = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.fly);
 
 		holder = getHolder();
 		holder.setFormat(PixelFormat.TRANSPARENT);
 		holder.addCallback(this);
 	}
-//	
-//	private void soundSetting() {
-//		if (land) {
-//			landing.start();
-//		} 
-//		else if (crash) {
-//			crashes.start();
-//		}
-//	}
 
 	@Override
 	public void run() {

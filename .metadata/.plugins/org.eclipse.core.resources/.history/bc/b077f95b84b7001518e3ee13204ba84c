@@ -223,6 +223,7 @@ public class Craft {
 	
 
 	/**
+	 * this code and Idea is from John casey
 	 * Update the status and position of the craft.
 	 * @param dt 
 	 */

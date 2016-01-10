@@ -156,15 +156,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		holder.setFormat(PixelFormat.TRANSPARENT);
 		holder.addCallback(this);
 	}
-//	
-//	private void soundSetting() {
-//		if (land) {
-//			landing.start();
-//		} 
-//		else if (crash) {
-//			crashes.start();
-//		}
-//	}
+	
+	private void soundSetting() {
+		if (land) {
+			landing.start();
+		} 
+		else if (crash) {
+			crashes.start();
+		}
+	}
 
 	@Override
 	public void run() {

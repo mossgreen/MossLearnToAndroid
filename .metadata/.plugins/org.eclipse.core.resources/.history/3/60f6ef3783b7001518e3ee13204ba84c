@@ -1,8 +1,5 @@
 package com.feifei.marslander.game;
 
-import com.feifei.marslander.R;
-import com.feifei.marslander.model.Craft;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,28 +12,28 @@ import android.graphics.Paint.Style;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.Shader;
-import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.feifei.marslander.R;
+import com.feifei.marslander.R.drawable;
+import com.feifei.marslander.R.integer;
+import com.feifei.marslander.model.Craft;
+
 /**
- * @author Original from com.victor.marslander_2014, modified by Feifei GU Jan/11/2016
- *         Assignment of subject ISCG7424 Mobile Application Development 
- *         This  class is mainly used for draw the mars lander view and pre-loads corresponding resources into bitmap.
+ * This class is mainly used for draw the mars lander view and pre-loads corresponding resources into bitmap.
  *
  * @version 1.0
  */
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
-	private final int REFRESH_RATE = getResources().getInteger(R.integer.REFRESH_RATE);
+	private  final int REFRESH_RATE = getResources().getInteger(R.integer.REFRESH_RATE);
 
 	SurfaceHolder holder;
 
-	// initialize sound resource
-	private MediaPlayer landing, crashes, thrusterFire;
 
 	// display object
 	private Bitmap bmBackground;
@@ -52,44 +49,24 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 
 	// game using
 	private int screenWidth;
-	private int screenHeight;
+	private int screenHeight ;
 
 	Thread mainThread;
-	
-	//initialize the reference to model object
 	private Craft craft;
 	private GameLoop gameLoop;
 
-	/**
-	 * constructors
-	 * @param context
-	 */
 	public GamePanel(Context context) {
 		super(context);
 	}
 
-	/**
-	 * constructors
-	 * @param context
-	 * @param attrs
-	 * @param defStyle
-	 */
 	public GamePanel(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
-	/**
-	 * constructors
-	 * @param context
-	 * @param attrs
-	 */
 	public GamePanel(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	/**
-	 * get the screen size
-	 */
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
@@ -99,39 +76,37 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		init();
 	}
 
-	/**
-	 * getter GameLoop object
-	 * @return
-	 */
-	public GameLoop getGameLoop() {
+	public GameLoop getGameModel() {
 		return gameLoop;
 	}
 
 	/**
-	 * Pre-loads corresponding resources like bitmap and sound.
+	 * Pre-loads corresponding resources into bitmap.
 	 */
 	public void init() {
+		
 
 		//
 		gameLoop = new GameLoop(screenWidth, screenHeight);
 
 		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
-		bmCraft = Bitmap.createScaledBitmap(temp, Craft.WIDTH, Craft.HEIGHT, true);
+		bmCraft = Bitmap.createScaledBitmap(temp, craft.getCraftWidth(), craft.getCraftHeight(), true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_left);
-		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
+		bmCraftFallLeft = Bitmap.createScaledBitmap(temp, craft.getCraftHeight(), craft.getCraftWidth(), true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.crashed_right);
-		bmCraftFallRight = Bitmap.createScaledBitmap(temp, Craft.HEIGHT, Craft.WIDTH, true);
+		bmCraftFallRight = Bitmap.createScaledBitmap(temp, craft.getCraftHeight(), craft.getCraftWidth(), true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.boom);
 		bmBoom = Bitmap.createScaledBitmap(temp, 50, 38, true);
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.won);
 		bmWon = Bitmap.createScaledBitmap(temp, temp.getWidth(), temp.getHeight(), true);
-
+		
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.lose);
 		bmLose = Bitmap.createScaledBitmap(temp, temp.getWidth(), temp.getHeight(), true);
+		
 
 		temp = BitmapFactory.decodeResource(getResources(), R.drawable.flame);
 		bmSideFlame = Bitmap.createScaledBitmap(temp, Craft.SIDE_FLAME_WIDTH, Craft.SIDE_FLAME_HEIGHT, true);
@@ -146,25 +121,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		Shader mShader = new BitmapShader(temp, Shader.TileMode.REPEAT, Shader.TileMode.MIRROR);
 		paintGround = new Paint();
 		paintGround.setShader(mShader);
-		
-		//Initial sound of land, fly and crash.
-		landing = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.landing);
-		crashes = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.crashes);
-		thrusterFire = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.fly);
 
 		holder = getHolder();
 		holder.setFormat(PixelFormat.TRANSPARENT);
 		holder.addCallback(this);
 	}
-//	
-//	private void soundSetting() {
-//		if (land) {
-//			landing.start();
-//		} 
-//		else if (crash) {
-//			crashes.start();
-//		}
-//	}
 
 	@Override
 	public void run() {
@@ -192,18 +153,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 
 	/**
 	 * Draw background, craft, fuel, crash and win etc.
-	 * 
-	 * @param canvas
-	 *            The draw canvas.
+	 * @param canvas The draw canvas.
 	 */
 	private void doDraw(Canvas canvas) {
-
+		
 		// draw background
 		canvas.drawBitmap(bmBackground, 0, 0, null);
-
-		// show the first view of this app, draw the craft at the center on
-		// screen.
-		if (gameLoop.getState() == GameLoop.STATE_READY) {
+		
+		// show the first view of this app, draw the craft at the center on screen.
+		if (gameLoop.getState() == GameLoop.STATE_READY) { 
 			canvas.drawBitmap(bmCraft, (screenWidth - Craft.getCraftWidth()) / 2, screenHeight / 2, null);
 			return;
 		}
@@ -214,56 +172,37 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 
 		// get the craft instance
 		Craft craft = gameLoop.getCraft();
-
+		
+		
 		// draw remains fuel
 		Paint paint = new Paint();
 		paint.setColor(Color.WHITE);
 		paint.setStyle(Style.FILL);
 		paint.setTextSize(40);
 		canvas.drawText("Fuel: " + craft.getFuelRemaining(), screenWidth - 250, 50, paint);
-
+		
 		matrix.reset();
 		matrix.setTranslate(craft.getX(), craft.getY());
 		matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
-
-		if (gameLoop.getState() == GameLoop.STATE_CRASHED) {// if the craft
-															// crashed
+		
+		if (gameLoop.getState() == GameLoop.STATE_CRASHED) {// if the craft crashed
 			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
-			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 			return;
-		} else if (gameLoop.getState() == GameLoop.STATE_FALL_LEFT) { // crashed
-																		// when
-																		// the
-																		// craft
-																		// landed
-																		// failed
-																		// on
-																		// the
-																		// left
-																		// side.
+		} else if (gameLoop.getState() == GameLoop.STATE_FALL_LEFT) { //crashed when the craft landed failed on the left side.
 			canvas.drawBitmap(bmCraftFallLeft, craft.getX(), craft.getCenterY(), null);
-			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 			return;
-		} else if (gameLoop.getState() == GameLoop.STATE_FALL_RIGHT) {// crashed
-																		// when
-																		// the
-																		// craft
-																		// landed
-																		// failed
-																		// on
-																		// the
-																		// right
-																		// side.
+		} else if (gameLoop.getState() == GameLoop.STATE_FALL_RIGHT) {//crashed when the craft landed failed on the right side.
 			canvas.drawBitmap(bmCraftFallRight, craft.getCenterX(), craft.getCenterY(), null);
-			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 			return;
-		} else if (gameLoop.getState() == GameLoop.STATE_WON) {// landed
-																// successfully
+		} else if (gameLoop.getState() == GameLoop.STATE_WON) {// landed successfully
 			canvas.drawBitmap(bmCraft, matrix, null);
-			canvas.drawBitmap(bmWon, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
+			canvas.drawBitmap(bmWon, (screenWidth - bmWon.getWidth())/2, screenHeight / 2, null);
 		}
-
+		
 		canvas.drawBitmap(bmCraft, matrix, null);// draw the craft
 
 		if (gameLoop.getState() == GameLoop.STATE_RUNNING) {
@@ -301,10 +240,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 			} else {
 				gameLoop.getCraft().turnLeft();
 			}
-		} else if (action == MotionEvent.ACTION_UP) {
+		} else if(action == MotionEvent.ACTION_UP) {
 			Log.i("FFF", "AAAAAA");
 		}
-
+		
 		return super.onTouchEvent(event);
 	}
 
