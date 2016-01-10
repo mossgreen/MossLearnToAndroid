@@ -16,7 +16,7 @@ import android.util.Log;
 public class Mars {
 	private final int MIN_WIDTH = 30;
 	private final int BASE_HEIGHT = 50;
-	private final float MIN_GRADIENT = 0.2f;
+	private final float MINGRADIENT = 0.2f;
 	private int minSingleFlatWidth;
 	private int maxSingleFlatWidth;
 	private int remainingFlatWidth;
@@ -151,7 +151,7 @@ public class Mars {
 		
 		int y = curr.y;
 		float r = (float)Math.abs(y - curr.y) / width;
-		while(r < MIN_GRADIENT){
+		while(r < MINGRADIENT){
 			y = screenHeight - BASE_HEIGHT - rdm.nextInt(maxHeight);
 			r =  (float)Math.abs(y - curr.y) / width;
 		}

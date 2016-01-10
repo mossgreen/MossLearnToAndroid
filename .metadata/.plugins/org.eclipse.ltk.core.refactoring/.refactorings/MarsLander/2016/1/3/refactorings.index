@@ -3,3 +3,7 @@
 1452421134304	Rename method 'getGameModel'
 1452422046835	Rename field 'drawFuelLeftPosition'
 1452422071564	Rename field 'drawFuelRightPosition'
+1452422876298	Delete element
+1452422974868	Rename field 'MINWIDTH'
+1452422988713	Rename field 'BASEHEIGHT'
+1452423004869	Rename field 'MINGRADIENT'

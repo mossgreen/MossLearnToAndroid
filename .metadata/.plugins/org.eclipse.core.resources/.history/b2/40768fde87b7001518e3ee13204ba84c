@@ -15,8 +15,8 @@ import android.util.Log;
  */
 public class Mars {
 	private final int MIN_WIDTH = 30;
-	private final int BASE_HEIGHT = 50;
-	private final float MIN_GRADIENT = 0.2f;
+	private final int BASEHEIGHT = 50;
+	private final float MINGRADIENT = 0.2f;
 	private int minSingleFlatWidth;
 	private int maxSingleFlatWidth;
 	private int remainingFlatWidth;
@@ -49,7 +49,7 @@ public class Mars {
 		Point currP, newP;
 		
 		map.add(new Point(0, screenHeight));
-		currP = new Point(0, screenHeight - BASE_HEIGHT - rdm.nextInt(maxHeight));
+		currP = new Point(0, screenHeight - BASEHEIGHT - rdm.nextInt(maxHeight));
 		map.add(currP);
 
 		//first slope
@@ -151,8 +151,8 @@ public class Mars {
 		
 		int y = curr.y;
 		float r = (float)Math.abs(y - curr.y) / width;
-		while(r < MIN_GRADIENT){
-			y = screenHeight - BASE_HEIGHT - rdm.nextInt(maxHeight);
+		while(r < MINGRADIENT){
+			y = screenHeight - BASEHEIGHT - rdm.nextInt(maxHeight);
 			r =  (float)Math.abs(y - curr.y) / width;
 		}
 		
