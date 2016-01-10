@@ -6,8 +6,10 @@ import java.util.Vector;
 import com.feifei.marslander.model.Craft;
 import com.feifei.marslander.model.Mars;
 
+import android.content.res.Resources.Theme;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.util.Log;
 
 /**
  * @author com.victor.marslander, modified by Feifei GU in Jan/11/2016. this is
