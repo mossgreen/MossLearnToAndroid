@@ -10,12 +10,6 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.util.Log;
 
-
-/**
- * @author com.victor.marslander, modified by Feifei GU Jan/11/2016 Assignment
- *         of subject ISCG7424 Mobile Application Development
- * 
- */
 public class GameLoop {
 
 	// constants

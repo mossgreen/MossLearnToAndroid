@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Craft." key="selection"/>
+		<item value="Craft.HEIGHT" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="true" key="wholeword"/>
 		<list key="findhistory">
+			<item value="craft.getCraftHeight()"/>
+			<item value="craft.getCraftWidth()"/>
+			<item value="com.fe"/>
 			<item value="Craft."/>
 			<item value="Craft"/>
 			<item value="static"/>
 			<item value="MAIN_FLAME_OFFSET_X"/>
 			<item value="setScreenWidth"/>
-			<item value="doStart"/>
-			<item value="startGame"/>
-			<item value="startGame&apos;"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Craft.HEIGHT"/>
+			<item value="Craft.WIDTH"/>
 			<item value="craft."/>
 			<item value="craft"/>
 			<item value=""/>
 			<item value="getGameModel"/>
 			<item value="getScene"/>
 			<item value="gameModel"/>
-			<item value="public"/>
-			<item value="CraftModel"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

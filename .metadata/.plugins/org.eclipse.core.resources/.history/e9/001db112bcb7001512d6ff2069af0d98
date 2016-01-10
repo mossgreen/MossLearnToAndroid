@@ -60,13 +60,13 @@ public class MainActivity extends Activity {
 	 * @param Bundle
 	 *            savedInstanceState
 	 */
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// set the content view 
-		setContentView(R.layout.lander_layout); 
-		
+		setContentView(R.layout.lander_layout); // set the content view or our
+												// widget lookups will fail
 		gamePanel = (GamePanel) findViewById(R.id.MarsLanderView);
 		bmMainFlame = (ImageButton) findViewById(R.id.btnThruster);
 		bmMainFlame.setOnClickListener(new OnClickListener() {

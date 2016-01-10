@@ -7,4 +7,6 @@
 <fullyQualifiedTypeName name="com.feifei.marslander.model.Craft"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="java.security.PublicKey"/>
+<fullyQualifiedTypeName name="com.feifei.marslander.R.integer"/>
+<fullyQualifiedTypeName name="com.feifei.marslander.R.string"/>
 </qualifiedTypeNameHistroy>

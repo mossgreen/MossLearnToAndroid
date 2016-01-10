@@ -4644,3 +4644,19 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/MarsLander/src
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
 !SUBENTRY 1 org.eclipse.core.resources 4 368 2016-01-10 22:58:40.424
 !MESSAGE Resource '/MarsLander/src/com/feifei/marslander/game/GamePanel.java' does not exist.
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-01-11 00:00:34.366
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2016-01-11 05:53:32.504 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/gufeifei/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/gufeifei/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-01-11 05:53:34.065
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.net 1 0 2016-01-11 05:53:37.973
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

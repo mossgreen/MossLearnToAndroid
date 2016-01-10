@@ -14,23 +14,13 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 /**
- * Main class of this application.
- * This activity presents a menu bar on the top of this application
- * click the item can start the game
- * @author gufeifei <gufeifei@outlook.com>
+ * @author com.victor.marslander, modified by Feifei GU Jan/11/2016 Assignment
+ *         of subject ISCG7424 Mobile Application Development
  * 
- * @version 1.0
- * @since java 1.8
- *
  */
 public class MainActivity extends Activity {
-	
 	private final int MENU_START = 0;
-	
-	// represents a reference to gamepanel class
 	private GamePanel gamePanel;
-	
-	//initialize the image_buttons on the main picture of this app
 	private ImageButton bmMainFlame, btnLeftThruster, btnRightThruster;
 
 	@Override
@@ -52,21 +42,14 @@ public class MainActivity extends Activity {
 		return false;
 	}
 
-	/**
-	 * Called when the activity is first created.
-	 * retrieving references from xml file to create layout and other
-	 * elements that will be shown on the main interface
-	 * 
-	 * @param Bundle
-	 *            savedInstanceState
-	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// set the content view 
-		setContentView(R.layout.lander_layout); 
-		
+		Craft craft = new Craft(this);
+
+		setContentView(R.layout.lander_layout); // set the content view or our
+												// widget lookups will fail
 		gamePanel = (GamePanel) findViewById(R.id.MarsLanderView);
 		bmMainFlame = (ImageButton) findViewById(R.id.btnThruster);
 		bmMainFlame.setOnClickListener(new OnClickListener() {
