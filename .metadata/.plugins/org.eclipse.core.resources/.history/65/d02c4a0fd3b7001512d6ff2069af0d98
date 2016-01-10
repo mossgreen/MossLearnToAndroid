@@ -27,7 +27,6 @@ public class GameLoop {
 	public static final int STATE_RUNNING = 1;
 	public static final int STATE_WON = 2;
 	public static final int STATE_CRASHED = 3;
-	public static final int STATE_GAMEOVER = 4;
 	
 	//set game state to ready
 	private int state = STATE_READY;
@@ -107,10 +106,6 @@ public class GameLoop {
 	 */
 	public int getState() {
 		return state;
-	}
-	
-	public void setState(int state){
-		this.state = state;
 	}
 
 	/**

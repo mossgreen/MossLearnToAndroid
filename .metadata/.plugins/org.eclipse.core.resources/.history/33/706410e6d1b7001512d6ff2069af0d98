@@ -46,6 +46,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	// display object
 	private Bitmap bmBackground;
 	private Bitmap bmCraft;
+	private Bitmap bmCraftFallLeft;
+	private Bitmap bmCraftFallRight;
 	private Bitmap bmBoom;
 	private Bitmap bmWon, bmLose;
 	private Bitmap bmSideFlame;
@@ -168,25 +170,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		holder.addCallback(this);
 	}
 	
-	/**
-	 * Setup the flag to play the sound of landing and crashing.
-	 */
-	private void playSound() {
-		if (gameLoop.getState() == GameLoop.STATE_WON) {
-			landing.start();
-			gameLoop.setState(GameLoop.STATE_GAMEOVER);
-		} 
-		else if (gameLoop.getState() == GameLoop.STATE_CRASHED) {
-			crashes.start();
-			gameLoop.setState(GameLoop.STATE_GAMEOVER);
-		}
-		
-		
-		if(craft.IsMainEngineOn() && craft.IsRightEngineOn() && craft.IsLeftEngineOn()){
-			thrusterFire.start();
-		}
-	}
-	
 	
 
 
@@ -203,9 +186,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 					// drawing
 					canvas = holder.lockCanvas();
 					doDraw(canvas);
-					
-					
-					playSound();
 				}
 				Thread.sleep(REFRESH_RATE);
 			} catch (Exception e) {
@@ -260,21 +240,20 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		if (gameLoop.getState() == GameLoop.STATE_CRASHED) {
 			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
 			return;
 		} else if (gameLoop.getState() == GameLoop.STATE_WON) {
 			canvas.drawBitmap(bmCraft, matrix, null);
 			canvas.drawBitmap(bmWon, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
-		}else if(gameLoop.getState() == GameLoop.STATE_GAMEOVER){
-			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
-			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 2, null);
-
 			
+
 		}
 
 		canvas.drawBitmap(bmCraft, matrix, null);// draw the craft
 
 		if (gameLoop.getState() == GameLoop.STATE_RUNNING) {
 			
+			soundSetting();
 			// flame
 			if (craft.IsLeftEngineOn()) {
 				matrix.reset();
@@ -298,7 +277,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 			}
 		}
 	}
-
+	
+	private void soundSetting() {
+		if (craft.IsLeftEngineOn() && craft.IsRightEngineOn() && craft.IsMainEngineOn()) {
+			landing.start();
+		} 
+		else if (true) {
+			
+		}
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
