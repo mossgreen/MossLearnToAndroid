@@ -13,14 +13,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 
-/**
- * this app is based on com.victor.marslander, I did some re_factor and added some new features like sound effects
- * @author gufeifei
- *
- */
 public class MainActivity extends Activity {
+	private static final String APP_TAG = "MARSLANDER";
     private  final int MENU_START = 0;
-    private GamePanel gamePanel;
+    private GameView gameView;
     private ImageButton bmMainFlame, btnLeftThruster, btnRightThruster;
     
     @Override
@@ -35,7 +31,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 		if (itemId == MENU_START) {
-			gamePanel.getGameModel().startGame();
+			gameView.getGameModel().startGame();
 			return true;
 		}
 
@@ -49,12 +45,12 @@ public class MainActivity extends Activity {
         Craft craft = new Craft(this);
         
         setContentView(R.layout.lander_layout); // set the content view or our widget lookups will fail
-        gamePanel = (GamePanel)findViewById(R.id.MarsLanderView);
+        gameView = (com.feifei.marslander.game.GameView)findViewById(R.id.MarsLanderView);
         bmMainFlame = (ImageButton)findViewById(R.id.btnThruster);
         bmMainFlame.setOnClickListener(new OnClickListener() {	
 			@Override
 			public void onClick(View v) {
-				gamePanel.getGameModel().getCraft().thrust();
+				gameView.getGameModel().getCraft().thrust();
 			}
 		});
         
@@ -62,7 +58,7 @@ public class MainActivity extends Activity {
         btnLeftThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				gamePanel.getGameModel().getCraft().turnRight();
+				gameView.getGameModel().getCraft().turnRight();
 			}
 		});
 		
@@ -70,7 +66,7 @@ public class MainActivity extends Activity {
         btnRightThruster.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				gamePanel.getGameModel().getCraft().turnLeft();
+				gameView.getGameModel().getCraft().turnLeft();
 			}
 		});
     }
