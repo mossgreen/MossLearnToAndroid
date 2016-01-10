@@ -32,6 +32,7 @@ public class GameLoop {
 	public static final int STATE_FALL_RIGHT = 5;
 	private int state = STATE_READY;
 	
+	private float flatRemainingRatio = 0.3f;
 	
 	// the screen width and height value
 	private int screenWidth;
@@ -80,31 +81,19 @@ public class GameLoop {
 		craft = new Craft(posX, 0, GRAVITY, PIXELMETERRATIO);
 
 		//initialize mras object
-		mars = new Mars( screenWidth, screenHeight, (int) (Craft.WIDTH* 1.0f), Craft.WIDTH * 2 );
+		mars = new Mars(flatRemainingRatio, screenWidth, screenHeight, (int) (Craft.WIDTH* 1.0f), Craft.WIDTH * 2, 300);
 		//
 		timeStamp = System.nanoTime();
 	}
 
-	/**
-	 * getter of craft object
-	 * @return craft object
-	 */
 	public Craft getCraft() {
 		return craft;
 	}
 
-	/**
-	 * getter of the mars object
-	 * @return mars object
-	 */
 	public Mars getMars() {
 		return mars;
 	}
 
-	/**
-	 * getter of the game state
-	 * @return game state
-	 */
 	public int getState() {
 		return state;
 	}

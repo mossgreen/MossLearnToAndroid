@@ -101,10 +101,6 @@ public class GameLoop {
 		return mars;
 	}
 
-	/**
-	 * getter of the game state
-	 * @return game state
-	 */
 	public int getState() {
 		return state;
 	}

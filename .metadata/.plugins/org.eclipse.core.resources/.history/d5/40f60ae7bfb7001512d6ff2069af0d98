@@ -17,17 +17,11 @@ public class Mars {
 	private final int MIN_WIDTH = 30;
 	private final int BASE_HEIGHT = 50;
 	private final float MIN_GRADIENT = 0.2f;
-	public static final int maxHeight = 300;
-	
-	private float flatRemainingRatio = 0.3f;
-	
 	private int minSingleFlatWidth;
 	private int maxSingleFlatWidth;
-	private int remainingFlatWidth ;
+	private int remainingFlatWidth;
 	private int remainingSlopeWidth;
-	
-//	mars = new Mars(flatRemainingRatio, screenWidth, screenHeight, (int) (Craft.WIDTH* 1.0f), Craft.WIDTH * 2 );
-
+	private int maxHeight;
 
 	private int screenHeight;
 
@@ -35,9 +29,10 @@ public class Mars {
 	private Vector<Point> map;
 	private Path ground;
 
-	public Mars( int scrWidth, int scrHeight, int minWidth, int maxWidth) {
+	public Mars(float flatRemainingRatio, int scrWidth, int scrHeight, int minWidth, int maxWidth, int maxHeight) {
 		this.minSingleFlatWidth = minWidth;
 		this.maxSingleFlatWidth = maxWidth;
+		this.maxHeight = maxHeight;
 		this.remainingFlatWidth = (int) (flatRemainingRatio * scrWidth);
 		this.remainingSlopeWidth = scrWidth - remainingFlatWidth;
 		this.screenHeight = scrHeight;
