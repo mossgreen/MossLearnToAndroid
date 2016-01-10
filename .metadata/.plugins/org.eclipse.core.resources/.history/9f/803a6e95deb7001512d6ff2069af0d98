@@ -80,7 +80,7 @@ public class GameLoop {
 		craft = new Craft(posX, 0);
 
 		//initialize mras object
-		mars = new Mars( screenWidth, screenHeight,  Craft.WIDTH , Craft.WIDTH * 2 );
+		mars = new Mars( screenWidth, screenHeight, (int) (Craft.WIDTH* 1.0f), Craft.WIDTH * 2 );
 		//
 		timeStamp = System.nanoTime();
 	}

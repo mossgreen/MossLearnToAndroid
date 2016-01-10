@@ -93,8 +93,6 @@ public class Mars {
 	 * @return Vector The ground points
 	 */
 	public Vector<Point> getGroundPoints(){
-		
-		//return the map container if it's not null
 		if(map != null){
 			return map;
 		}
@@ -136,18 +134,13 @@ public class Mars {
 			return null;
 		}
 		int width = 0;
-		
-		/*if the remaining width less than the width of the max single flat ground width value
-		 * draw new point
-		 */
-		if (remainingFlatWidth <= maxSingleFlatWidth) {
+		if (remainingFlatWidth <= minSingleFlatWidth * 2) {
 			// last one
 			width = remainingFlatWidth;
 			remainingFlatWidth = 0;
 			return new Point(curr.x + width, curr.y);
 		}
 
-		//generate random width of the new ground
 		width = rdm.nextInt(maxSingleFlatWidth - minSingleFlatWidth) + minSingleFlatWidth;
 		remainingFlatWidth -= width;
 		return new Point(curr.x + width, curr.y);

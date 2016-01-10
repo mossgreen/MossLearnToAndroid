@@ -251,9 +251,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		/*
 		 * if the gameloop's state is crashed
 		 * draw the craft, the crashing point and 
-		 * draw a picture of "fail" sign start at the top half of the screen
+		 * draw a picture of "fail" sign at the top half of the screen
 		 * if the gameloop's state is win
-		 * draw the craft with a picture of "pass" start at top half of the screen
+		 * draw the craft with a picture of "pass" at top half of the screen
 		 */
 		canvas.drawBitmap(bmCraft, matrix, null);
 

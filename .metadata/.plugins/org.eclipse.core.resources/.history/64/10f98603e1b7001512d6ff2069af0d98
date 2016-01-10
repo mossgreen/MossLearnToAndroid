@@ -136,10 +136,6 @@ public class Mars {
 			return null;
 		}
 		int width = 0;
-		
-		/*if the remaining width less than the width of the max single flat ground width value
-		 * draw new point
-		 */
 		if (remainingFlatWidth <= maxSingleFlatWidth) {
 			// last one
 			width = remainingFlatWidth;
@@ -147,7 +143,6 @@ public class Mars {
 			return new Point(curr.x + width, curr.y);
 		}
 
-		//generate random width of the new ground
 		width = rdm.nextInt(maxSingleFlatWidth - minSingleFlatWidth) + minSingleFlatWidth;
 		remainingFlatWidth -= width;
 		return new Point(curr.x + width, curr.y);
