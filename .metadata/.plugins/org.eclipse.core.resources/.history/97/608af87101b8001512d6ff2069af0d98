@@ -25,7 +25,7 @@ public class Mars {
 	private float flatRemainingRatio = 0.3f;
 	private int screenHeight;
 
-	// will generate random points of the map
+	// for random points of the map
 	private final Random rdm = new Random(System.currentTimeMillis());
 	private Vector<Point> map;
 	private Path ground;

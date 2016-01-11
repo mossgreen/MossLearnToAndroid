@@ -272,9 +272,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		
 		/*
 		 * this method rotate the craft by using matrix
-		 * set it can be rotated only in condition of running status
 		 */
-		if (gameLoop.getState() == GameLoop.STATE_RUNNING)  {
+		if (gameLoop.getState() != GameLoop.STATE_CRASHED) {
 			matrix.reset();
 			matrix.setTranslate(craft.getX(), craft.getY());
 			matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
