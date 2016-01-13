@@ -20,6 +20,8 @@ public class AboutActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView contactMe;
     String theme;
+
+    //test
 //    private UUID mId;
     private AnalyticsApplication app;
 
