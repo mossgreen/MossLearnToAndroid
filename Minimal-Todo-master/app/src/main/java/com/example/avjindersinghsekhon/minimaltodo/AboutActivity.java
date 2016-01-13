@@ -21,7 +21,7 @@ public class AboutActivity extends AppCompatActivity {
     private TextView contactMe;
     String theme;
 
-    //test
+    //test with git
 //    private UUID mId;
     private AnalyticsApplication app;
 
