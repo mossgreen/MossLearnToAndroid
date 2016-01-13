@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
-
+/*RecyclerView是 Android 兼容包V21中新推出的列表类，它的自定义化强的优点足以让它能够取代GridView和ListView，*/
 public class RecyclerViewEmptySupport extends RecyclerView {
     private View emptyView;
 

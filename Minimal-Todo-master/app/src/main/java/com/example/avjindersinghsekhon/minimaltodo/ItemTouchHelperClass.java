@@ -3,6 +3,8 @@ package com.example.avjindersinghsekhon.minimaltodo;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+// ItemTouchHelper是一个强大的工具，它处理好了关于在RecyclerView上添加拖动排序与滑动删除的所有事情。它是RecyclerView.ItemDecoration的子类，
+// 也就是说它可以轻易的添加到几乎所有的LayoutManager和Adapter中。它还可以和现有的item动画一起工作，提供受类型限制的拖放动画等等，
 public class ItemTouchHelperClass extends ItemTouchHelper.Callback{
     private ItemTouchHelperAdapter adapter;
     public interface ItemTouchHelperAdapter{

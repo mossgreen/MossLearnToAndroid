@@ -38,11 +38,22 @@ import java.util.Collections;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+    //实现 下拉刷新喝自动加载
     private RecyclerViewEmptySupport mRecyclerView;
+
+    // 悬浮的“＋” 按钮，称为fab，是material design 的一个特色
     private FloatingActionButton mAddToDoItemFAB;
+
+    //todolist
     private ArrayList<ToDoItem> mToDoItemsArrayList;
+
+    //CoordinatorLayout 实现了多种Material Design中提到的滚动效果。
     private CoordinatorLayout mCoordLayout;
+
+    //
     public static final String TODOITEM = "com.avjindersinghsekhon.com.avjindersinghsekhon.minimaltodo.MainActivity";
+
+
     private BasicListAdapter adapter;
     private static final int REQUEST_ID_TODO_ITEM = 100;
     private ToDoItem mJustDeletedToDoItem;
@@ -51,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String DATE_TIME_FORMAT_24_HOUR = "MMM d, yyyy  k:mm";
     public static final String FILENAME = "todoitems.json";
     private StoreRetrieveData storeRetrieveData;
+
+    /*ItemTouchHelper是一个强大的工具，它处理好了关于在RecyclerView上添加拖动排序与滑动删除的所有事情。
+    它是RecyclerView.ItemDecoration的子类，也就是说它可以轻易的添加到几乎所有的LayoutManager和Adapter中。
+    它还可以和现有的item动画一起工作，提供受类型限制的拖放动画等等，
+     */
     public ItemTouchHelper itemTouchHelper;
     private CustomRecyclerScrollViewListener customRecyclerScrollViewListener;
     public static final String SHARED_PREF_DATA_SET_CHANGED = "com.avjindersekhon.datasetchanged";
@@ -70,7 +86,12 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+    /*
+    this is a static method
+    return a ArrayList, type is todoitem
+    one param, type is StoreRetrieveData, which is from another class
 
+     */
     public static ArrayList<ToDoItem> getLocallyStoredData(StoreRetrieveData storeRetrieveData){
         ArrayList<ToDoItem> items = null;
 
