@@ -4,6 +4,7 @@
 	<item value="true" key="Annotations"/>
 	<item value="true" key="Comments"/>
 	<item value="false" key="InstanceOf"/>
+	<item value="false" key="delegateUpdating"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="true" key="renameSubpackages"/>
 		<item value="false" key="updateQualifiedNames"/>

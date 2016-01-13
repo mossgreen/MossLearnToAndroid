@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+
+    <item 
+        android:id="@+id/save"
+        android:title="Save Image"/>
+    
+    <item 
+        andorid:id="@+id/colorBlack"
+        android:title="change color to blck" />
+    
+    <item 
+        android:id="@+id/colorGreen"
+        android:title="change color to green"/>
+    
+    <item 
+        android:id="@+id/colorRed
+        android:title="change color to red"/>
+</menu>

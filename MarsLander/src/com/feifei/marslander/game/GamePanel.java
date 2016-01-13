@@ -38,9 +38,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 
 	SurfaceHolder holder;
 
-	// initialize sound resource
-//	private MediaPlayer landing, crashes, thrusterFire;
-
 	// display object
 	private Bitmap bmBackground;
 	private Bitmap bmCraft;
@@ -118,7 +115,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 	}
 
 	/**
-	 * Pre-loads corresponding resources like bitmap and sound.
+	 * Pre-loads corresponding resources like bitmap
 	 */
 	public void init() {
 
@@ -152,10 +149,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		paintGround = new Paint();
 		paintGround.setShader(mShader);
 
-		// Initialize sound of land, fly and crash.
-//		landing = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.landing);
-//		crashes = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.crashes);
-//		thrusterFire = MediaPlayer.create(this.getContext().getApplicationContext(), R.raw.fly);
 
 		// initialize the fuel painter
 		fuelPositionX = getResources().getInteger(R.integer.drawFuelPositionX);
@@ -168,9 +161,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ru
 		holder.addCallback(this);
 	}
 
-	/**
-	 * Setup the flag to play the sound of landing and crashing.
-	 */
 
 
 	@Override

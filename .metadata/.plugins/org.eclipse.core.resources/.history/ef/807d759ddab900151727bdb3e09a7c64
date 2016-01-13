@@ -1,0 +1,359 @@
+package com.feifei.marslander.game;
+
+import com.feifei.marslander.R;
+import com.feifei.marslander.model.Craft;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.graphics.Path;
+import android.graphics.PixelFormat;
+import android.graphics.Shader;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+
+/**
+ * @author Originally from com.victor.marslander_2015, modified by Feifei GU
+ *         Jan/11/2016. 
+ *         
+ *         This is an assignment of subject ISCG7424 Mobile Application
+ *         Development. 
+ *         
+ *         This class is mainly used for draw the mars lander view
+ *         and pre-loads corresponding resources into bitmap.
+ *
+ * @version 1.0
+ */
+public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Runnable {
+
+	private final int REFRESH_RATE = getResources().getInteger(R.integer.REFRESH_RATE);
+
+	SurfaceHolder holder;
+
+	// display object
+	private Bitmap bmBackground;
+	private Bitmap bmCraft;
+	private Bitmap bmBoom;
+	private Bitmap bmWon, bmLose;
+	private Bitmap bmSideFlame;
+	private Bitmap bmMainFlame;
+	private Paint paintGround;
+	Matrix matrix = new Matrix();
+
+	// screen values
+	private int screenWidth;
+	private int screenHeight;
+
+	// variables for drawing fuel on the screen
+	private int fuelPositionX;
+	private int fuelPositionY;
+	private int fuelPainterSize;
+	private String drawFuel;
+
+	Thread mainThread;
+
+	// initialize the reference to model object
+	private GameLoop gameLoop;
+
+	/**
+	 * constructors
+	 * 
+	 * @param context
+	 */
+	public GamePanel(Context context) {
+		super(context);
+	}
+
+	/**
+	 * constructors
+	 * 
+	 * @param context
+	 * @param attrs
+	 * @param defStyle
+	 */
+	public GamePanel(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+	}
+
+	/**
+	 * constructors
+	 * 
+	 * @param context
+	 * @param attrs
+	 */
+	public GamePanel(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
+
+	/**
+	 * get the screen size
+	 */
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
+
+		this.screenWidth = w;
+		this.screenHeight = h;
+		init();
+	}
+
+	/**
+	 * getter GameLoop object
+	 * 
+	 * @return
+	 */
+	public GameLoop getGameLoop() {
+		return gameLoop;
+	}
+
+	/**
+	 * Pre-loads corresponding resources like bitmap
+	 */
+	public void init() {
+
+		//initialize the reference to the gameloop
+		gameLoop = new GameLoop(screenWidth, screenHeight);
+		
+		//initialize the bitmap resources that will be used in this class
+		Bitmap temp = BitmapFactory.decodeResource(getResources(), R.drawable.craftmain);
+		bmCraft = Bitmap.createScaledBitmap(temp, Craft.WIDTH, Craft.HEIGHT, true);
+
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.boom);
+		bmBoom = Bitmap.createScaledBitmap(temp, 50, 38, true);
+
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.won);
+		bmWon = Bitmap.createScaledBitmap(temp, temp.getWidth(), temp.getHeight(), true);
+
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.lose);
+		bmLose = Bitmap.createScaledBitmap(temp, temp.getWidth(), temp.getHeight(), true);
+
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.flame);
+		bmSideFlame = Bitmap.createScaledBitmap(temp, Craft.SIDE_FLAME_WIDTH, Craft.SIDE_FLAME_HEIGHT, true);
+
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.flame);
+		bmMainFlame = Bitmap.createScaledBitmap(temp, Craft.MAIN_FLAME_WIDTH, Craft.MAIN_FLAME_HEIGHT, true);
+
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+		bmBackground = Bitmap.createScaledBitmap(temp, screenWidth, screenHeight, true);
+
+		temp = BitmapFactory.decodeResource(getResources(), R.drawable.map);
+		Shader mShader = new BitmapShader(temp, Shader.TileMode.REPEAT, Shader.TileMode.MIRROR);
+		paintGround = new Paint();
+		paintGround.setShader(mShader);
+
+
+		// initialize the fuel painter
+		fuelPositionX = getResources().getInteger(R.integer.drawFuelPositionX);
+		fuelPositionY = getResources().getInteger(R.integer.drawFuelPositionY);
+		fuelPainterSize = getResources().getInteger(R.integer.fuelPainterSize);
+		drawFuel = getResources().getString(R.string.drawFuel);
+
+		holder = getHolder();
+		holder.setFormat(PixelFormat.TRANSPARENT);
+		holder.addCallback(this);
+	}
+
+	/**
+	 * Setup the flag to play the sound of landing and crashing.
+	 */
+
+
+	@Override
+	public void run() {
+		while (true) {
+			Canvas canvas = null;
+			try {
+				synchronized (holder) {
+					// update model
+					if (gameLoop.getState() == GameLoop.STATE_RUNNING)
+						gameLoop.update();
+
+					// drawing
+					canvas = holder.lockCanvas();
+					doDraw(canvas);
+				}
+				Thread.sleep(REFRESH_RATE);
+			} catch (Exception e) {
+			} finally {
+				if (canvas != null) {
+					holder.unlockCanvasAndPost(canvas);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Draw background, craft, fuel gauge, crash picture and win picture etc.
+	 * 
+	 * @param canvas
+	 *            The draw canvas.
+	 */
+	private void doDraw(Canvas canvas) {
+
+		// draw background first
+		canvas.drawBitmap(bmBackground, 0, 0, null);
+
+		// draw the starting view, in which the craft is at the center of screen
+		if (gameLoop.getState() == GameLoop.STATE_READY) {
+			canvas.drawBitmap(bmCraft, (screenWidth - Craft.WIDTH) / 2, screenHeight / 2, null);
+			return;
+		}
+
+		// get the ground points map and draw ground path
+		Path path = gameLoop.getMars().getGround();
+		canvas.drawPath(path, paintGround);
+
+		// get the craft instance
+		Craft craft = gameLoop.getCraft();
+
+		// draw remains fuel
+		drawFuel(canvas, craft);
+
+		// rotate the craft if the head angle is changed
+		rotateCraft(craft);
+
+		//draw the craft on the canvas
+		drawCraft(canvas, craft);
+	}
+
+	/**
+	 * draw remains fuel
+	 * @param canvas
+	 * @param craft
+	 */
+	private void drawFuel(Canvas canvas, Craft craft) {
+		Paint paint = new Paint();
+		paint.setColor(Color.WHITE);
+		paint.setStyle(Style.FILL);
+		paint.setTextSize(fuelPainterSize);
+		
+		/* the position of the fuel gauge is fixed
+		 * at the position of (screenWidth - fuelPositionX, fuelPositionY)
+		 * which indicates the right top of the screen
+		*/
+		canvas.drawText(drawFuel + craft.getFuelRemaining(), screenWidth - fuelPositionX, fuelPositionY, paint);
+	}
+
+	/**
+	 * rotate the craft if the head angle is changed
+	 * @param craft
+	 */
+	private void rotateCraft(Craft craft) {
+		
+		/*
+		 * this method rotate the craft by using matrix
+		 * set it can be rotated only in condition of running status
+		 */
+		if (gameLoop.getState() == GameLoop.STATE_RUNNING)  {
+			matrix.reset();
+			matrix.setTranslate(craft.getX(), craft.getY());
+			matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
+		}
+	}
+
+	/**
+	 * if the gameloop's state is crashed draw the craft, the crashing point and
+	 * draw a picture of "fail" sign start at the top half of the screen if the
+	 * gameloop's state is win draw the craft with a picture of "pass" start at
+	 * top half of the screen
+	 * 
+	 * @param canvas 
+	 * @param craft
+	 */
+	private void drawCraft(Canvas canvas, Craft craft) {
+		
+		//draw the craft first, because it will show in the view anyway
+		canvas.drawBitmap(bmCraft, matrix, null);
+
+		//then, check the state of the game
+		if (gameLoop.getState() == GameLoop.STATE_CRASHED) {
+			canvas.drawBitmap(bmBoom, craft.getX(), craft.getCenterY(), null);
+			canvas.drawBitmap(bmLose, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 3, null);
+		} else if (gameLoop.getState() == GameLoop.STATE_WON) {
+			canvas.drawBitmap(bmWon, (screenWidth - bmWon.getWidth()) / 2, screenHeight / 3, null);
+		} else {
+
+			if (gameLoop.getState() == GameLoop.STATE_RUNNING) {
+
+				/*
+				 * the following code is drawing  flames of the engines of the craft
+				 * the flames will also be rotated  with the angle of craft
+				 * the code firstly check the engines's status
+				 * and draw the right flame
+				 * 
+				 */
+				if (craft.IsLeftEngineOn()) {
+					matrix.reset();
+					matrix.setTranslate(craft.getLeftFlamePosX(), craft.getSideFlamePosY());
+					matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
+					canvas.drawBitmap(bmSideFlame, matrix, null);
+				}
+
+				if (craft.IsRightEngineOn()) {
+					matrix.reset();
+					matrix.setTranslate(craft.getRightFlamePosX(), craft.getSideFlamePosY());
+					matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
+					canvas.drawBitmap(bmSideFlame, matrix, null);
+				}
+
+				if (craft.IsMainEngineOn()) {
+					matrix.reset();
+					matrix.setTranslate(craft.getMainFlamePosX(), craft.getMainFlamePosY());
+					matrix.postRotate(craft.getAngle(), craft.getCenterX(), craft.getCenterY());
+					canvas.drawBitmap(bmMainFlame, matrix, null);
+				}
+			}
+		}
+	}
+
+	/**
+	 * on touch listener
+	 * control the left and right engine of craft
+	 */
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+
+		int action = event.getActionMasked();
+		if (action == MotionEvent.ACTION_DOWN) {
+			if (event.getX() < screenWidth / 2) {
+				gameLoop.getCraft().turnRight();
+			} else {
+				gameLoop.getCraft().turnLeft();
+			}
+		} else if (action == MotionEvent.ACTION_UP) {
+		}
+
+		return super.onTouchEvent(event);
+	}
+
+	@Override
+	public void surfaceCreated(SurfaceHolder holder) {
+		mainThread = new Thread(this);
+		if (mainThread != null)
+			mainThread.start();
+	}
+
+	@Override
+	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+	}
+
+	@Override
+	public void surfaceDestroyed(SurfaceHolder holder) {
+		boolean retry = true;
+		while (retry) {
+			try {
+				mainThread.join();
+				retry = false;
+			} catch (InterruptedException e) {
+			}
+		}
+	}
+}

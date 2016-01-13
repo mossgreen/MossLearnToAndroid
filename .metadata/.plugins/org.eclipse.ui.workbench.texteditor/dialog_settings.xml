@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Craft.HEIGHT" key="selection"/>
-		<item value="true" key="casesensitive"/>
+		<item value="" key="selection"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
-		<item value="true" key="wholeword"/>
+		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="craft.getCraftHeight()"/>
-			<item value="craft.getCraftWidth()"/>
-			<item value="com.fe"/>
-			<item value="Craft."/>
-			<item value="Craft"/>
-			<item value="static"/>
-			<item value="MAIN_FLAME_OFFSET_X"/>
-			<item value="setScreenWidth"/>
+			<item value="sound"/>
+			<item value="rotate"/>
+			<item value="playSound"/>
+			<item value="getGameLoop"/>
+			<item value="GameLoop"/>
+			<item value="mars"/>
+			<item value="HEIGHT"/>
+			<item value="angle"/>
 		</list>
 		<list key="replacehistory">
-			<item value="Craft.HEIGHT"/>
+			<item value=""/>
 			<item value="Craft.WIDTH"/>
+			<item value="Craft.HEIGHT"/>
 			<item value="craft."/>
 			<item value="craft"/>
-			<item value=""/>
 			<item value="getGameModel"/>
 			<item value="getScene"/>
 			<item value="gameModel"/>
@@ -32,7 +32,7 @@
 		<item value="265" key="DIALOG_WIDTH"/>
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="1006" key="DIALOG_X_ORIGIN"/>
-		<item value="374" key="DIALOG_Y_ORIGIN"/>
+		<item value="1114" key="DIALOG_X_ORIGIN"/>
+		<item value="424" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

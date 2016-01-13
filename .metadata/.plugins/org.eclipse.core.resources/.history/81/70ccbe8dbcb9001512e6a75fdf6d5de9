@@ -1,0 +1,80 @@
+package nz.ac.unitec;
+
+import java.io.File;
+
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.Display;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import nz.ac.unitec.draw.DrawView;
+
+public class MainActivity extends Activity
+{
+	private DrawView mDrawView;
+	private Bitmap mBitmap;
+	private File mFile;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+
+		/*
+		 * TODO STEP01: Add at least four items to the menu.xml file. One item
+		 * should save the drawing to the SD card. The other items are for
+		 * changing the colour of the objects.
+		 */
+
+		/*
+		 * TODO STEP02: Create a bitmap object and set the size of the display
+		 * to it.
+		 */
+		
+		Display display = getWindowManager().getDefaultDisplay();
+		mDrawView = new DrawView(this);
+		int x = display.getWidth();
+		int y = display.getHeight();
+		mBitmap = Bitmap.createBitmap(x,y,Bitmap.Config.ARGB_8888);
+
+
+		mDrawView.setBackgroundColor(Color.GRAY);
+		setContentView(mDrawView);
+		mDrawView.requestFocus();
+
+		/*
+		 * TODO STEP03: Create new file to save data to the SD card.
+		 */
+		
+		mFile = new File(Environment.getExternalStorageDirectory(),"test");
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		/*
+		 * TODO STEP04: Add the menu to the activity.
+		 */
+		
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu, menu);
+
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		/*
+		 * TODO STEP05: Handle the menu options (one item for saving data to SD
+		 * card, the other items for changing the colour of the drawing..
+		 */
+
+		return true;
+	}
+
+}
