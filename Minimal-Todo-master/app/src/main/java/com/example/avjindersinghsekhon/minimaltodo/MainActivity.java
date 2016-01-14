@@ -87,12 +87,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     /*
+    @moss
     this is a static method
-    return a ArrayList, type is todoitem
-    one param, type is StoreRetrieveData, which is from another class
-
+    so the method used in this method is static method too
+    return an ArrayList, type is todoitem
+    one param, which is a object reference to a class named StoreRetrieveData
      */
     public static ArrayList<ToDoItem> getLocallyStoredData(StoreRetrieveData storeRetrieveData){
+
+        /*
+        @moss
+        first, initialize a ArrayList, type of ToDoItem
+        then, load data from json file, by using loadFromFile() method, provided by storeRetrieveData object
+        if there is no data, create a new ArrayList and return this empty ArrayList,
+        otherwise, return the ArrayList that with data that we got from json file
+         */
         ArrayList<ToDoItem> items = null;
 
         try {
@@ -112,22 +121,50 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        //the author is tracking this app
         app.send(this);
 
+        /*
+        @moss
+        SharedPreferences的使用非常简单，能够轻松的存放数据和读取数据。
+        SharedPreferences只能保存简单类型的数据，例如，String、int等。
+        一般会将复杂类型的数据转换成Base64编码，
+        然后将转换后的数据以字符串的形式保存在 XML文件中，再用SharedPreferences保存。
+
+        使用SharedPreferences保存key-value对的步骤如下：
+         */
+
+        /*
+        （1）使用Activity类的getSharedPreferences方法获得SharedPreferences对象，
+            其中存储key-value的文件的名称由getSharedPreferences方法的第一个参数指定。
+         */
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_DATA_SET_CHANGED, MODE_PRIVATE);
+
         if(sharedPreferences.getBoolean(ReminderActivity.EXIT, false)){
+
+            /*
+            （2）使用SharedPreferences接口的edit获得SharedPreferences.Editor对象。
+             */
             SharedPreferences.Editor editor = sharedPreferences.edit();
+            /*
+            （3）通过SharedPreferences.Editor接口的putXxx方法保存key-value对。
+            其中Xxx表示不同的数据类型。例如：字符串类型的value需要用putString方法。
+             */
             editor.putBoolean(ReminderActivity.EXIT,false);
+            /*
+            (4)通过SharedPreferences.Editor接口的commit方法保存key-value对。commit方法相当于数据库事务中的提交（commit）操作。
+             */
             editor.apply();
             finish();
         }
         /*
+        @author
         We need to do this, as this activity's onCreate won't be called when coming back from SettingsActivity,
         thus our changes to dark/light mode won't take place, as the setContentView() is not called again.
         So, inside our SettingsFragment, whenever the checkbox's value is changed, in our shared preferences,
         we mark our recreate_activity key as true.
 
-        Note: the recreate_key's value is changed to false before calling recreate(), or we woudl have ended up in an infinite loop,
+        Note: the recreate_key's value is changed to false before calling recreate(), or we would have ended up in an infinite loop,
         as onResume() will be called on recreation, which will again call recreate() and so on....
         and get an ANR
 
@@ -144,12 +181,31 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+
+        //this code is for author to track this app using google analysis
         app = (AnalyticsApplication)getApplication();
         super.onStart();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_DATA_SET_CHANGED, MODE_PRIVATE);
         if(sharedPreferences.getBoolean(CHANGE_OCCURED, false)){
 
+            /*
+            @moss
+            getLocallyStoredData() is the method that created above,
+            used to fetch data from the jason file
+            it returns an ArrayList, type is todoitem
+             */
             mToDoItemsArrayList = getLocallyStoredData(storeRetrieveData);
+
+            /*
+            @moss
+            如果一个项目当中需要定义多个Adapter，那么重复的编写一些相同的代码无意是繁琐和浪费时间的，
+            所以BaseListAdapter就产生了，
+            当需要自定义Adapter的时候，让这个Adapter继承BaseListAdapter，
+            只需覆写bindView(int position, View convertView, ViewGroup parent)方法即可，
+            另外，可以通过setOnInViewClickListener(Integer key,onInternalClickListener onClickListener)方法
+            来为Adapter里的view添加点击事件，
+            当然，也可以直接通过setOnClickListener（listener）为view设置点击事件。
+             */
             adapter = new BasicListAdapter(mToDoItemsArrayList);
             mRecyclerView.setAdapter(adapter);
             setAlarms();
@@ -163,7 +219,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    set Alarms to a to do item
+     */
     private void setAlarms(){
+        /*@moss
+        first, check the to do item ArrayList, if it's not null
+        iterate this ArrayList,
+        if any item has a reminder or item has a to do date
+        check the to do date
+        if the date has passed, do nothing and continue
+        otherwise:
+        new an intent, to set the alarm
+         */
         if(mToDoItemsArrayList!=null){
             for(ToDoItem item : mToDoItemsArrayList){
                 if(item.hasReminder() && item.getToDoDate()!=null){
@@ -206,6 +274,17 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean(CHANGE_OCCURED, false);
         editor.apply();
 
+        /*
+        FILENAME is from: public static final String FILENAME = "todoitems.json"
+        us this name and this activity to initialize a StoreRetrieveData object
+        we already have a getLocallyStoredData() method in this class
+        put the object as param to get the ArrayList data from the FileName.json
+        then, set List Adapter to this ArrayList
+        and set Alarm to this list.
+        about set Alarm method, just see the code above
+        it iterates the ArrayList to check each item
+        if an item has a to do date, just set alarm to this item
+         */
         storeRetrieveData = new StoreRetrieveData(this, FILENAME);
         mToDoItemsArrayList =  getLocallyStoredData(storeRetrieveData);
         adapter = new BasicListAdapter(mToDoItemsArrayList);
@@ -231,14 +310,25 @@ public class MainActivity extends AppCompatActivity {
 //        mToDoItemsArrayList = new ArrayList<>();
 //        makeUpItems(mToDoItemsArrayList, testStrings.length);
 
+        /*
+        Toolbar其实是一个ActionBar的变体，大大扩展了Actionbar。
+        我们可以像对待一个独立控件一样去使用ToolBar，
+        可以将它放到屏幕的任何位置，不必拘泥于顶部，
+        还可以将它改变高度或者是在ToolBar上使用动画。
+         */
         final android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-
+        /*
+        CoordinatorLayout 实现了多种Material Design中提到的滚动效果
+         */
         mCoordLayout = (CoordinatorLayout)findViewById(R.id.myCoordinatorLayout);
         mAddToDoItemFAB = (FloatingActionButton)findViewById(R.id.addToDoItemFAB);
 
+        /*
+        set on click listener to the fab
+         */
         mAddToDoItemFAB.setOnClickListener(new View.OnClickListener() {
 
             @SuppressWarnings("deprecation")
