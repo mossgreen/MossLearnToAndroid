@@ -23,7 +23,9 @@ public class SettingsActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
 
         app = (AnalyticsApplication)getApplication();
+        //@lv new theme
         String theme = getSharedPreferences(MainActivity.THEME_PREFERENCES, MODE_PRIVATE).getString(MainActivity.THEME_SAVED, MainActivity.LIGHTTHEME);
+        //@lv theme is light or dark
         if(theme.equals(MainActivity.LIGHTTHEME)){
             setTheme(R.style.CustomStyle_LightTheme);
         }
@@ -36,17 +38,20 @@ public class SettingsActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //@lv set up back arrow format
         final Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         if(backArrow!=null){
             backArrow.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
         }
 
+        //@lv set up back arrow on action bar
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(backArrow);
         }
 
+        //@lv The FragmentManager class provides methods that allow you to add, remove, and replace fragments to an activity at runtime in order to create a dynamic experience.
         FragmentManager fm= getFragmentManager();
         fm.beginTransaction().replace(R.id.mycontent, new SettingsFragment()).commit();
     }
