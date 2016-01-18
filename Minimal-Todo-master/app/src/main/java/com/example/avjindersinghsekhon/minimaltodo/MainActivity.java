@@ -28,7 +28,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import org.json.JSONException;
 
@@ -226,8 +225,8 @@ public class MainActivity extends AppCompatActivity {
                 app.send(this, "Action", "FAB pressed");
                 Intent newTodo = new Intent(MainActivity.this, AddToDoActivity.class);
                 ToDoItem item = new ToDoItem("", false, null);
-                int color = ColorGenerator.MATERIAL.getRandomColor();
-                item.setTodoColor(color);
+//                int color = ColorGenerator.MATERIAL.getRandomColor();
+                item.setTodoColor(Color.LTGRAY);
                 //noinspection ResourceType
 //                String color = getResources().getString(R.color.primary_ligher);
                 newTodo.putExtra(TODOITEM, item);
@@ -520,7 +519,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //            Log.d("OskarSchindler", "Color: "+item.getTodoColor());
             TextDrawable myDrawable = TextDrawable.builder().beginConfig()
-                    .textColor(Color.WHITE)
+                    .textColor(Color.BLACK)
                     .useFont(Typeface.DEFAULT)
                     .toUpperCase()
                     .endConfig()
