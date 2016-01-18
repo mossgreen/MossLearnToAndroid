@@ -1,5 +1,0 @@
-package com.feifei.marslander.interfaces;
-
-public interface Sprite {
-
-}
