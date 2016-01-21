@@ -10,20 +10,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+/*
+this is setting activity
+for users to change the app setting
+now, only has the function of change theme
+ */
 public class SettingsActivity extends AppCompatActivity{
 
-    AnalyticsApplication app;
     @Override
     protected void onResume() {
         super.onResume();
-        app.send(this);
+//        app.send(this);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        app = (AnalyticsApplication)getApplication();
+        /*
+        @moss
+        get the saved theme of this app
+        check and set the theme
+         */
         String theme = getSharedPreferences(MainActivity.THEME_PREFERENCES, MODE_PRIVATE).getString(MainActivity.THEME_SAVED, MainActivity.LIGHTTHEME);
+        //@lv theme is light or dark
         if(theme.equals(MainActivity.LIGHTTHEME)){
             setTheme(R.style.CustomStyle_LightTheme);
         }
@@ -36,21 +45,35 @@ public class SettingsActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //@lv set up back arrow format
+        /*
+        @moss
+         PorterDuff.Mode.SRC_ATOP 取下层图像非交集部门与上层图像交集部门
+         */
         final Drawable backArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         if(backArrow!=null){
             backArrow.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
         }
 
+        //@lv set up back arrow on action bar
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(backArrow);
         }
 
+        //@lv The FragmentManager class provides methods that
+        // allow you to add, remove, and replace fragments to an activity at runtime
+        // in order to create a dynamic experience.
         FragmentManager fm= getFragmentManager();
         fm.beginTransaction().replace(R.id.mycontent, new SettingsFragment()).commit();
     }
 
+    /*
+    @moss
+    trigger when clicked the back arrow
+    will navigate to the mainActivity
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){

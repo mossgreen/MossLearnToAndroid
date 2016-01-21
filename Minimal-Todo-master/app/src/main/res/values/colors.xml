@@ -21,4 +21,7 @@
 
     <color name="primary_ligher">#E1E4F4</color>
     <color name="primary_lightest">#F0F1F9</color>
+
+    <color name="icon_RED">#CDDC39</color>
+
 </resources>

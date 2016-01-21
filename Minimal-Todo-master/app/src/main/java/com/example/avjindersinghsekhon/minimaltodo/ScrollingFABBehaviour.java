@@ -8,6 +8,19 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
+/*
+@moss
+CoordinatorLayout 实现了多种Material Design中提到的滚动效果。目前这个框架提供了几种不用写动画代码就能工作的方法。
+只要使用CoordinatorLayout作为基本布局，将自动产生向上移动的动画。
+浮动操作按钮有一个 默认的 behavior来检测Snackbar的添加并让按钮在Snackbar之上呈现上移与Snackbar等高的动画
+
+CoordinatorLayout的工作原理是搜索定义了CoordinatorLayout Behavior 的子view，
+不管是通过在xml中使用app:layout_behavior标签还是通过在代码中对view类使用@DefaultBehavior修饰符来添加注解。
+当滚动发生的时候，CoordinatorLayout会尝试触发那些声明了依赖的子view。
+
+要自己定义CoordinatorLayout Behavior，需要实现layoutDependsOn() 和onDependentViewChanged()两个方法
+它们用于跟踪CoordinatorLayout中其他view的变化
+ */
 public class ScrollingFABBehaviour extends CoordinatorLayout.Behavior<FloatingActionButton> {
     private int toolbarHeight;
     private static boolean scrolledUp = false;
