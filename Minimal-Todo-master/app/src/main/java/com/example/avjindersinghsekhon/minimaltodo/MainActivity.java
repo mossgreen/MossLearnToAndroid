@@ -40,6 +40,10 @@ import java.util.Date;
  * @version v1.2
  */
 
+/*
+todo: 下拉刷新还没有。
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerViewEmptySupport mRecyclerView;
